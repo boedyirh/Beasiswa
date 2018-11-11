@@ -256,10 +256,9 @@
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="icon-random icon-white"> </i> Proses <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/pengajuan_beasiswa">Permohonan Beasiswa</a></li>
+                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/beasiswa_disetujui">Beasiswa Disetujui</a></li>
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/rangkuman_beasiswa">Rangkuman Pendaftar Beasiswa</a></li>
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/bidik_misi">Beasiswa Bidik Misi</a></li>
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/beasiswa_lain">Beasiswa Lain</a></li>
-             
+                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/kumpulan_sk">Kumpulan SK</a></li>
               </ul>
             </li>
             	<?php } ?>
@@ -267,8 +266,7 @@
     <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="icon-random icon-white"> </i> Download Data <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/import_excel">Import Excel XLSX</a></li>
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/export_excel">Export Excel XLSX</a></li>
+                  <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/export_excel">Export Data Excel</a></li>
     
               </ul>
             </li>          
