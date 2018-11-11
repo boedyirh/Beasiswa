@@ -1325,15 +1325,7 @@ exit(0);
 		$this->load->view('admin/aaa', $a);	
 	}
 	
-	public function agenda_surat_masuk() {
-		$a['page']	= "f_config_cetak_agenda";
-		$this->load->view('admin/aaa', $a);
-	} 
-	public function agenda_surat_keluar() {
-		$a['page']	= "f_config_cetak_agenda";
-		$this->load->view('admin/aaa', $a);
-	} 
-	
+
 	public function cetak_agenda() {
 		$jenis_surat	= $this->input->post('tipe');
 		$tgl_start		= $this->input->post('tgl_start');
