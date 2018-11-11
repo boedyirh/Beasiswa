@@ -534,7 +534,7 @@ exit(0);
 			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been updated. ".$this->upload->display_errors()."</div>");			
 			redirect('admin/pengajuan_beasiswa');
 		} else {
-			$a['data']		= $this->db->query("SELECT t1.id,t1.MhswID,t1.Nama,t2.Nama as NamaProdi,t1.JenisBeasiswa,t1.Periode,t1.File,t1.Status FROM bsw_pemohon t1 inner join t_prodi t2 on t1.ProdiID=t2.ProdiID  WHERE t1.Periode='2018' and t1.NA='N' and t1.IsDeleted='N' ORDER BY t1.Periode,t1.ProdiID  DESC LIMIT $awal, $akhir ")->result();
+			$a['data']		= $this->db->query("SELECT t1.InputBy,t1.id,t1.MhswID,t1.Nama,t2.Nama as NamaProdi,t1.JenisBeasiswa,t1.Periode,t1.File,t1.Status FROM bsw_pemohon t1 inner join t_prodi t2 on t1.ProdiID=t2.ProdiID  WHERE t1.Periode='2018' and t1.NA='N' and t1.IsDeleted='N' ORDER BY t1.Periode,t1.ProdiID  DESC LIMIT $awal, $akhir ")->result();
 			$a['page']		= "l_pengajuan_beasiswa";
 		}
 		
