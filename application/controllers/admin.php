@@ -1326,25 +1326,6 @@ exit(0);
 	}
 	
 
-	public function cetak_agenda() {
-		$jenis_surat	= $this->input->post('tipe');
-		$tgl_start		= $this->input->post('tgl_start');
-     $tgl_start     = date('Y-m-d' , strtotime($tgl_start));
-   
-		$tgl_end		= $this->input->post('tgl_end');
-	 $tgl_end     = date('Y-m-d' , strtotime($tgl_end));
-   	
-		$a['tgl_start']	= $tgl_start;
-		$a['tgl_end']	= $tgl_end;		
-
-		if ($jenis_surat == "agenda_surat_masuk") {	
-			$a['data']	= $this->db->query("SELECT * FROM t_surat_masuk WHERE tgl_diterima >= '$tgl_start' AND tgl_diterima <= '$tgl_end' ORDER BY id")->result(); 
-			$this->load->view('admin/agenda_surat_masuk', $a);
-		} else {
-			$a['data']	= $this->db->query("SELECT * FROM t_surat_keluar WHERE tgl_catat >= '$tgl_start' AND tgl_catat <= '$tgl_end' ORDER BY id")->result();
-			$this->load->view('admin/agenda_surat_keluar', $a);
-		}
-	}	
 	
 	public function manage_admin() {
 		if ($this->session->userdata('admin_valid') == FALSE && $this->session->userdata('admin_id') == "") {
