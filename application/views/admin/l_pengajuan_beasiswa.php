@@ -26,7 +26,7 @@
 			<th class="text-center" width="25%">Nama</th>
 			<th class="text-center" width="15%">Program Studi</th>
       <th class="text-center" width="10%">Jenis Beasiswa</th>
-      <th class="text-center" width="5%">Link</th>
+     
       <th class="text-center" width="5%">InputBy</th>
       <th class="text-center" width="5%">Status</th>
 			<th class="text-center" width="10%">Aksi</th>
@@ -50,7 +50,7 @@
       <td class="text-center"><?php echo $b->NamaProdi;?></td>
       <td class="text-center"><?php echo $b->JenisBeasiswa.'<br>Periode :'.$b->Periode;?></td>
   
-      		<td><?php echo "<i><a href='".base_URL()."upload/pemohon/".$b->File."' target='_blank'>".$b->File."</a>"?></td>
+   
 	 	 	<td class="text-center"><?php echo $b->InputBy;?></td> 
         <td class="text-center"><?php echo $b->Status;?></td>  	
 			<td class="text-center" class="ctr" >
