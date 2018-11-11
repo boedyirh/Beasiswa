@@ -277,14 +277,7 @@
               
               
               
-              
-			<li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="icon-file icon-white"> </i> Buku Agenda  <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/agenda_surat_masuk"> Surat Masuk</a></li>
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/agenda_surat_keluar"> Surat Keluar</a></li>
-              </ul>
-            </li>
+
 		
 			<?php
 			if ($this->session->userdata('admin_level') == "Super Admin") {
