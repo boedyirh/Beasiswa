@@ -2,7 +2,7 @@
 
 <div class="panel panel-primary">
 	<div class="panel-heading" style="overflow: auto">
-		<div class="col-md-8"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span> Rangkuman Pendaftar Beasiswa</h3></div>
+		<div class="col-md-8"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span>Pendaftar Beasiswa</h3></div>
  
 		<div class="col-md-3"></div>
  
