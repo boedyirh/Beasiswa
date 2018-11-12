@@ -22,11 +22,10 @@
 	<thead>
 		<tr  bgcolor=#cce6ff>
 			<th class="text-center" width="3%">No</th>
-			<th class="text-center" width="7%">NIM</th>
-			<th class="text-center" width="25%">Nama</th>
+			<th class="text-center" width="6%">NIM</th>
+			<th class="text-center" width="20%">Nama</th>
 			<th class="text-center" width="15%">Program Studi</th>
       <th class="text-center" width="10%">Jenis Beasiswa</th>
-     
       <th class="text-center" width="5%">InputBy</th>
       <th class="text-center" width="5%">Status</th>
 			<th class="text-center" width="10%">Aksi</th>
