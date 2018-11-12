@@ -80,9 +80,9 @@ if ($mode == "edt" || $mode == "act_edt") {
                                              <option value="LLN" <?php if($Jenis=="LLN") echo 'selected="selected"'; ?>>Lain-lain</option>
                                            </select>
   </td></tr>	
-  <tr><td width="25%">Tanggal Mulai</td><td><b><input type="text" name="Tgl_mulai" tabindex="4" autocomplete="off" required value="<?php echo $Tgl_mulai; ?>" id="tgl_mulai" style="width: 130px" class="form-control"></b></td></tr>
-  <tr><td width="25%">Tanggal Selesai</td><td><b><input type="text" name="Tgl_selesai" tabindex="5" autocomplete="off" required value="<?php echo $Tgl_selesai; ?>" id="tgl_selesai" style="width: 130px" class="form-control"></b></td></tr>	
-  <tr><td width="20%">Besaran beasiswa/mhsw</td><td><b><input type="text" name="Besaran" autocomplete="off" tabindex="6" required value="<?php echo number_format($Besaran); ?>" style="width: 100px" onkeyup="this.value=addCommas(this.value)"  class="form-control"></b></td></tr>
+  <tr><td width="25%">Tanggal Mulai</td><td><b><input type="text" name="Tgl_mulai" tabindex="4" autocomplete="off"  value="<?php echo $Tgl_mulai; ?>" id="tgl_mulai" style="width: 130px" class="form-control"></b></td></tr>
+  <tr><td width="25%">Tanggal Selesai</td><td><b><input type="text" name="Tgl_selesai" tabindex="5" autocomplete="off"  value="<?php echo $Tgl_selesai; ?>" id="tgl_selesai" style="width: 130px" class="form-control"></b></td></tr>	
+  <tr><td width="20%">Besaran beasiswa/mhsw</td><td><b><input type="text" name="Besaran" autocomplete="off" tabindex="6"  value="<?php echo number_format($Besaran); ?>" style="width: 100px" onkeyup="this.value=addCommas(this.value)"  class="form-control"></b></td></tr>
   <tr><td width="20%">Periode</td>  <td>
    <select class="form-control required" tabindex="7" style="width: 240px"; id="Periode" name="Periode">
                                              <option value="xxx">--- Periode Beasiswa ---</option>
@@ -92,12 +92,12 @@ if ($mode == "edt" || $mode == "act_edt") {
                                              
                                            </select>
   </td></tr>
-  <tr><td width="20%">Kuota</td><td><b><input type="text" name="Kuota" tabindex="8" autocomplete="off" required value="<?php echo $Kuota; ?>" style="width: 100px" class="form-control"></b></td></tr>
+  <tr><td width="20%">Kuota</td><td><b><input type="text" name="Kuota" tabindex="8" autocomplete="off"  value="<?php echo $Kuota; ?>" style="width: 100px" class="form-control"></b></td></tr>
   <tr><td><hr/></td></tr>
   <tr><td width="20%">Persyaratan Beasiswa</td></tr>
-   <tr><td width="20%">IPK Minimal</td><td><b><input type="text" name="IPKMinimal" autocomplete="off" tabindex="9"required value="<?php echo $IPKMinimal; ?>" style="width: 100px" class="form-control"></b></td></tr>
-   <tr><td width="20%">Semester Minimal</td><td><b><input type="text" name="SemesterMinimal" autocomplete="off" tabindex="10"required value="<?php echo $SemesterMinimal; ?>" style="width: 100px" class="form-control"></b></td></tr>
-  <tr><td width="20%">SKS Minimal</td><td><b><input type="text" name="SKSMinimal" autocomplete="off" tabindex="11" required value="<?php echo $SKSMinimal; ?>" style="width: 100px" class="form-control"></b></td></tr>
+   <tr><td width="20%">IPK Minimal</td><td><b><input type="text" name="IPKMinimal" autocomplete="off" tabindex="9" value="<?php echo $IPKMinimal; ?>" style="width: 100px" class="form-control"></b></td></tr>
+   <tr><td width="20%">Semester Minimal</td><td><b><input type="text" name="SemesterMinimal" autocomplete="off" tabindex="10" value="<?php echo $SemesterMinimal; ?>" style="width: 100px" class="form-control"></b></td></tr>
+  <tr><td width="20%">SKS Minimal</td><td><b><input type="text" name="SKSMinimal" autocomplete="off" tabindex="11"  value="<?php echo $SKSMinimal; ?>" style="width: 100px" class="form-control"></b></td></tr>
  
   <tr> <td>Aktif Dalam Kegiatan Kemahasiswaan</td>
   <td>  
@@ -130,9 +130,9 @@ if ($mode == "edt" || $mode == "act_edt") {
   </td></tr>
   
   
-	<tr><td width="20%">Persyaratan Lain</td><td><b><textarea tabindex="15" name="SyaratLain" required style="width: 700px; height: 100px" class="form-control"><?php echo $SyaratLain; ?></textarea></b></td></tr>		
+	<tr><td width="20%">Persyaratan Lain</td><td><b><textarea tabindex="15" name="SyaratLain"  style="width: 700px; height: 100px" class="form-control"><?php echo $SyaratLain; ?></textarea></b></td></tr>		
 
-  <tr><td width="20%">Deskripsi Singkat Beasiswa</td><td><b><textarea name="Deskripsi" tabindex="16" required style="width: 700px; height: 100px" class="form-control"><?php echo $Deskripsi; ?></textarea></b></td></tr>
+  <tr><td width="20%">Deskripsi Singkat Beasiswa</td><td><b><textarea name="Deskripsi" tabindex="16"  style="width: 700px; height: 100px" class="form-control"><?php echo $Deskripsi; ?></textarea></b></td></tr>
   	<tr><td width="25%">Formulir pendaftaran (Scan)</td><td><b><input type="file" name="file_surat" tabindex="18" class="form-control" style="width: 250px"></b></td></tr>
   
   

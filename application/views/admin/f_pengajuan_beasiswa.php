@@ -79,25 +79,25 @@ if ($mode == "edt" || $mode == "act_edt") {
 	 	<tr><td width="25%">NIM/NPM</td><td><b><input type="text" name="MhswID" <?php echo $ro;   ?>  id="MhswID" onkeypress="return isNumber(event)" maxlength="8" tabindex="3" required value="<?php echo $MhswID; ?>" id="dari" style="width: 100px" class="form-control"></b></td></tr>		
   	
      <tr><td><hr></td></tr>
-      <tr><td width="25%">IPK</td><td><b><input type="text" name="IPK" autocomplete="off" onkeypress="return isNumberKey(this, event);" id="NextStop" tabindex="4" required value="<?php echo $IPK; ?>" id="dari"  maxlength="4" style="width: 60px" class="form-control"></b></td></tr>		
-	   <tr><td width="25%">SKS Lulus</td><td><b><input type="text" name="SKSLulus" autocomplete="off" onkeypress="return isNumber(event)" maxlength="3" id="SKSLulus" tabindex="5" required value="<?php echo $SKSLulus; ?>" id="dari" style="width: 50px"  class="form-control"></b></td></tr>		
+      <tr><td width="25%">IPK</td><td><b><input type="text" name="IPK" autocomplete="off" onkeypress="return isNumberKey(this, event);" id="NextStop" tabindex="4"   value="<?php echo $IPK; ?>" id="dari"  maxlength="4" style="width: 60px" class="form-control"></b></td></tr>		
+	   <tr><td width="25%">SKS Lulus</td><td><b><input type="text" name="SKSLulus" autocomplete="off" onkeypress="return isNumber(event)" maxlength="3" id="SKSLulus" tabindex="5"   value="<?php echo $SKSLulus; ?>" id="dari" style="width: 50px"  class="form-control"></b></td></tr>		
 		<tr><td width="25%">Semester</td><td><b><input type="text" name="Semester" autocomplete="off" onkeypress="return isNumber(event)" maxlength="2" id="Semester" value="<?php echo $Semester; ?>" tabindex="6" style="width: 50px" class="form-control"></b></td></tr>
     
    	 
     
 	    <tr><td><hr></td></tr>
-      <tr><td width="25%">Alamat</td><td><b><input type="text" name="Alamat" id="Alamat" autocomplete="off" tabindex="7" required value="<?php echo $Alamat; ?>" id="dari" style="width: 400px" class="form-control"></b></td></tr>		
-	   <tr><td width="25%">No HP</td><td><b><input type="text" name="NoHP"  autocomplete="off" onkeypress="return isNumber(event)" maxlength="13" id="NoHP" tabindex="8" required value="<?php echo $NoHP; ?>" id="dari" style="width: 180px" class="form-control"></b></td></tr>		
+      <tr><td width="25%">Alamat</td><td><b><input type="text" name="Alamat" id="Alamat" autocomplete="off" tabindex="7"   value="<?php echo $Alamat; ?>" id="dari" style="width: 400px" class="form-control"></b></td></tr>		
+	   <tr><td width="25%">No HP</td><td><b><input type="text" name="NoHP"  autocomplete="off" onkeypress="return isNumber(event)" maxlength="13" id="NoHP" tabindex="8"   value="<?php echo $NoHP; ?>" id="dari" style="width: 180px" class="form-control"></b></td></tr>		
 		<tr><td width="25%">Keterangan</td><td><b><input type="text" name="Keterangan" autocomplete="off" id="Keterangan" value="<?php echo $Keterangan; ?>" tabindex="9" style="width: 400px" class="form-control"></b></td></tr>
        <tr><td><hr></td></tr>
     
-    <tr><td><b><input type="hidden" name="KodePT" id="KodePT" tabindex="72" required value="<?php echo $KodePT; ?>" id="dari" style="width: 400px" class="form-control"></b></td></tr>		
- 	 	<tr><td><b><input type="hidden" name="ProdiID" id="ProdiID" tabindex="72" required value="<?php echo $ProdiID; ?>" id="dari" style="width: 400px" class="form-control"></b></td></tr>		
-		<tr><td><b><input type="hidden" name="JenjangStudi" id="JenjangStudi" tabindex="72" required value="<?php echo $JenjangStudi; ?>" id="dari" style="width: 400px" class="form-control"></b></td></tr>		
+    <tr><td><b><input type="hidden" name="KodePT" id="KodePT" tabindex="72"   value="<?php echo $KodePT; ?>" id="KodePT" style="width: 400px" class="form-control"></b></td></tr>		
+ 	 	<tr><td><b><input type="hidden" name="ProdiID" id="ProdiID" tabindex="72"   value="<?php echo $ProdiID; ?>" id="ProdiID" style="width: 400px" class="form-control"></b></td></tr>		
+		<tr><td><b><input type="hidden" name="JenjangStudi" id="JenjangStudi" tabindex="72"   value="<?php echo $JenjangStudi; ?>" id="JenjangStudi" style="width: 400px" class="form-control"></b></td></tr>		
    	 <tr><td><hr></td></tr>
-     <tr><td><b><input type="hidden" name="TempatLahir" id="TempatLahir" tabindex="72" required value="<?php echo $TempatLahir; ?>" id="dari" style="width: 400px" class="form-control"></b></td></tr>		
-	 	<tr><td><b><input type="hidden" name="TanggalLahir" id="TanggalLahir" tabindex="72" required value="<?php echo $TanggalLahir; ?>" id="dari" style="width: 400px" class="form-control"></b></td></tr>		
-	 	<tr><td><b><input type="hidden" name="JenisKelamin" id="JenisKelamin" tabindex="72" required value="<?php echo $JenisKelamin; ?>" id="dari" style="width: 400px" class="form-control"></b></td></tr>		
+     <tr><td><b><input type="hidden" name="TempatLahir" id="TempatLahir" tabindex="72"   value="<?php echo $TempatLahir; ?>" id="TempatLahir" style="width: 400px" class="form-control"></b></td></tr>		
+	 	<tr><td><b><input type="hidden" name="TanggalLahir" id="TanggalLahir" tabindex="72"   value="<?php echo $TanggalLahir; ?>" id="TanggalLahir" style="width: 400px" class="form-control"></b></td></tr>		
+	 	<tr><td><b><input type="hidden" name="JenisKelamin" id="JenisKelamin" tabindex="72"   value="<?php echo $JenisKelamin; ?>" id="JenisKelamin" style="width: 400px" class="form-control"></b></td></tr>		
 	 	  
    
     
@@ -128,8 +128,8 @@ if ($mode == "edt" || $mode == "act_edt") {
      
      
      
-	   <tr><td width="25%">Tanggungan</td><td><b><input type="text" name="Tanggungan" autocomplete="off" onkeypress="return isNumber(event)" maxlength="2" id="Tanggungan" tabindex="13" required value="<?php echo $Tanggungan; ?>" id="dari" style="width: 50px" class="form-control"></b></td></tr>		
-	   <tr><td width="25%">Penghasilan</td><td><b><input type="text" name="PenghasilanOrtu" autocomplete="off" onkeyup="this.value=addCommas(this.value)" id="PenghasilanOrtu" maxlength="10" tabindex="14" required value="<?php echo $PenghasilanOrtu; ?>" id="dari" style="width: 110px" class="form-control"></b></td></tr>		
+	   <tr><td width="25%">Tanggungan</td><td><b><input type="text" name="Tanggungan" autocomplete="off" onkeypress="return isNumber(event)" maxlength="2" id="Tanggungan" tabindex="13"   value="<?php echo $Tanggungan; ?>" id="dari" style="width: 50px" class="form-control"></b></td></tr>		
+	   <tr><td width="25%">Penghasilan</td><td><b><input type="text" name="PenghasilanOrtu" autocomplete="off" onkeyup="this.value=addCommas(this.value)" id="PenghasilanOrtu" maxlength="10" tabindex="14"   value="<?php echo $PenghasilanOrtu; ?>" id="dari" style="width: 110px" class="form-control"></b></td></tr>		
 	 
     
    	 <tr><td><hr></td></tr>

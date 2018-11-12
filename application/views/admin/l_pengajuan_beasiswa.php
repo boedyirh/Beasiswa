@@ -66,8 +66,9 @@
 				} else {
 				?>
 				<div class="btn-group">
-					<a href="<?php echo base_URL()?>admin/disposisi_cetak/<?php echo $b->id?>" class="btn btn-info btn-sm" target="_blank" title="Cetak Disposisi"><i class="icon-print icon-white"> </i> Ctk</a>
-				</div>	
+				<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/edt/<?php echo $b->id?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edt</a>
+					<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/rubahstatus/<?php echo $b->id?>" class="btn btn-primary btn-sm" title="Rubah Status" onclick="return confirm('Anda Yakin..?')"><i class="icon-trash icon-remove">  </i> Rubah</a>			
+					</div>	
 				<?php 
 				}
 				?>

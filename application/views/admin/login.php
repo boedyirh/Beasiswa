@@ -91,7 +91,7 @@
 			</td></tr>
 			<tr><td></td><td><input type="submit" class="btn btn-success" value="Login"></td></tr>
 		</table>
-		<center style="font-size: 11px">Username : <b>admin</b>, Password : <b>admin</b></center>
+	 
 		</form>
 		</div><!--/span-->
       </div><!--/row-->
