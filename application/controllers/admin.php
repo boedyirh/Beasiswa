@@ -293,7 +293,7 @@ exit(0);
 		
 		/* pagination */	
 		$total_row		= $this->db->query("SELECT * FROM bsw_jenis")->num_rows();
-		$per_page		= 10;
+		$per_page		= 2;
 		
 		$awal	= $this->uri->segment(4); 
 		$awal	= (empty($awal) || $awal == 1) ? 0 : $awal;
@@ -421,8 +421,8 @@ exit(0);
 		$ta = $this->session->userdata('admin_ta');
 		
 		/* pagination */	
-		$total_row		= $this->db->query("SELECT * FROM t_surat_masuk WHERE YEAR(tgl_diterima) = '$ta'")->num_rows();
-		$per_page		= 100;
+		$total_row		= $this->db->query("SELECT * FROM bsw_pemohon where IsDeleted='N' ")->num_rows();
+		$per_page		= 8;
 		
 		$awal	= $this->uri->segment(4); 
 		$awal	= (empty($awal) || $awal == 1) ? 0 : $awal;
