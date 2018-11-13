@@ -95,7 +95,7 @@ $rows = $this->db->query("SELECT * from data_final_link where kecamatan='$Kecama
 
 
 $styles7 = array( 'border'=>'left,right,top,bottom');
-$styles1 = array( 'font'=>'Arial','font-size'=>10,'font-style'=>'bold', 'fill'=>'#ccf', 'halign'=>'center', 'border'=>'left,right,top,bottom');
+ $styles1 = array( 'font'=>'Arial','font-size'=>10,'font-style'=>'bold', 'fill'=>'#ccf', 'halign'=>'center', 'border'=>'left,right,top,bottom');
 
 
 $writer = new XLSXWriter();
@@ -422,7 +422,7 @@ exit(0);
 		
 		/* pagination */	
 		$total_row		= $this->db->query("SELECT * FROM t_surat_masuk WHERE YEAR(tgl_diterima) = '$ta'")->num_rows();
-		$per_page		= 10;
+		$per_page		= 100;
 		
 		$awal	= $this->uri->segment(4); 
 		$awal	= (empty($awal) || $awal == 1) ? 0 : $awal;
@@ -506,12 +506,12 @@ exit(0);
 		} else if ($mau_ke == "act_add") {
      		if ($this->upload->do_upload('file_surat')) {
 				$up_data	 	= $this->upload->data();
-			$this->db->query(" INSERT INTO `bsw_pemohon` (`JenisBeasiswa`,`TanggalLahir`, `Nama`, `MhswID`, `IPK`, `SKSLulus`, `Semester`, `Periode`, `Alamat`, `NoHP`, `Keterangan`, `PekerjaanOrtu`, `TanggunganOrtu`, `PenghasilanOrtu`, `ProdiID`, `KodePT`, `File`, `JenjangStudi`, `TempatLahir`,`Status`) VALUES ('$JenisBeasiswa', '$TanggalLahir','$NamaMhsw', '$MhswID', '$IPK', '$SKSLulus', '$Semester', '$Periode', '$Alamat', '$NoHP', '$Keterangan', '$PekerjaanOrtu', '$TanggunganOrtu', '$PenghasilanOrtu', '$ProdiID', '$KodePT', '".$up_data['file_name']."','$JenjangStudi','$TempatLahir','Aktif')     ");
+			$this->db->query(" INSERT INTO `bsw_pemohon` (`JenisKelamin`,`JenisBeasiswa`,`TanggalLahir`, `Nama`, `MhswID`, `IPK`, `SKSLulus`, `Semester`, `Periode`, `Alamat`, `NoHP`, `Keterangan`, `PekerjaanOrtu`, `TanggunganOrtu`, `PenghasilanOrtu`, `ProdiID`, `KodePT`, `File`, `JenjangStudi`, `TempatLahir`,`Status`) VALUES ('$JenisKelamin','$JenisBeasiswa', '$TanggalLahir','$NamaMhsw', '$MhswID', '$IPK', '$SKSLulus', '$Semester', '$Periode', '$Alamat', '$NoHP', '$Keterangan', '$PekerjaanOrtu', '$TanggunganOrtu', '$PenghasilanOrtu', '$ProdiID', '$KodePT', '".$up_data['file_name']."','$JenjangStudi','$TempatLahir','Aktif')     ");
  $this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data telah ditambahkan berikut upload file</div>");			
 			redirect('admin/jenis_beasiswa');			
     		
 				} else {
-    	$this->db->query(" INSERT INTO `bsw_pemohon` (`JenisBeasiswa`,`TanggalLahir`, `Nama`, `MhswID`, `IPK`, `SKSLulus`, `Semester`, `Periode`, `Alamat`, `NoHP`, `Keterangan`, `PekerjaanOrtu`, `TanggunganOrtu`, `PenghasilanOrtu`, `ProdiID`, `KodePT`, `File`, `JenjangStudi`, `TempatLahir`, `Status`) VALUES ('$JenisBeasiswa', '$TanggalLahir', '$NamaMhsw', '$MhswID', '$IPK', '$SKSLulus', '$Semester', '$Periode', '$Alamat', '$NoHP', '$Keterangan', '$PekerjaanOrtu', '$TanggunganOrtu', '$PenghasilanOrtu', '$ProdiID', '$KodePT', '','$JenjangStudi','$TempatLahir','Aktif')     ");
+    	$this->db->query(" INSERT INTO `bsw_pemohon` (`JenisKelamin`,`JenisBeasiswa`,`TanggalLahir`, `Nama`, `MhswID`, `IPK`, `SKSLulus`, `Semester`, `Periode`, `Alamat`, `NoHP`, `Keterangan`, `PekerjaanOrtu`, `TanggunganOrtu`, `PenghasilanOrtu`, `ProdiID`, `KodePT`, `File`, `JenjangStudi`, `TempatLahir`, `Status`) VALUES ('$JenisKelamin','$JenisBeasiswa', '$TanggalLahir', '$NamaMhsw', '$MhswID', '$IPK', '$SKSLulus', '$Semester', '$Periode', '$Alamat', '$NoHP', '$Keterangan', '$PekerjaanOrtu', '$TanggunganOrtu', '$PenghasilanOrtu', '$ProdiID', '$KodePT', '','$JenjangStudi','$TempatLahir','Aktif')     ");
 			
       
       $this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Hanya menambah data tanpa upload</div>");			
@@ -534,7 +534,7 @@ exit(0);
 			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been updated. ".$this->upload->display_errors()."</div>");			
 			redirect('admin/pengajuan_beasiswa');
 		} else {
-			$a['data']		= $this->db->query("SELECT t1.InputBy,t1.id,t1.MhswID,t1.Nama,t2.Nama as NamaProdi,t1.JenisBeasiswa,t1.Periode,t1.File,t1.Status FROM bsw_pemohon t1 inner join t_prodi t2 on t1.ProdiID=t2.ProdiID  WHERE t1.Periode='2018' and t1.NA='N' and t1.IsDeleted='N' ORDER BY t1.Periode,t1.ProdiID  DESC LIMIT $awal, $akhir ")->result();
+			$a['data']		= $this->db->query("SELECT t1.InputBy,t1.id,t1.MhswID,t1.Nama,t2.Nama as NamaProdi,t1.JenisBeasiswa,t1.Periode,t1.File,t1.Status FROM bsw_pemohon t1 inner join t_prodi t2 on t1.ProdiID=t2.ProdiID  WHERE t1.Periode='2018' and t1.NA='N' and t1.IsDeleted='N' ORDER BY t1.id  DESC LIMIT $awal, $akhir ")->result();
 			$a['page']		= "l_pengajuan_beasiswa";
 		}
 		
@@ -1213,7 +1213,8 @@ exit(0);
 	}
   
  
-	public function export_excel() {
+//------------------------------------
+public function export_excel() {
 		if ($this->session->userdata('admin_valid') == FALSE && $this->session->userdata('admin_id') == "") {
 			redirect("admin/login");
 		}
@@ -1242,7 +1243,6 @@ header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetm
 header('Content-Transfer-Encoding: binary');
 header('Cache-Control: must-revalidate');
 header('Pragma: public');
-
 //Ini header Excel
 $header = array(
 	'NPM'=>'string',//0
@@ -1266,15 +1266,30 @@ $header = array(
 	'ALAMAT'=>'string',//18
 	'TELEPON'=>'string',//19
   );
-
  
-
-
-
-
-
 $no=1;
-$styles8 = array( ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'left','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'left','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'left','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin']);
+//Styles untuk isi ada 20 field
+$styles8 = array( ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'left','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'left','border'=>'left,right,top,bottom','border-style'=>'thin'],
+                  ['halign'=>'left','border'=>'left,right,top,bottom','border-style'=>'thin']);
+
 
 
 
@@ -1282,11 +1297,8 @@ $styles8 = array( ['halign'=>'center','border'=>'left,right,top,bottom','border-
 
 $writer = new XLSXWriter();
 $writer->setAuthor('Beasiswa IKIP PGRI Bojonegoro'); 
-
 //TulisHeader
 $writer->writeSheetHeader('Sheet1', $header);
-
-
 //Tulis Isi
 $rows = $this->db->query(" select * from bsw_pemohon where IsDeleted='N' order by ProdiID asc; ")->result();
 foreach($rows as $row)
@@ -1296,57 +1308,34 @@ foreach($rows as $row)
 	$data[0]=$row->MhswID;
 	$data[1]=$row->KodePT;
 	$data[2]=$row->JenisBeasiswa;
-	$data[3]=$row->ProdiID;
-	$data[4]=$row->ProdiID;
-	$data[5]=$row->ProdiID;
-	$data[6]=$row->ProdiID;
-	$data[7]=$row->ProdiID;
-	$data[8]=$row->ProdiID;
-	$data[9]=$row->ProdiID;
-	$data[10]=$row->ProdiID;
-	$data[11]=$row->ProdiID;
+	$data[3]=$no;
+	$data[4]=$row->Nama;
+	$data[5]=$row->JenisKelamin;
+  $data[6]=$row->ProdiID;
+	$data[7]='5';
+	$data[8]=$row->Semester;
+	$data[9]=$row->IPK;
+	$data[10]=$row->PekerjaanOrtu;
+	$data[11]=$row->TanggunganOrtu;
+
 	$data[12]=$row->PenghasilanOrtu; //Integer
-	$data[13]=$row->ProdiID;
+	$data[13]=$row->Prestasi;
 	$data[14]='2018-11-01';  //Tanggal
 	$data[15]='2018-12-12';  //Tanggal
-	$data[16]=$row->ProdiID;
-	$data[17]=$row->ProdiID;
-	$data[18]=$row->ProdiID;
-	$data[19]=$row->ProdiID;
-
-
-
-
-
-
-
+	$data[16]=$row->Periode;
+	$data[17]=$row->Keterangan;
+	$data[18]=$row->Alamat;
+	$data[19]=$row->NoHP;
 	
 	
-
-
-
-	
+	$no++;
 	//$writer->writeSheetRow('Sheet1', $row);
 	$writer->writeSheetRow('Sheet1', $data,$styles8);
-
-
-
-
-
-
-
-
-
 }
-
 $writer->writeToStdOut();
 //$writer->writeToFile('example.xlsx');
 //echo $writer->writeToString();
 exit(0);
-
-
-
-
 			
 		
 		
@@ -1359,6 +1348,8 @@ exit(0);
 		
 		$this->load->view('admin/aaa', $a);	
 	}	  
+
+//--------------------------------------	
    
 
 	public function surat_disposisi() {
