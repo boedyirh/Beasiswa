@@ -95,7 +95,7 @@ $rows = $this->db->query("SELECT * from data_final_link where kecamatan='$Kecama
 
 
 $styles7 = array( 'border'=>'left,right,top,bottom');
- $styles1 = array( 'font'=>'Arial','font-size'=>10,'font-style'=>'bold', 'fill'=>'#ccf', 'halign'=>'center', 'border'=>'left,right,top,bottom');
+$styles1 = array( 'font'=>'Arial','font-size'=>10,'font-style'=>'bold', 'fill'=>'#ccf', 'halign'=>'center', 'border'=>'left,right,top,bottom');
 
 
 $writer = new XLSXWriter();
@@ -506,12 +506,12 @@ exit(0);
 		} else if ($mau_ke == "act_add") {
      		if ($this->upload->do_upload('file_surat')) {
 				$up_data	 	= $this->upload->data();
-			$this->db->query(" INSERT INTO `bsw_pemohon` (`JenisKelamin`,`JenisBeasiswa`,`TanggalLahir`, `Nama`, `MhswID`, `IPK`, `SKSLulus`, `Semester`, `Periode`, `Alamat`, `NoHP`, `Keterangan`, `PekerjaanOrtu`, `TanggunganOrtu`, `PenghasilanOrtu`, `ProdiID`, `KodePT`, `File`, `JenjangStudi`, `TempatLahir`,`Status`) VALUES ('$JenisKelamin','$JenisBeasiswa', '$TanggalLahir','$NamaMhsw', '$MhswID', '$IPK', '$SKSLulus', '$Semester', '$Periode', '$Alamat', '$NoHP', '$Keterangan', '$PekerjaanOrtu', '$TanggunganOrtu', '$PenghasilanOrtu', '$ProdiID', '$KodePT', '".$up_data['file_name']."','$JenjangStudi','$TempatLahir','Aktif')     ");
+			$this->db->query(" INSERT INTO `bsw_pemohon` (`JenisBeasiswa`,`TanggalLahir`, `Nama`, `MhswID`, `IPK`, `SKSLulus`, `Semester`, `Periode`, `Alamat`, `NoHP`, `Keterangan`, `PekerjaanOrtu`, `TanggunganOrtu`, `PenghasilanOrtu`, `ProdiID`, `KodePT`, `File`, `JenjangStudi`, `TempatLahir`,`Status`) VALUES ('$JenisBeasiswa', '$TanggalLahir','$NamaMhsw', '$MhswID', '$IPK', '$SKSLulus', '$Semester', '$Periode', '$Alamat', '$NoHP', '$Keterangan', '$PekerjaanOrtu', '$TanggunganOrtu', '$PenghasilanOrtu', '$ProdiID', '$KodePT', '".$up_data['file_name']."','$JenjangStudi','$TempatLahir','Aktif')     ");
  $this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data telah ditambahkan berikut upload file</div>");			
 			redirect('admin/jenis_beasiswa');			
     		
 				} else {
-    	$this->db->query(" INSERT INTO `bsw_pemohon` (`JenisKelamin`,`JenisBeasiswa`,`TanggalLahir`, `Nama`, `MhswID`, `IPK`, `SKSLulus`, `Semester`, `Periode`, `Alamat`, `NoHP`, `Keterangan`, `PekerjaanOrtu`, `TanggunganOrtu`, `PenghasilanOrtu`, `ProdiID`, `KodePT`, `File`, `JenjangStudi`, `TempatLahir`, `Status`) VALUES ('$JenisKelamin','$JenisBeasiswa', '$TanggalLahir', '$NamaMhsw', '$MhswID', '$IPK', '$SKSLulus', '$Semester', '$Periode', '$Alamat', '$NoHP', '$Keterangan', '$PekerjaanOrtu', '$TanggunganOrtu', '$PenghasilanOrtu', '$ProdiID', '$KodePT', '','$JenjangStudi','$TempatLahir','Aktif')     ");
+    	$this->db->query(" INSERT INTO `bsw_pemohon` (`JenisBeasiswa`,`TanggalLahir`, `Nama`, `MhswID`, `IPK`, `SKSLulus`, `Semester`, `Periode`, `Alamat`, `NoHP`, `Keterangan`, `PekerjaanOrtu`, `TanggunganOrtu`, `PenghasilanOrtu`, `ProdiID`, `KodePT`, `File`, `JenjangStudi`, `TempatLahir`, `Status`) VALUES ('$JenisBeasiswa', '$TanggalLahir', '$NamaMhsw', '$MhswID', '$IPK', '$SKSLulus', '$Semester', '$Periode', '$Alamat', '$NoHP', '$Keterangan', '$PekerjaanOrtu', '$TanggunganOrtu', '$PenghasilanOrtu', '$ProdiID', '$KodePT', '','$JenjangStudi','$TempatLahir','Aktif')     ");
 			
       
       $this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Hanya menambah data tanpa upload</div>");			
@@ -1220,57 +1220,140 @@ exit(0);
 		
 		
 		//ambil variabel URL
-		$mau_ke					= $this->uri->segment(4);
-		$idu1					= $this->uri->segment(3);
-		$idu2					= $this->uri->segment(5);
-		
-		$cari					= addslashes($this->input->post('q'));
-
+		$mau_ke					= $this->uri->segment(3);
+		 	
 		//ambil variabel Postingan
 		$idp					= addslashes($this->input->post('idp'));
-		$id_surat				= addslashes($this->input->post('id_surat'));
-		$kpd_yth				= addslashes($this->input->post('kpd_yth'));
-		$isi_disposisi			= addslashes($this->input->post('isi_disposisi'));
-		$sifat					= addslashes($this->input->post('sifat'));
-		$batas_waktu			= addslashes($this->input->post('batas_waktu'));
-		$catatan				= addslashes($this->input->post('catatan'));
-		
 		$cari					= addslashes($this->input->post('q'));
 		
-		/* pagination */	
-		$total_row		= $this->db->query("SELECT * FROM t_disposisi WHERE id_surat = '$idu1'")->num_rows();
-		$per_page		= 10;
 		
-		$awal	= $this->uri->segment(4); 
-		$awal	= (empty($awal) || $awal == 1) ? 0 : $awal;
 		
-		//if (empty($awal) || $awal == 1) { $awal = 0; } { $awal = $awal; }
-		$akhir	= $per_page;
+if ($mau_ke == "cari") {
 		
-		$a['pagi']	= _page($total_row, $per_page, 4, base_url()."admin/export_excel/".$idu1."/p");
-		
-		$a['judul_surat']	= gval("t_surat_masuk", "id", "isi_ringkas", $idu1);
-		
-		if ($mau_ke == "del") {
-			$this->db->query("DELETE FROM t_disposisi WHERE id = '$idu2'");
-			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been deleted </div>");
-			redirect('index.php/admin/surat_disposisi/'.$idu1);
-		} else if ($mau_ke == "add") {
-			$a['page']		= "f_surat_disposisi";
-		} else if ($mau_ke == "edt") {
-			$a['datpil']	= $this->db->query("SELECT * FROM t_disposisi WHERE id = '$idu2'")->row();	
-			$a['page']		= "f_surat_disposisi";
-		} else if ($mau_ke == "act_add") {	
-			$this->db->query("INSERT INTO t_disposisi VALUES (NULL, '$id_surat', '$kpd_yth', '$isi_disposisi', '$sifat', '$batas_waktu', '$catatan')");
+/* pagination */	
+	
+$this->load->library('ExcelSimple');  
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+error_reporting(E_ALL & ~E_NOTICE);
+$filename = "example.xlsx";
+header('Content-disposition: attachment; filename="'.XLSXWriter::sanitize_filename($filename).'"');
+header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+header('Content-Transfer-Encoding: binary');
+header('Cache-Control: must-revalidate');
+header('Pragma: public');
+
+//Ini header Excel
+$header = array(
+	'NPM'=>'string',//0
+	'KDPTI'=>'string',//1
+	'JENIS_BEASISWA'=>'string',//2
+	'COUNTER'=>'string',//3
+	'NAMA_MHS'=>'string',//4
+	'JK'=>'string',//5
+	'KODE_PRODI'=>'string',//6
+	'ID_JENJANG'=>'string',//7
+	'SMT'=>'string',//8
+	'IPK'=>'string',//9
+	'KODE_PEKERJAAN'=>'string',//10
+	'JML_TANGGUNGAN'=>'string',//11
+	'PENGHASILAN'=>'integer',//12
+	'PRESTASI'=>'string',//13
+	'MULAI_BULAN'=>'YYYY-MM-DD',//14
+	'SELESAI_BULAN'=>'YYYY-MM-DD',//15
+	'TAHUN'=>'string',//16
+	'KETERANGAN'=>'string',//17
+	'ALAMAT'=>'string',//18
+	'TELEPON'=>'string',//19
+  );
+
+ 
+
+
+
+
+
+$no=1;
+$styles8 = array( ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'left','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'left','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'left','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin']);
+
+
+
+
+
+$writer = new XLSXWriter();
+$writer->setAuthor('Beasiswa IKIP PGRI Bojonegoro'); 
+
+//TulisHeader
+$writer->writeSheetHeader('Sheet1', $header);
+
+
+//Tulis Isi
+$rows = $this->db->query(" select * from bsw_pemohon where IsDeleted='N' order by ProdiID asc; ")->result();
+foreach($rows as $row)
+{	
+	$data=array();
+	//Data data manas saja yg mau dimasukkan ke excel, diurutkan sesuai kolom di excel
+	$data[0]=$row->MhswID;
+	$data[1]=$row->KodePT;
+	$data[2]=$row->JenisBeasiswa;
+	$data[3]=$row->ProdiID;
+	$data[4]=$row->ProdiID;
+	$data[5]=$row->ProdiID;
+	$data[6]=$row->ProdiID;
+	$data[7]=$row->ProdiID;
+	$data[8]=$row->ProdiID;
+	$data[9]=$row->ProdiID;
+	$data[10]=$row->ProdiID;
+	$data[11]=$row->ProdiID;
+	$data[12]=$row->PenghasilanOrtu; //Integer
+	$data[13]=$row->ProdiID;
+	$data[14]='2018-11-01';  //Tanggal
+	$data[15]='2018-12-12';  //Tanggal
+	$data[16]=$row->ProdiID;
+	$data[17]=$row->ProdiID;
+	$data[18]=$row->ProdiID;
+	$data[19]=$row->ProdiID;
+
+
+
+
+
+
+
+	
+	
+
+
+
+	
+	//$writer->writeSheetRow('Sheet1', $row);
+	$writer->writeSheetRow('Sheet1', $data,$styles8);
+
+
+
+
+
+
+
+
+
+}
+
+$writer->writeToStdOut();
+//$writer->writeToFile('example.xlsx');
+//echo $writer->writeToString();
+exit(0);
+
+
+
+
 			
-			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been added</div>");
-			redirect('index.php/admin/surat_disposisi/'.$id_surat);
-		} else if ($mau_ke == "act_edt") {
-			$this->db->query("UPDATE t_disposisi SET kpd_yth = '$kpd_yth', isi_disposisi = '$isi_disposisi', sifat = '$sifat', batas_waktu = '$batas_waktu', catatan = '$catatan' WHERE id = '$idp'");
-			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been updated</div>");			
-			redirect('index.php/admin/surat_disposisi/'.$id_surat);
+		
+		
 		} else {
-			$a['data']		= $this->db->query("SELECT * FROM t_disposisi WHERE id_surat = '$idu1' LIMIT $awal, $akhir ")->result();
+			//$a['data']		= $this->db->query("SELECT * FROM t_disposisi WHERE id_surat = '$idu1' LIMIT $awal, $akhir ")->result();
+			$a['data']		= '';
+		
 			$a['page']		= "l_export_excel";
 		}
 		
