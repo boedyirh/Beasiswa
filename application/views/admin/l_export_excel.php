@@ -11,7 +11,7 @@
 			<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>admin/export_excel/cari" style="margin-top: 0px">
 		 	   		 <?php
              $JenisBeasiswa='xxx';
-          		ComboBox("JenisBeasiswa", "bsw_jenis", "Kode", "Nama", $JenisBeasiswa, "JenisID", "form-control","220px","----Jenis Beasiswa-----");
+          		ComboBox("JenisBeasiswa", "bsw_jenis", "Kode", "Nama", $JenisBeasiswa, "JenisID", "form-control","320px","----Jenis Beasiswa-----");
         		echo "</tr>";
            ?>
           
