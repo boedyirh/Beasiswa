@@ -292,8 +292,8 @@ exit(0);
 		}
 		
 		/* pagination */	
-		$total_row		= $this->db->query("SELECT * FROM bsw_jenis")->num_rows();
-		$per_page		= 2;
+		$total_row		= $this->db->query("SELECT * FROM bsw_jenis where IsDeleted='N' ")->num_rows();
+		$per_page		= 10;
 		
 		$awal	= $this->uri->segment(4); 
 		$awal	= (empty($awal) || $awal == 1) ? 0 : $awal;
