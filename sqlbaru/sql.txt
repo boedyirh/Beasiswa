@@ -1,0 +1,12 @@
+                                                 CREATE TABLE `bsw_periode` (
+	`PeriodeID` INT(2) NOT NULL AUTO_INCREMENT,
+	`Tahun` VARCHAR(4) NOT NULL,
+	`Status` VARCHAR(2) NOT NULL DEFAULT '1',
+	`NA` ENUM('Y','N') NOT NULL DEFAULT 'N',
+	`IsDeleted` VARCHAR(2) NOT NULL DEFAULT 'N',
+	PRIMARY KEY (`PeriodeID`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=2019
+;
