@@ -56,6 +56,7 @@ if ($mode == "rubahstatus" || $mode == "act_rubahstatus") {
    <select class="form-control required" tabindex="7" style="width: 190px"; id="StatusBeasiswa" name="StatusBeasiswa">
                                              <option value="xxx">--- Status Beasiswa ---</option>
                                              <option value="Aktif" <?php if($StatusBeasiswa=="Aktif") echo 'selected="selected"'; ?>>Aktif</option>
+                                              <option value="Seleksi" <?php if($StatusBeasiswa=="Seleksi") echo 'selected="selected"'; ?>>Telah Proses Seleksi</option>
                                              <option value="Selesai" <?php if($StatusBeasiswa=="Selesai") echo 'selected="selected"'; ?>>Selesai</option>
                                              <option value="Non-Aktif" <?php if($StatusBeasiswa=="Non-Aktif") echo 'selected="selected"'; ?>>Non-Aktif</option>
                                              
