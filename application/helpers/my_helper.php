@@ -61,7 +61,21 @@ function ComboBox($name, $tabel, $f_value, $f_view, $selected, $id, $class,$leba
 	echo "</select>";
 }
 
- 
+
+function ComboBoxPenjaringan($name, $tabel, $f_value, $f_view, $selected, $id, $class,$lebar,$keterangan) {
+	echo "<select name='$name' id='$id' class='$class' style='width:$lebar' ><option value='xx'>$keterangan</option>";   
+ 	$CI =& get_instance();	
+ 	$query	= $CI->db->query("SELECT $f_value, $f_view FROM $tabel where NA='N' and IsDeleted='N' and Status='Penjaringan' ORDER BY $f_view ASC ")->result_array();
+  foreach($query as $a)
+   {
+ 			if ($a[$f_value] == $selected) {
+			echo "<option value='$a[$f_value]' selected>$a[$f_view]</option>";
+		} else {
+			echo "<option value='$a[$f_value]'>$a[$f_view]</option>";
+		}
+  }
+	echo "</select>";
+} 
 
 function getjenisnilai($id) {
 	$CI =& get_instance();	
