@@ -51,14 +51,32 @@
   
    
 	 	 	<td class="text-center"><?php echo $b->InputBy;?></td> 
-        <td class="text-center"><?php echo $b->Status;?></td>  	
+       <?php 
+       $StatusAjuan = $b->Status;
+          if( $StatusAjuan=='Diajukan')
+                              {
+                               $stts = "<span title='Telah disetujui untuk diajukan' class='label label-primary'>Diajukan</span>";
+                              }
+                              else
+                              {
+                              $stts =$StatusAjuan;
+                              }
+       
+       
+       
+       
+       ?>
+      
+      
+      
+        <td class="text-center"><?php echo $stts;?></td>  	
 			<td class="text-center" class="ctr" >
 				<?php  
 					if ($this->session->userdata('admin_level') == "Super Admin") {
 				?>
 				<div class="btn-group">
 					<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/edt/<?php echo $b->id?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edt</a>
-					<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/rubahstatus/<?php echo $b->id?>" class="btn btn-primary btn-sm" title="Rubah Status" onclick="return confirm('Anda Yakin..?')"><i class="icon-trash icon-remove">  </i> Rubah</a>			
+					<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/rubahstatus/<?php echo $b->id?>" class="btn btn-primary btn-sm" title="Rubah Status" onclick="return confirm('Anda Yakin..?')"><i class="icon-trash icon-remove">  </i> Status Ajuan</a>			
 			
 				</div>	
 				<?php 

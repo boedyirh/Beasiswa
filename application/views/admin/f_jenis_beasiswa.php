@@ -24,7 +24,7 @@ if ($mode == "edt" || $mode == "act_edt") {
   $BeasiswaLain		= $datpil->BeasiswaLain; 
   $SyaratLain		= $datpil->SyaratLain; 
   $Deskripsi		= $datpil->Deskripsi; 
- 
+  $ro ="readonly";
   
   		
 } else {
@@ -46,7 +46,7 @@ if ($mode == "edt" || $mode == "act_edt") {
   $BeasiswaLain		= "";
   $SyaratLain		= "";
   $Deskripsi		= "";
- 
+  $ro ="";
   
   
 }
@@ -63,9 +63,9 @@ if ($mode == "edt" || $mode == "act_edt") {
 	<input type="hidden" name="idp" value="<?php echo $idp; ?>">
 	<table width="100%" class="table-form">
 	
-  <tr><td width="20%">Kode Program Beasiswa</td><td><b><input type="text" autocomplete="off" tabindex="1" name="Kode" required value="<?php echo $Kode; ?>" style="width: 130px" class="form-control"></b></td></tr>		
+  <tr><td width="20%">Kode Program Beasiswa</td><td><b><input type="text" <?php echo $ro; ?> autocomplete="off" tabindex="1" name="Kode" required value="<?php echo $Kode; ?>" style="width: 130px" class="form-control"></b></td></tr>		
  		
-	<tr><td width="20%">Nama Beasiswa</td><td><b><input type="text" name="Nama" tabindex="2"  autocomplete="off" required value="<?php echo $Nama; ?>" style="width: 250px" class="form-control"></b></td></tr>		
+	<tr><td width="20%">Nama Beasiswa</td><td><b><input type="text" name="Nama" tabindex="2" <?php echo $ro; ?>  autocomplete="off" required value="<?php echo $Nama; ?>" style="width: 250px" class="form-control"></b></td></tr>		
                                                                                                   
   <tr><td width="20%">Jenis Beasiswa</td>  <td>
    <select class="form-control required" tabindex="3" style="width: 180px;  id="Jenis" name="Jenis">
