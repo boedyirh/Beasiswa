@@ -16,6 +16,41 @@ function gval($tabel, $field_kunci, $diambil, $where) {
 
 
 
+function LabelStatus($id)
+{
+
+if ($id=='0')  //Non-Aktif
+   { $StatusLabel = "<span class='label label-default'>Non-Aktif</span>"; } 
+else if  ($id=='1')  //Aktif 
+   { $StatusLabel = "<span class='label label-success'>Aktif</span>"; }
+else if  ($id=='2')  //Penjaringan
+   { $StatusLabel = "<span class='label label-warning'>Penjaringan</span>"; }
+else if  ($id=='3')  //Seleksi
+   { $StatusLabel = "<span class='label label-primary'>Telah Seleksi</span>"; }
+else if  ($id=='4')  //Selesai
+   { $StatusLabel = "<span class='label label-info'>Selesai</span>"; }
+else if  ($id=='5')  //Terlihat
+   { $StatusLabel = "<span class='label label-info'>Terlihat</span>"; } 
+else if  ($id=='10')  //Terlihat
+   { $StatusLabel = "<span class='label label-primary'>Pendaftaran</span>"; } 
+else if  ($id=='11')  //Terlihat
+   { $StatusLabel = "<span class='label label-success'>Penetapan</span>"; } 
+else if  ($id=='12')  //Terlihat
+   { $StatusLabel = "<span class='label label-danger'>Belum Masuk</span>"; } 
+else       //Non-Aktif
+   { $StatusLabel = "<span class='label label-default'>Tidak Terlihat</span>"; } 
+    
+  return $StatusLabel;
+
+}
+
+function LabelBeasiswa($id)
+{
+$Beasiswa	= gval("bsw_jenis", "BeasiswaID", "Nama", $id); 
+$StatusLabel = "<span class='label label-success'>".$Beasiswa."</span>";
+return $StatusLabel;
+
+}
 
 
 function konversi_level($id) {
@@ -65,7 +100,7 @@ function ComboBox($name, $tabel, $f_value, $f_view, $selected, $id, $class,$leba
 function ComboBoxPenjaringan($name, $tabel, $f_value, $f_view, $selected, $id, $class,$lebar,$keterangan) {
 	echo "<select name='$name' id='$id' class='$class' style='width:$lebar' ><option value='xx'>$keterangan</option>";   
  	$CI =& get_instance();	
- 	$query	= $CI->db->query("SELECT $f_value, $f_view FROM $tabel where NA='N' and IsDeleted='N' and Status='Penjaringan' ORDER BY $f_view ASC ")->result_array();
+ 	$query	= $CI->db->query("SELECT $f_value, $f_view FROM $tabel where NA='N' and IsDeleted='N' ORDER BY $f_view ASC ")->result_array();
   foreach($query as $a)
    {
  			if ($a[$f_value] == $selected) {
