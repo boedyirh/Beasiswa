@@ -3,32 +3,32 @@ $mode		= $this->uri->segment(3);
 
 if ($mode == "rubahstatus" || $mode == "act_rubahstatus") {
 	$act		= "act_rubahstatus";
-	$idp		= $datpil->id;
-	$Kode		= $datpil->JenisBeasiswa;
+	$idp		= $datpil->PemohonID;
+	$BeasiswaID		= $datpil->BeasiswaID;
   $Nama		= $datpil->Nama;	
   $StatusBeasiswa		= $datpil->Status; 
  
   
   		
 } else {
-	$act		= "act_add";
-	$idp		= "";
-	$Kode		= "";
-	$Nama		= "";
-  $Jenis		= "";
-  $Periode		= "";
- 	$Besaran		= 0;
-  $Tgl_mulai		= "";
-  $Tgl_selesai		= "";
-  $Kuota		= "";
-  $IPKMinimal		= "";
+	$act		     = "act_add";
+	$idp		     = "";
+	$BeasiswaID  = "";
+	$Nama		     = "";
+  $Jenis		   = "";
+  $Periode		 = "";
+ 	$Besaran		 =  0;
+  $Tgl_mulai	 = "";
+  $Tgl_selesai = "";
+  $Kuota		   = "";
+  $IPKMinimal	 = "";
+  $SKSMinimal	 = "";
   $SemesterMinimal		= "";
-  $SKSMinimal		= "";
-  $AktifKemahasiswaan		= "";
-  $EkonomiLemah		= "";
-  $BeasiswaLain		= "";
-  $SyaratLain		= "";
-  $Deskripsi		= "";
+  $AktifKemahasiswaan	= "";
+  $EkonomiLemah= "";
+  $BeasiswaLain= "";
+  $SyaratLain	 = "";
+  $Deskripsi	 = "";
  
   
   
@@ -45,20 +45,15 @@ if ($mode == "rubahstatus" || $mode == "act_rubahstatus") {
 <form action="<?php echo base_URL(); ?>admin/pengajuan_beasiswa/<?php echo $act; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 	<input type="hidden" name="idp" value="<?php echo $idp; ?>">
 	<table width="100%" class="table-form">
-	
-  <tr><td width="20%">Kode Program Beasiswa</td><td><b><input type="text" readonly tabindex="1" name="Kode" required value="<?php echo $Kode; ?>" style="width: 130px" class="form-control"></b></td></tr>		
- 		
-	<tr><td width="20%">Nama Beasiswa</td><td><b><input type="text" name="Nama" readonly tabindex="2" required value="<?php echo $Nama; ?>" style="width: 250px" class="form-control"></b></td></tr>		
-                                                                                                  
-  
-   <tr><td width="20%">Status Beasiswa</td>  <td>
+	  <tr><td width="20%">Kode Program Beasiswa</td><td><b><input type="text" readonly tabindex="1" name="BeasiswaID" required value="<?php echo $BeasiswaID; ?>" style="width: 130px" class="form-control"></b></td></tr>		
+  	<tr><td width="20%">Nama Beasiswa</td><td><b><input type="text" name="Nama" readonly tabindex="2" required value="<?php echo $Nama; ?>" style="width: 250px" class="form-control"></b></td></tr>		
+    <tr><td width="20%">Status Beasiswa</td>  <td>
    <select class="form-control required" tabindex="7" style="width: 190px"; id="StatusBeasiswa" name="StatusBeasiswa">
-                                             <option value="xxx">--- Status Beasiswa ---</option>
-                                             <option value="Penjaringan" <?php if($StatusBeasiswa=="Penjaringan") echo 'selected="selected"'; ?>>Penjaringan</option>
-                                                   <option value="Diajukan" <?php if($StatusBeasiswa=="Diajukan") echo 'selected="selected"'; ?>>Diajukan</option>
-                                             
-                                             
-                                           </select>
+      <option value="xxx">--- Status Beasiswa ---</option>
+      <option value="10" <?php if($StatusBeasiswa=="10") echo 'selected="selected"'; ?>>Pendaftaran</option>
+      <option value="11" <?php if($StatusBeasiswa=="11") echo 'selected="selected"'; ?>>Penetapan</option>
+      <option value="12" <?php if($StatusBeasiswa=="12") echo 'selected="selected"'; ?>>Belum Masuk</option>
+   </select>
   </td></tr>   
    
   

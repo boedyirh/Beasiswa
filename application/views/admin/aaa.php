@@ -26,6 +26,15 @@
 	
 	</style>
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.css" media="screen">
+     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/adminlte/css/AdminLTE.min.css" media="screen">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" media="screen">
+      <link rel="stylesheet" href="<?php echo base_url(); ?>assets/ionicons/css/ionicons.min.css" media="screen">
+    
+    
+    
+    
+    
+    
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../bower_components/bootstrap/assets/js/html5shiv.js"></script>
@@ -85,29 +94,12 @@
 }      
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+         
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+  
         
         
         
@@ -233,7 +225,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-         <span class="navbar-brand"><strong style="font-family: verdana;"><span class="glyphicon glyphicon-user"></span> Beasiswa</strong></span>
+         <span class="navbar-brand"><strong style="font-family: verdana;"><span class="fa fa-graduation-cap"></span> Beasiswa</strong></span>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -243,17 +235,21 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">	
 			<li><a href="<?php echo base_url(); ?>admin"><span class="glyphicon glyphicon-home"></span>  Beranda</a></li>
-            <li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="icon-th-list icon-white"> </i> Referensi <span class="caret"></span></a>
+            <li class="dropdown">            
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-tasks"></span>  Referensi <span class="caret"></span></a>
 				<ul class="dropdown-menu" aria-labelledby="themes">
 				<li><a tabindex="-1" href="<?php echo base_url(); ?>admin/jenis_beasiswa">Jenis Beasiswa</a></li>
+        <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/periode">Periode</a></li>
+        <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/grademahasiswa">Grade Mahasiswa</a></li>
+        <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/prodi">Program Studi</a></li>
+		
 				</ul>
             </li>
 		<?php
 		if ($this->session->userdata('admin_level') != "Super Adminxxxxxx") {
 		?>	
 		<li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="icon-random icon-white"> </i> Proses <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-tint"></span> Proses <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/pengajuan_beasiswa">Permohonan Beasiswa</a></li>
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/beasiswa_disetujui">Beasiswa Disetujui</a></li>
@@ -264,7 +260,7 @@
             	<?php } ?>
               
     <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="icon-random icon-white"> </i> Download Data <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-cloud-download"></span> Download Data <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
                   <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/export_excel">Export Data Excel</a></li>
     
@@ -281,7 +277,7 @@
 			if ($this->session->userdata('admin_level') == "Super Admin") {
 			?>
 		<li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="icon-wrench icon-white"> </i> Pengaturan <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-cog"></span> </i> Pengaturan <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/pengguna">Instansi Pengguna</a></li>
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/manage_admin">Manajemen Admin</a></li>
@@ -294,7 +290,7 @@
 
           <ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><i class="icon-user icon-white"></i> Administrator <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-user"></span></i> Administrator <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/passwod">Rubah Password</a></li>
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/logout">Logout</a></li>

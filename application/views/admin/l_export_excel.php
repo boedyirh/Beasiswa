@@ -16,7 +16,7 @@
            ?>
           
        
-      	<button type="submit" class="btn btn-danger"><i class="icon-search icon-white"> </i> Download</button>
+      	<button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-download-alt"> </i> Download</button>
 			</form>
 		</div>
 	</div>

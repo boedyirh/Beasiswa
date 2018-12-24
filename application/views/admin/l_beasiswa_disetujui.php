@@ -14,7 +14,7 @@
     	ComboBoxPenjaringan("JenisBeasiswa", "bsw_jenis", "Kode", "Nama", $JenisBeasiswa, "JenisID", "form-control","220px","----Jenis Beasiswa-----");	
   
      ?>
-				<button type="submit" class="btn btn-danger"><i class="icon-search icon-white"> </i> Cari</button>
+				<button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-search"> </i> Cari</button>
 			</form>
 		</div>
 	</div>
@@ -29,9 +29,9 @@
 			<th class="text-center" width="6%">NIM</th>
 			<th class="text-center" width="20%">Nama</th>
 			<th class="text-center" width="15%">Program Studi</th>
-      <th class="text-center" width="10%">Jenis Beasiswa</th>
-      <th class="text-center" width="5%">InputBy</th>
-      <th class="text-center" width="5%">Status</th>
+			<th class="text-center" width="10%">Jenis Beasiswa</th>
+			<th class="text-center" width="5%">InputBy</th>
+			<th class="text-center" width="5%">Status</th>
 			<th class="text-center" width="10%">Aksi</th>
 		</tr>
 	</thead>
@@ -46,15 +46,12 @@
 			foreach ($data as $b) {
 		?>
 		<tr>
-		     <td class="text-center"> <?php echo $nourut; $nourut++; ?> </td>
-                 
-     	<td class="text-center"><?php echo $b->MhswID;?></td>
-     	<td><?php echo $b->Nama;?></td>
-      <td class="text-center"><?php echo $b->NamaProdi;?></td>
-      <td class="text-center"><?php echo $b->JenisBeasiswa.'<br>Periode :'.$b->Periode;?></td>
-  
-   
-	 	 	<td class="text-center"><?php echo $b->InputBy;?></td> 
+			<td class="text-center"> <?php echo $nourut; $nourut++; ?> </td>
+			<td class="text-center"><?php echo $b->MhswID;?></td>
+			<td><?php echo $b->Nama;?></td>
+			<td class="text-center"><?php echo $b->NamaProdi;?></td>
+			<td class="text-center"><?php echo $b->BeasiswaID.'<br>Periode :'.$b->Periode;?></td>
+			<td class="text-center"><?php echo $b->InputBy;?></td> 
        <?php 
        $StatusAjuan = $b->Status;
           if( $StatusAjuan=='Diajukan')
@@ -80,15 +77,15 @@
 				?>
 				<div class="btn-group">
 				 
-					<a href="<?php echo base_URL()?>admin/beasiswa_disetujui/rubahstatus/<?php echo $b->id?>" class="btn btn-primary btn-sm" title="Rubah Status" onclick="return confirm('Anda Yakin..?')"><i class="icon-trash icon-remove">  </i> Status Ajuan</a>			
+					<a href="<?php echo base_URL()?>admin/beasiswa_disetujui/rubahstatus/<?php echo $b->PemohonID?>" class="btn btn-primary btn-sm" title="Rubah Status" onclick="return confirm('Anda Yakin..?')"><i class="icon-trash icon-remove">  </i> Status Ajuan</a>			
 			
 				</div>	
 				<?php 
 				} else {
 				?>
 				<div class="btn-group">
-				<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/edt/<?php echo $b->id?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edt</a>
-					<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/rubahstatus/<?php echo $b->id?>" class="btn btn-primary btn-sm" title="Rubah Status" onclick="return confirm('Anda Yakin..?')"><i class="icon-trash icon-remove">  </i> Rubah</a>			
+				<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/edt/<?php echo $b->PemohonID?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edt</a>
+					<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/rubahstatus/<?php echo $b->PemohonID?>" class="btn btn-primary btn-sm" title="Rubah Status" onclick="return confirm('Anda Yakin..?')"><i class="icon-trash icon-remove">  </i> Rubah</a>			
 					</div>	
 				<?php 
 				}
