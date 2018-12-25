@@ -1380,28 +1380,40 @@ a.bg-primary:focus {
   background-color: #286090;
 }
 .bg-success {
-  background-color: #dff0d8;
+  background-color: #28a745;
 }
 a.bg-success:hover,
 a.bg-success:focus {
   background-color: #c1e2b3;
 }
 .bg-info {
-  background-color: #d9edf7;
+  background-color: #17a2b8;
 }
 a.bg-info:hover,
 a.bg-info:focus {
   background-color: #afd9ee;
 }
+
+
+.bg-info2 {
+  background-color: #ac7339;
+}
+a.bg-info2:hover,
+a.bg-info2:focus {
+  background-color: #d9b38c;
+}
+
+
+
 .bg-warning {
-  background-color: #fcf8e3;
+  background-color: #ffc107;
 }
 a.bg-warning:hover,
 a.bg-warning:focus {
   background-color: #f7ecb5;
 }
 .bg-danger {
-  background-color: #f2dede;
+  background-color: #dc3545;
 }
 a.bg-danger:hover,
 a.bg-danger:focus {
