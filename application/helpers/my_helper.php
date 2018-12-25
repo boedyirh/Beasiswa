@@ -31,11 +31,11 @@ else if  ($id=='4')  //Selesai
    { $StatusLabel = "<span class='label label-info'>Selesai</span>"; }
 else if  ($id=='5')  //Terlihat
    { $StatusLabel = "<span class='label label-info'>Terlihat</span>"; } 
-else if  ($id=='10')  //Terlihat
+else if  ($id=='10')  //Pendaftaran
    { $StatusLabel = "<span class='label label-primary'>Pendaftaran</span>"; } 
-else if  ($id=='11')  //Terlihat
-   { $StatusLabel = "<span class='label label-success'>Penetapan</span>"; } 
-else if  ($id=='12')  //Terlihat
+else if  ($id=='11')  //Disetujui
+   { $StatusLabel = "<span class='label label-success'>Disetujui</span>"; } 
+else if  ($id=='12')  //Belum Masuk
    { $StatusLabel = "<span class='label label-danger'>Belum Masuk</span>"; } 
 else       //Non-Aktif
    { $StatusLabel = "<span class='label label-default'>Tidak Terlihat</span>"; } 
@@ -43,6 +43,31 @@ else       //Non-Aktif
   return $StatusLabel;
 
 }
+
+function AmbilSesi($id,$namaform)
+{
+$CI =& get_instance();	
+$UserLogin = $CI->session->userdata('admin_id');
+$Data= gval("daftar_sesi", "NamaForm='$namaform' and UserLogin='$UserLogin' and NamaSesi", "ValueSesi", "$id");	
+Return $Data;	
+		
+}
+
+function SimpanSesi($id,$namaform,$nilai)
+{
+	$CI =& get_instance();
+ 	$cekadasession		= $CI->db->query("SELECT * FROM daftar_sesi where NamaForm='$namaform' and NamaSesi='$id' and UserLogin= '".$CI->session->userdata('admin_id')."' ")->num_rows();
+			if ($cekadasession==0) {
+				//Jika belum pernah login berarti dibuatkan record, jika sudah pernah berarti update record
+				$CI->db->query("INSERT INTO daftar_sesi (NamaForm,NamaSesi,UserLogin,ValueSesi) VALUES ('$namaform','$id','".$CI->session->userdata('admin_id')."','$nilai')");
+			} else {
+				$CI->db->query("UPDATE daftar_sesi SET ValueSesi = '$nilai' where NamaForm='$namaform' and NamaSesi='$id' and UserLogin= '".$CI->session->userdata('admin_id')."'");
+			}
+
+ 	
+		
+}
+
 
 function LabelBeasiswa($id)
 {
