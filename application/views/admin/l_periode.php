@@ -29,7 +29,6 @@
 			<th class="text-center" width="4%">No</th>
 			<th class="text-center" width="11%">Tahun Periode</th>
       <th class="text-center" width="5">Status</th>
-      <th class="text-center" width="12%">Terlihat</th>
 			<th class="text-center" width="25%">Aksi</th>
 		</tr>
 	</thead>
@@ -47,7 +46,7 @@
 			<td class="text-center"> <?php echo $nourut; $nourut++; ?> </td>
 			<td class="text-center"><?php echo $b->Nama; ?></td>
     	<td class="text-center"><?php echo LabelStatus($b->Status); ?></td>
-      <td class="text-center"><?php echo LabelStatus($b->Terlihat); ?></td>
+ 
      
 			<?php 
 			if ($this->session->userdata('admin_level') == "Super Admin") {

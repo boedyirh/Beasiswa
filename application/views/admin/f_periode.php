@@ -9,7 +9,7 @@ if ($mode == "edt" || $mode == "act_edt") {
   	$idp		   = $datpil->PeriodeID;
   	$Nama	     = $datpil->Nama;
   	$Status	   = $datpil->Status;
-    $Terlihat  = $datpil->Terlihat;
+  
   	$ro        ="readonly";
    
 //	$tgl_surat	= $datpil->tgl_surat;
@@ -21,13 +21,13 @@ if ($mode == "edt" || $mode == "act_edt") {
   	$idp		   = "";
    	$Nama	     = "";
   	$Status	   = "1";
-    $Terlihat	 = "1";
+  
     $ro        = "";      
 }
 ?>
 
 	<div class="panel panel-info">
-		<div class="panel-heading"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-plus"></span> Penambahan Tahun Periode</h3></div>
+		<div class="panel-heading"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span> Tahun Periode</h3></div>
 	</div>
 
 	<form action="<?php echo base_URL(); ?>admin/periode/<?php echo $act; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
@@ -50,13 +50,7 @@ if ($mode == "edt" || $mode == "act_edt") {
        </select>
      </td></tr>  
      
-       <tr><td width="20%">Terlihat</td>  <td>
-   <select class="form-control required" tabindex="12" style="width: 240px"; id="Terlihat" name="Terlihat">
-         
-          <option value="5" <?php if($Terlihat=="5") echo 'selected="selected"'; ?>>Terlihat</option>
-          <option value="6" <?php if($Terlihat=="6") echo 'selected="selected"'; ?>>Tidak Terlihat</option>
-       </select>
-     </td></tr>   
+      
        	<tr><td colspan="2">
 		<br><button type="submit" class="btn btn-primary"tabindex="30" ><i class="icon icon-ok icon-white"></i> Simpan</button>
 		<a href="<?php echo base_URL(); ?>admin/periode" class="btn btn-success" tabindex="31" ><i class="icon icon-arrow-left icon-white"></i> Kembali</a>

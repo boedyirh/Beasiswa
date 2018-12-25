@@ -28,11 +28,11 @@
 	  <tr  bgcolor=#cce6ff>
     	<th class="text-center" width="4%">No</th>
 			<th class="text-center" width="10%">Kode</th>
-			<th class="text-center" width="20%">Nama</th>
+			<th class="text-center" width="25%">Nama</th>
 			<th class="text-center" width="10">Periode</th>
      	<th class="text-center" width="6">Jumlah Pendaftar</th>
       <th class="text-center" width="10%">Status</th>
-			<th class="text-center" width="25%">Aksi</th>
+			<th class="text-center" width="15%">Aksi</th>
 		</tr>
 	</thead>
 	

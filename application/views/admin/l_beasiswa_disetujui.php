@@ -1,8 +1,14 @@
+
+
+
+
+
+
 <div class="clearfix">
 
 <div class="panel panel-info">
 	<div class="panel-heading" style="overflow: auto">
-		<div class="col-md-6"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-user"></span> Daftar Permohonan Beasiswa diajukan</h3></div>
+		<div class="col-md-6"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-user"></span> Daftar Permohonan Beasiswa</h3></div>
 		<div class="col-md-2">
 	
   	</div>
@@ -10,8 +16,9 @@
 		<div class="col-md-4">
 			<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>admin/beasiswa_disetujui/cari" style="margin-top: 0px">
 				<?php
-    $JenisBeasiswa ='xxx' ;
-    	ComboBoxPenjaringan("JenisBeasiswa", "bsw_jenis", "Kode", "Nama", $JenisBeasiswa, "JenisID", "form-control","220px","----Jenis Beasiswa-----");	
+      
+           $JenisBeasiswa = AmbilSesi('BeasiswaID','beasiswa_disetujui');
+        	ComboBoxPenjaringan("JenisBeasiswa", "bsw_jenis", "BeasiswaID", "Nama", $JenisBeasiswa, "JenisID", "form-control","240px","--Jenis Beasiswa--");	
   
      ?>
 				<button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-search"> </i> Cari</button>
@@ -30,8 +37,7 @@
 			<th class="text-center" width="20%">Nama</th>
 			<th class="text-center" width="15%">Program Studi</th>
 			<th class="text-center" width="10%">Jenis Beasiswa</th>
-			<th class="text-center" width="5%">InputBy</th>
-			<th class="text-center" width="5%">Status</th>
+	  	<th class="text-center" width="5%">Status</th>
 			<th class="text-center" width="10%">Aksi</th>
 		</tr>
 	</thead>
@@ -50,34 +56,15 @@
 			<td class="text-center"><?php echo $b->MhswID;?></td>
 			<td><?php echo $b->Nama;?></td>
 			<td class="text-center"><?php echo $b->NamaProdi;?></td>
-			<td class="text-center"><?php echo $b->BeasiswaID.'<br>Periode :'.$b->Periode;?></td>
-			<td class="text-center"><?php echo $b->InputBy;?></td> 
-       <?php 
-       $StatusAjuan = $b->Status;
-          if( $StatusAjuan=='Diajukan')
-                              {
-                               $stts = "<span title='Telah disetujui untuk diajukan' class='label label-primary'>Diajukan</span>";
-                              }
-                              else
-                              {
-                              $stts =$StatusAjuan;
-                              }
-       
-       
-       
-       
-       ?>
-      
-      
-      
-        <td class="text-center"><?php echo $stts;?></td>  	
+			<td class="text-center"><?php echo LabelBeasiswa($b->BeasiswaID).'<br>Periode :'.$b->Periode;?></td>
+	    <td class="text-center"><?php echo LabelStatus($b->Status);?></td>  	
 			<td class="text-center" class="ctr" >
 				<?php  
 					if ($this->session->userdata('admin_level') == "Super Admin") {
 				?>
 				<div class="btn-group">
 				 
-					<a href="<?php echo base_URL()?>admin/beasiswa_disetujui/rubahstatus/<?php echo $b->PemohonID?>" class="btn btn-primary btn-sm" title="Rubah Status" onclick="return confirm('Anda Yakin..?')"><i class="icon-trash icon-remove">  </i> Status Ajuan</a>			
+					<a href="<?php echo base_URL()?>admin/beasiswa_disetujui/rubahstatus/<?php echo $b->PemohonID?>" class="btn btn-primary btn-sm" title="Rubah Status" ><i class="icon-trash icon-remove">  </i> Status Ajuan</a>			
 			
 				</div>	
 				<?php 
@@ -85,7 +72,7 @@
 				?>
 				<div class="btn-group">
 				<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/edt/<?php echo $b->PemohonID?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edt</a>
-					<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/rubahstatus/<?php echo $b->PemohonID?>" class="btn btn-primary btn-sm" title="Rubah Status" onclick="return confirm('Anda Yakin..?')"><i class="icon-trash icon-remove">  </i> Rubah</a>			
+					<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/rubahstatus/<?php echo $b->PemohonID?>" class="btn btn-primary btn-sm" title="Rubah Status"><i class="icon-trash icon-remove">  </i> Rubah</a>			
 					</div>	
 				<?php 
 				}

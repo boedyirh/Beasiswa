@@ -96,12 +96,7 @@
         
          
 
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-});
-  
-        
-        
+
         
         
         
@@ -287,7 +282,12 @@ $(document).ready(function(){
 			}
 			?>
           </ul>
-
+            <ul class="nav navbar-nav ">
+            <?php 
+             $PeriodeAktif= gval("t_periode", "Status", "Nama", "1");
+            ?>
+          	<li><a href="<?php echo base_url(); ?>admin/periode"><span class="glyphicon glyphicon-eye-open"></span> Periode Aktif : <?php echo $PeriodeAktif; ?></a></li>
+             </ul>
           <ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-user"></span></i> Administrator <span class="caret"></span></a>

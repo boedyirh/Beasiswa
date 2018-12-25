@@ -71,7 +71,7 @@ if ($mode == "edt" || $mode == "act_edt") {
 		<table  class="table-form">
 		 <?php
   	echo "<tr><td>Jenis Beasiswa</td><td>";
-		ComboBoxPenjaringan("BeasiswaID", "bsw_jenis", "BeasiswaID", "Nama", $BeasiswaID, "BeasiswaID", "form-control","220px","----Jenis Beasiswa-----");
+		ComboBoxPenjaringan("BeasiswaID", "bsw_jenis", "BeasiswaID", "Nama", $BeasiswaID, "BeasiswaID", "form-control","290px","----Jenis Beasiswa-----");
 		echo "</tr>";
    ?>
   

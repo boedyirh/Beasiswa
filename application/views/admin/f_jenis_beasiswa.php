@@ -138,13 +138,10 @@ if ($mode == "edt" || $mode == "act_edt") {
   <tr><td width="20%">Status</td>  
 		<td>
 			<select class="form-control required" tabindex="3" style="width: 180px;  id="Status" name="Status">
-                <option value="xxx">--- Status---</option>
+                
                 <option value="1" <?php if($Status=="1") echo 'selected="selected"'; ?>>Aktif</option>
-                <option value="2" <?php if($Status=="2") echo 'selected="selected"'; ?>>Penjaringan</option>
-                <option value="3" <?php if($Status=="3") echo 'selected="selected"'; ?>>Seleksi</option>
-                <option value="4" <?php if($Status=="4") echo 'selected="selected"'; ?>>Selesai</option>
-                <option value="5" <?php if($Status=="5") echo 'selected="selected"'; ?>>Non-Aktif</option>
-           
+                <option value="0" <?php if($Status=="0") echo 'selected="selected"'; ?>>Non-Aktif</option>
+                
             </select>
 		</td>
 		</tr>	  

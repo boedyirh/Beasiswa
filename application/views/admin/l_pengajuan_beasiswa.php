@@ -55,16 +55,14 @@
 				?>
 				<div class="btn-group">
 					<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/edt/<?php echo $b->PemohonID?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edt</a>
-					<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/rubahstatus/<?php echo $b->PemohonID?>" class="btn btn-primary btn-sm" title="Rubah Status"><i class="icon-trash icon-remove">  </i> Status Ajuan</a>			
-			
+		 	
 				</div>	
 				<?php 
 				} else {
 				?>
 				<div class="btn-group">
 				<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/edt/<?php echo $b->PemohonID?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edt</a>
-					<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/rubahstatus/<?php echo $b->PemohonID?>" class="btn btn-primary btn-sm" title="Rubah Status" ><i class="icon-trash icon-remove">  </i> Rubah</a>			
-					</div>	
+		 			</div>	
 				<?php 
 				}
 				?>
