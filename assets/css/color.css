@@ -1,0 +1,35 @@
+.label-warna1 {
+  background-color:  #611BBD;
+  color: #F2EAEA;
+}
+.label-warna1 [href]:hover,
+.label-warna1 [href]:focus {
+  background-color: #007D68;
+}
+
+
+.label-warna2 {
+  background-color:  #DB5415; 
+}
+.label-warna2 [href]:hover,
+.label-warna2 [href]:focus {
+  background-color: #e0e12;
+}
+
+.label-warna3 {
+  background-color:  #088C23;
+}
+.label-warna2 [href]:hover,
+.label-warna2 [href]:focus {
+  background-color: #e0e12;
+}
+
+.label-warna4 {
+  background-color: #BD265D;
+}
+.label-warna4 [href]:hover,
+.label-warna4 [href]:focus {
+  background-color: #e0e12;
+}
+
+ 
