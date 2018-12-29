@@ -44,6 +44,28 @@ else       //Non-Aktif
 
 }
 
+function CheckDaftarBeasiswa($MhswID,$BeasiswaID,$Periode)
+{
+     //Pengecekan apakah Mahasiswa sudah PernahDaftar Beasiswa di Gelombang yg Sama dan di Periode yang sama
+     $CI =& get_instance();	
+      $SdhDaftar = $CI->db->query(" select exists(select PemohonID from bsw_pemohon where BeasiswaID='$BeasiswaID' and MhswID='$MhswID' and Periode='$Periode' limit 1) as Hasil; ")->result();
+      $AdaPendaftar=$SdhDaftar[0]->Hasil;
+      Return $AdaPendaftar;
+}
+       
+function CheckPernahDapatBeasiswa($MhswID)
+{
+     //Pengecekan apakah Mahasiswa sudah Pernah Mendapat Beasiswa
+     $CI =& get_instance();	
+      $SdhDaftar = $CI->db->query(" select exists(select PemohonID from bsw_pemohon where MhswID='$MhswID' and Status='11' limit 1) as Hasil; ")->result();
+      $AdaPendaftar=$SdhDaftar[0]->Hasil;
+      Return $AdaPendaftar;
+}
+            
+       
+
+
+
 function AmbilSesi($id,$namaform)
 {
 $CI =& get_instance();	
@@ -138,9 +160,13 @@ function ComboBox($name, $tabel, $f_value, $f_view, $selected, $id, $class,$leba
 }
 
 
-function ComboBoxPenjaringan($name, $tabel, $f_value, $f_view, $selected, $id, $class,$lebar,$keterangan) {
+function ComboBoxPenjaringan($name, $tabel, $f_value, $f_view, $selected, $id, $class,$lebar,$keterangan,$ros) {
   $PeriodeAktif = gval("t_periode","Status","Nama","1");
-	echo "<select name='$name' id='$id' class='$class' style='width:$lebar' ><option value='xx'>$keterangan</option>";   
+  if($ros=='1')
+  { $ro='disabled';
+    } else {$ro='';}
+  
+	echo "<select name='$name' id='$id' $ro class='$class' style='width:$lebar' ><option value='xx'>$keterangan</option>";   
  	$CI =& get_instance();	
  	$query	= $CI->db->query("SELECT $f_value, $f_view FROM $tabel where NA='N' and IsDeleted='N' and Status='1' and Periode='$PeriodeAktif' ORDER BY BeasiswaID desc, $f_view ASC ")->result_array();
   foreach($query as $a)
