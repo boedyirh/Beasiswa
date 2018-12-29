@@ -9,33 +9,13 @@ class Admin extends CI_Controller {
 		if ($this->session->userdata('admin_valid') == FALSE && $this->session->userdata('admin_id') == "") {
 			redirect("admin/login");
 		}
+    $PeriodeAktif = gval("t_periode","Status","Nama","1");
 
-		$a['s_surat_masuk_bln'] = $this->db->query("SELECT 
-								MONTH(a.tgl_diterima) bln, COUNT(a.id) jml
-								FROM t_surat_masuk a
-								WHERE YEAR(a.tgl_diterima) = '".$this->session->userdata('admin_ta')."'
-								GROUP BY MONTH(a.tgl_diterima)")->result_array();
-		$a['s_surat_masuk_kode'] = $this->db->query("SELECT 
-								a.kode, b.nama, COUNT(a.id) jml
-								FROM t_surat_masuk a
-								LEFT JOIN ref_klasifikasi b ON a.kode = b.kode
-								WHERE YEAR(a.tgl_diterima) = '".$this->session->userdata('admin_ta')."'
-								GROUP BY a.kode,b.nama")->result_array();
-
-		$a['s_surat_keluar_bln'] = $this->db->query("SELECT 
-								MONTH(a.tgl_catat) bln, COUNT(a.id) jml
-								FROM t_surat_keluar a
-								WHERE YEAR(a.tgl_catat) = '".$this->session->userdata('admin_ta')."'
-								GROUP BY MONTH(a.tgl_catat)")->result_array();
-		$a['s_surat_keluar_kode'] = $this->db->query("SELECT 
-								a.kode, b.nama, COUNT(a.id) jml
-								FROM t_surat_keluar a
-								LEFT JOIN ref_klasifikasi b ON a.kode = b.kode
-								WHERE YEAR(a.tgl_catat) = '".$this->session->userdata('admin_ta')."'
-								GROUP BY a.kode,b.nama")->result_array();
-
-		$a['page']	= "d_amain";
+	  		$a['data']		= $this->db->query("SELECT * FROM bsw_jenis WHERE IsDeleted='N' and NA='N' and Periode='$PeriodeAktif' ORDER BY BeasiswaID DESC  ")->result();
 		
+   //		$a['page']	= "d_amain";
+    		$a['page']	= "d_amain2";
+    
 		$this->load->view('admin/aaa', $a);
 	}
   
@@ -512,6 +492,7 @@ public function grademahasiswa() {
 		$idp					= addslashes($this->input->post('idp'));
 		$Kode					= addslashes($this->input->post('Kode'));
 		$Nama					= addslashes($this->input->post('Nama'));
+    $Warna					= addslashes($this->input->post('Warna'));
 		$Jenis				= addslashes($this->input->post('Jenis'));
 	 	$Tgl_mulai		= addslashes($this->input->post('Tgl_mulai'));
     $Tgl_mulai    = date('Y-m-d' , strtotime($Tgl_mulai));
@@ -561,13 +542,13 @@ public function grademahasiswa() {
       	if ($this->upload->do_upload('file_surat')) {
 				$up_data	 	= $this->upload->data();
 
-			$this->db->query("UPDATE `bsw_jenis` SET `Kode`='$Kode', `Nama`='$Nama', `Jenis`='$Jenis', `Tgl_mulai`='$Tgl_mulai', `Tgl_selesai`='$Tgl_selesai',`Status`='$Status',  `Besaran`='$Besaran', `Periode`='$Periode', `Kuota`='$Kuota', `IPKMinimal`='$IPKMinimal', `SemesterMinimal`='$SemesterMinimal', `SKSMinimal`='$SKSMinimal', `AktifKemahasiswaan`='$AktifKemahasiswaan', `TidakMampu`='$TidakMampu', `BeasiswaLain`='$BeasiswaLain', `SyaratLain`='$SyaratLain', `Deskripsi`='$Deskripsi',`File`= '".$up_data['file_name']."'  WHERE BeasiswaID = '$idp'");
+			$this->db->query("UPDATE `bsw_jenis` SET `Warna`='$Warna',`Kode`='$Kode', `Nama`='$Nama', `Jenis`='$Jenis', `Tgl_mulai`='$Tgl_mulai', `Tgl_selesai`='$Tgl_selesai',`Status`='$Status',  `Besaran`='$Besaran', `Periode`='$Periode', `Kuota`='$Kuota', `IPKMinimal`='$IPKMinimal', `SemesterMinimal`='$SemesterMinimal', `SKSMinimal`='$SKSMinimal', `AktifKemahasiswaan`='$AktifKemahasiswaan', `TidakMampu`='$TidakMampu', `BeasiswaLain`='$BeasiswaLain', `SyaratLain`='$SyaratLain', `Deskripsi`='$Deskripsi',`File`= '".$up_data['file_name']."'  WHERE BeasiswaID = '$idp'");
     	$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data telah diupdate< /div>");			
 			redirect('admin/jenis_beasiswa');
     }
     else
     {
-    	$this->db->query("UPDATE `bsw_jenis` SET `Kode`='$Kode', `Nama`='$Nama', `Jenis`='$Jenis', `Tgl_mulai`='$Tgl_mulai', `Tgl_selesai`='$Tgl_selesai',`Status`='$Status', `Besaran`='$Besaran', `Periode`='$Periode', `Kuota`='$Kuota', `IPKMinimal`='$IPKMinimal', `SemesterMinimal`='$SemesterMinimal', `SKSMinimal`='$SKSMinimal', `AktifKemahasiswaan`='$AktifKemahasiswaan', `TidakMampu`='$TidakMampu', `BeasiswaLain`='$BeasiswaLain', `SyaratLain`='$SyaratLain', `Deskripsi`='$Deskripsi' WHERE BeasiswaID = '$idp'");
+    	$this->db->query("UPDATE `bsw_jenis` SET `Warna`='$Warna',`Kode`='$Kode', `Nama`='$Nama', `Jenis`='$Jenis', `Tgl_mulai`='$Tgl_mulai', `Tgl_selesai`='$Tgl_selesai',`Status`='$Status', `Besaran`='$Besaran', `Periode`='$Periode', `Kuota`='$Kuota', `IPKMinimal`='$IPKMinimal', `SemesterMinimal`='$SemesterMinimal', `SKSMinimal`='$SKSMinimal', `AktifKemahasiswaan`='$AktifKemahasiswaan', `TidakMampu`='$TidakMampu', `BeasiswaLain`='$BeasiswaLain', `SyaratLain`='$SyaratLain', `Deskripsi`='$Deskripsi' WHERE BeasiswaID = '$idp'");
     	$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been updated</div>");			
 			redirect('admin/jenis_beasiswa');
     
@@ -576,12 +557,12 @@ public function grademahasiswa() {
 		} else if ($mau_ke == "act_add"){
      		if ($this->upload->do_upload('file_surat')) {
 				$up_data	 	= $this->upload->data();
-			$this->db->query(" INSERT INTO `bsw_jenis` (`Kode`, `Nama`, `Jenis`, `Tgl_mulai`, `Tgl_selesai`, `Besaran`, `Periode`, `Kuota`, `IPKMinimal`, `SemesterMinimal`, `SKSMinimal`, `AktifKemahasiswaan`, `TidakMampu`, `BeasiswaLain`, `SyaratLain`, `File`, `Deskripsi`, `Status`) VALUES ('$Kode', '$Nama', '$Jenis', '$Tgl_mulai', '$Tgl_selesai', '$Besaran', '$Periode', '$Kuota', '$IPKMinimal', '$SemesterMinimal', '$SKSMinimal', '$AktifKemahasiswaan', '$TidakMampu', '$BeasiswaLain', '$SyaratLain', '".$up_data['file_name']."','$Deskripsi','Aktif')     ");
+			$this->db->query(" INSERT INTO `bsw_jenis` (`Kode`, `Nama`, `Jenis`, `Tgl_mulai`, `Tgl_selesai`, `Besaran`, `Periode`, `Kuota`, `IPKMinimal`, `SemesterMinimal`, `SKSMinimal`, `AktifKemahasiswaan`, `TidakMampu`, `BeasiswaLain`, `SyaratLain`, `File`, `Deskripsi`, `Status`, `Warna`) VALUES ('$Kode', '$Nama', '$Jenis', '$Tgl_mulai', '$Tgl_selesai', '$Besaran', '$Periode', '$Kuota', '$IPKMinimal', '$SemesterMinimal', '$SKSMinimal', '$AktifKemahasiswaan', '$TidakMampu', '$BeasiswaLain', '$SyaratLain', '".$up_data['file_name']."','$Deskripsi','1','$Warna')     ");
  $this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data telah ditambahkan berikut upload file</div>");			
 			redirect('admin/jenis_beasiswa');			
     		
 				} else {
-    	$this->db->query(" INSERT INTO `bsw_jenis` (`Kode`, `Nama`, `Jenis`, `Tgl_mulai`, `Tgl_selesai`, `Besaran`, `Periode`, `Kuota`, `IPKMinimal`, `SemesterMinimal`, `SKSMinimal`, `AktifKemahasiswaan`, `TidakMampu`, `BeasiswaLain`, `SyaratLain`, `File`, `Deskripsi`, `Status`) VALUES ('$Kode', '$Nama', '$Jenis', '$Tgl_mulai', '$Tgl_selesai', '$Besaran', '$Periode', '$Kuota', '$IPKMinimal', '$SemesterMinimal', '$SKSMinimal', '$AktifKemahasiswaan', '$TidakMampu', '$BeasiswaLain', '$SyaratLain', '','$Deskripsi','1')     ");
+    	$this->db->query(" INSERT INTO `bsw_jenis` (`Kode`, `Nama`, `Jenis`, `Tgl_mulai`, `Tgl_selesai`, `Besaran`, `Periode`, `Kuota`, `IPKMinimal`, `SemesterMinimal`, `SKSMinimal`, `AktifKemahasiswaan`, `TidakMampu`, `BeasiswaLain`, `SyaratLain`, `File`, `Deskripsi`, `Status`, `Warna`) VALUES ('$Kode', '$Nama', '$Jenis', '$Tgl_mulai', '$Tgl_selesai', '$Besaran', '$Periode', '$Kuota', '$IPKMinimal', '$SemesterMinimal', '$SKSMinimal', '$AktifKemahasiswaan', '$TidakMampu', '$BeasiswaLain', '$SyaratLain', '','$Deskripsi','1','$Warna')     ");
 			
       
       $this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Hanya menambah data tanpa upload</div>");			
@@ -626,7 +607,7 @@ public function grademahasiswa() {
 		
 		$this->load->view('admin/aaa', $a);
 	}
-  
+ //========================================================================================================================= 
   	public function beasiswa_disetujui() {
 		if ($this->session->userdata('admin_valid') == FALSE && $this->session->userdata('admin_id') == "") {
 			redirect("admin/login");
@@ -649,6 +630,144 @@ public function grademahasiswa() {
 		//ambil variabel URL
 		$mau_ke				= $this->uri->segment(3);
 		$idu					= $this->uri->segment(4);
+		$cari					= addslashes($this->input->post('JenisBeasiswa'));
+
+		//ambil variabel post
+		$idp					= addslashes($this->input->post('idp'));
+		$MhswID				= addslashes($this->input->post('MhswID'));
+   	$NamaMhsw			= addslashes($this->input->post('NamaMhsw'));
+    $PeriodeAktif = gval("t_periode","Status","Nama","1");
+    $BeasiswaID   = addslashes($this->input->post('JenisBeasiswa'));
+    $Periode      = gval("bsw_jenis","Kode","Periode",$BeasiswaID);
+    //$Periode		= addslashes($this->input->post('Periode'));
+		$IPK			    = addslashes($this->input->post('IPK'));
+		$Semester			= addslashes($this->input->post('Semester'));
+		$SKSLulus			= addslashes($this->input->post('SKSLulus'));
+		$Alamat				= addslashes($this->input->post('Alamat'));
+  	$NoHP				  = addslashes($this->input->post('NoHP'));
+   	$Keterangan		= addslashes($this->input->post('Keterangan'));
+   	$KodePT				= addslashes($this->input->post('KodePT'));
+   	$ProdiID			= addslashes($this->input->post('ProdiID'));
+   	$JenjangStudi	= addslashes($this->input->post('JenjangStudi'));
+   	$TempatLahir	= addslashes($this->input->post('TempatLahir'));
+   	$JenisKelamin	= addslashes($this->input->post('JenisKelamin'));
+    $PekerjaanOrtu= addslashes($this->input->post('PekerjaanOrtu'));
+    $uraian				= addslashes($this->input->post('uraian'));
+		$ket					= addslashes($this->input->post('ket'));
+	 	$TanggunganOrtu	 = addslashes($this->input->post('Tanggungan'));
+   	$PenghasilanOrtu = addslashes($this->input->post('PenghasilanOrtu'));
+    $StatusBeasiswa	 = addslashes($this->input->post('StatusBeasiswa'));
+    $TanggalLahir		 = addslashes($this->input->post('TanggalLahir'));
+  //  $TanggalLahir     = date('Y-m-d' , strtotime($TanggalLahir));
+  
+    if($cari=='xx'){
+      $where ="";
+    }
+    else
+    {
+     $where ="t1.BeasiswaID='$BeasiswaID' and ";
+    }
+		//upload config 
+		$config['upload_path'] 		= './upload/pemohon';
+		$config['allowed_types'] 	= 'gif|jpg|png|pdf|doc|docx';
+		$config['max_size']			  = '2000';
+		$config['max_width']  		= '3000';
+		$config['max_height'] 		= '3000';
+
+		$this->load->library('upload', $config);
+		
+		if ($mau_ke == "del") {
+    
+    
+    
+    
+    
+			$this->db->query("update bsw_pemohon set IsDeleted='Y' WHERE id = '$idu'");
+			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been deleted </div>");
+			redirect('admin/beasiswa_disetujui');
+} else if ($mau_ke == "cari") {
+
+     SimpanSesi('BeasiswaID','beasiswa_disetujui',$BeasiswaID);
+
+
+     	$a['data']		= $this->db->query("SELECT t1.InputBy,t1.PemohonID,t1.MhswID,t1.Nama,t2.Nama as NamaProdi,t1.BeasiswaID,t1.Periode,t1.File,t1.Status FROM bsw_pemohon t1 inner join t_prodi t2 on t1.ProdiID=t2.ProdiID  WHERE $where  t1.Periode='$PeriodeAktif' and t1.NA='N' and t1.IsDeleted='N' ORDER BY t1.ProdiID,t1.PemohonID  DESC LIMIT $awal, $akhir ")->result();
+     	$a['page']		= "l_beasiswa_disetujui";
+} else if ($mau_ke == "add") {
+			$q_nomer_terakhir = $this->db->query("SELECT (MAX(no_agenda)) AS last FROM t_surat_masuk WHERE YEAR(tgl_diterima) = '".$this->session->userdata('admin_ta')."'")->row_array();
+			$last	= str_pad(intval($q_nomer_terakhir['last']+1), 4, '0', STR_PAD_LEFT);
+  		$a['nomer_terakhir'] = $last;
+  		$a['page']		= "f_beasiswa_disetujui";
+} else if ($mau_ke == "kembali") {
+	     $BeasiswaID = AmbilSesi('BeasiswaID','beasiswa_disetujui'); 
+       
+     	$a['data']		= $this->db->query("SELECT t1.InputBy,t1.PemohonID,t1.MhswID,t1.Nama,t2.Nama as NamaProdi,t1.BeasiswaID,t1.Periode,t1.File,t1.Status FROM bsw_pemohon t1 inner join t_prodi t2 on t1.ProdiID=t2.ProdiID  WHERE   t1.BeasiswaID='$BeasiswaID' and t1.Periode='$PeriodeAktif' and t1.NA='N' and t1.IsDeleted='N' ORDER BY t1.Periode,t1.ProdiID  DESC LIMIT $awal, $akhir ")->result();
+     	$a['page']		= "l_beasiswa_disetujui";
+  
+} else if ($mau_ke == "edt") {
+			$a['datpil']	= $this->db->query("SELECT * FROM bsw_pemohon WHERE id = '$idu'")->row();	
+			$a['page']		= "f_beasiswa_disetujui";
+   //Tambah data   
+} else if ($mau_ke == "act_add") {
+     		if ($this->upload->do_upload('file_surat')) {
+				$up_data	 	= $this->upload->data();
+			  $this->db->query(" INSERT INTO `bsw_pemohon` (`JenisKelamin`,`BeasiswaID`,`TanggalLahir`, `Nama`, `MhswID`, `IPK`, `SKSLulus`, `Semester`, `Periode`, `Alamat`, `NoHP`, `Keterangan`, `PekerjaanOrtu`, `TanggunganOrtu`, `PenghasilanOrtu`, `ProdiID`, `KodePT`, `File`, `JenjangStudi`, `TempatLahir`,`Status`) VALUES ('$JenisKelamin','$BeasiswaID', '$TanggalLahir','$NamaMhsw', '$MhswID', '$IPK', '$SKSLulus', '$Semester', '$Periode', '$Alamat', '$NoHP', '$Keterangan', '$PekerjaanOrtu', '$TanggunganOrtu', '$PenghasilanOrtu', '$ProdiID', '$KodePT', '".$up_data['file_name']."','$JenjangStudi','$TempatLahir','Pengajuan')     ");
+        $this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data telah ditambahkan berikut upload file</div>");			
+			  redirect('admin/beasiswa_disetujui');			
+    		} else {
+    	  $this->db->query(" INSERT INTO `bsw_pemohon` (`JenisKelamin`,`BeasiswaID`,`TanggalLahir`, `Nama`, `MhswID`, `IPK`, `SKSLulus`, `Semester`, `Periode`, `Alamat`, `NoHP`, `Keterangan`, `PekerjaanOrtu`, `TanggunganOrtu`, `PenghasilanOrtu`, `ProdiID`, `KodePT`, `File`, `JenjangStudi`, `TempatLahir`, `Status`) VALUES ('$JenisKelamin','$BeasiswaID', '$TanggalLahir', '$NamaMhsw', '$MhswID', '$IPK', '$SKSLulus', '$Semester', '$Periode', '$Alamat', '$NoHP', '$Keterangan', '$PekerjaanOrtu', '$TanggunganOrtu', '$PenghasilanOrtu', '$ProdiID', '$KodePT', '','$JenjangStudi','$TempatLahir','Pengajuan')     ");
+			  $this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Hanya menambah data tanpa upload</div>");			
+			  redirect('admin/beasiswa_disetujui');
+        }
+} else if ($mau_ke == "act_edt") {
+			if ($this->upload->do_upload('file_surat')) {
+				$up_data	 	= $this->upload->data();
+  			$this->db->query("UPDATE bsw_pemohon SET IPK = '$IPK', SKSLulus = '$SKSLulus', Semester = '$Semester', Alamat = '$Alamat', NoHP = '$NoHP', Keterangan = '$Keterangan', PekerjaanOrtu = '$PekerjaanOrtu', TanggunganOrtu = '$TanggunganOrtu', PenghasilanOrtu = '$PenghasilanOrtu', file = '".$up_data['file_name']."' WHERE id = '$idp'");
+			} else {
+				$this->db->query("UPDATE bsw_pemohon SET IPK = '$IPK', SKSLulus = '$SKSLulus', Semester = '$Semester', Alamat = '$Alamat', NoHP = '$NoHP', Keterangan = '$Keterangan', PekerjaanOrtu = '$PekerjaanOrtu', TanggunganOrtu = '$TanggunganOrtu', PenghasilanOrtu = '$PenghasilanOrtu' WHERE id = '$idp'");
+			}	
+			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been updated. ".$this->upload->display_errors()."</div>");			
+			redirect('admin/beasiswa_disetujui');
+      
+   		} else if ($mau_ke == "rubahstatus") {
+			$a['datpil']	= $this->db->query("SELECT * FROM bsw_pemohon WHERE PemohonID = '$idu'")->row();	
+			$a['page']		= "f_beasiswa_disetujui";
+		  
+    	} else if ($mau_ke == "act_rubahstatus") {
+			$this->db->query("Update bsw_pemohon set Status='$StatusBeasiswa' WHERE PemohonID = '$idp'");
+			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Status Beasiswa $Kode Telah dirubah</div>");			
+			redirect('admin/beasiswa_disetujui/kembali');
+		} else {
+			$a['data']		= $this->db->query("SELECT t1.InputBy,t1.PemohonID,t1.MhswID,t1.Nama,t2.Nama as NamaProdi,t1.BeasiswaID,t1.Periode,t1.File,t1.Status FROM bsw_pemohon t1 inner join t_prodi t2 on t1.ProdiID=t2.ProdiID  WHERE t1.Periode='$PeriodeAktif' and t1.NA='N' and t1.IsDeleted='N' ORDER BY t1.ProdiID, t1.PemohonID  DESC LIMIT $awal, $akhir ")->result();
+			$a['page']		= "l_beasiswa_disetujui";
+		}
+		
+		$this->load->view('admin/aaa', $a);
+	}
+  
+  //=============================================================================================================================
+  	public function detil_beasiswa() {
+		if ($this->session->userdata('admin_valid') == FALSE && $this->session->userdata('admin_id') == "") {
+			redirect("admin/login");
+		}
+		
+		$ta = $this->session->userdata('admin_ta');
+		
+		/* pagination */	
+		$total_row		= $this->db->query("SELECT * FROM bsw_pemohon where IsDeleted='N' ")->num_rows();
+		$per_page		= 50;
+		
+		$awal	= $this->uri->segment(4); 
+		$awal	= (empty($awal) || $awal == 1) ? 0 : $awal;
+		
+		//if (empty($awal) || $awal == 1) { $awal = 0; } { $awal = $awal; }
+		$akhir	= $per_page;
+		
+		$a['pagi']	= _page($total_row, $per_page, 4, base_url()."admin/beasiswa_disetujui/p");
+		
+		//ambil variabel URL
+		$mau_ke				= $this->uri->segment(3);
+		$idu					= $this->uri->segment(4);
+    $ID_BS					= $this->uri->segment(3);
 		$cari					= addslashes($this->input->post('JenisBeasiswa'));
 
 		//ambil variabel post
@@ -756,12 +875,14 @@ public function grademahasiswa() {
 			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Status Beasiswa $Kode Telah dirubah</div>");			
 			redirect('admin/beasiswa_disetujui/kembali');
 		} else {
-			$a['data']		= $this->db->query("SELECT t1.InputBy,t1.PemohonID,t1.MhswID,t1.Nama,t2.Nama as NamaProdi,t1.BeasiswaID,t1.Periode,t1.File,t1.Status FROM bsw_pemohon t1 inner join t_prodi t2 on t1.ProdiID=t2.ProdiID  WHERE t1.Periode='2018' and t1.NA='N' and t1.IsDeleted='N' ORDER BY t1.PemohonID  DESC LIMIT $awal, $akhir ")->result();
+      SimpanSesi('BeasiswaID','beasiswa_disetujui',$ID_BS);
+			$a['data']		= $this->db->query("SELECT t1.InputBy,t1.PemohonID,t1.MhswID,t1.Nama,t2.Nama as NamaProdi,t1.BeasiswaID,t1.Periode,t1.File,t1.Status FROM bsw_pemohon t1 inner join t_prodi t2 on t1.ProdiID=t2.ProdiID  WHERE t1.Periode='$PeriodeAktif' and t1.BeasiswaID='$ID_BS' and t1.NA='N' and t1.IsDeleted='N' ORDER BY t1.ProdiID,t1.PemohonID  DESC LIMIT $awal, $akhir ")->result();
 			$a['page']		= "l_beasiswa_disetujui";
 		}
 		
 		$this->load->view('admin/aaa', $a);
 	}
+  
   
   //=============================================================================================================================
 	
@@ -788,7 +909,136 @@ public function grademahasiswa() {
   $mau_ke			= $this->uri->segment(3);
 	$cari				= addslashes($this->input->post('q'));
 	//ambil variabel post
-  $BeasiswaID			= addslashes($this->input->post('JenisBeasiswa'));
+  $BeasiswaID			= addslashes($this->input->post('BeasiswaID'));
+	$idp				= addslashes($this->input->post('idp'));
+	$MhswID			= addslashes($this->input->post('MhswID'));
+  $NamaMhsw		= addslashes($this->input->post('NamaMhsw'));
+  $Periode    = gval("bsw_jenis","BeasiswaID","Periode",$BeasiswaID);
+  $PeriodeAktif    = gval("t_periode","Status","Nama","1");
+//$Periode		= addslashes($this->input->post('Periode'));
+	$IPK			  = addslashes($this->input->post('IPK'));
+	$Semester		= addslashes($this->input->post('Semester'));
+	$SKSLulus		= addslashes($this->input->post('SKSLulus'));
+	$Alamat			= addslashes($this->input->post('Alamat'));
+  $NoHP				= addslashes($this->input->post('NoHP'));
+  $Keterangan	= addslashes($this->input->post('Keterangan'));
+  $KodePT			= addslashes($this->input->post('KodePT'));
+  $ProdiID		= addslashes($this->input->post('ProdiID'));
+  $TempatLahir= addslashes($this->input->post('TempatLahir'));
+  $JenjangStudi	      = addslashes($this->input->post('JenjangStudi'));
+  $JenisKelamin				= addslashes($this->input->post('JenisKelamin'));
+  $PekerjaanOrtu			= addslashes($this->input->post('PekerjaanOrtu'));
+  $TanggunganOrtu			= addslashes($this->input->post('Tanggungan'));
+  $PenghasilanOrtu		= addslashes($this->input->post('PenghasilanOrtu'));
+  $StatusBeasiswa			= addslashes($this->input->post('StatusBeasiswa'));
+  $TanggalLahir				= addslashes($this->input->post('TanggalLahir'));
+  //  $TanggalLahir   = date('Y-m-d' , strtotime($TanggalLahir));
+  $uraian			= addslashes($this->input->post('uraian'));
+	$ket				= addslashes($this->input->post('ket'));
+	$cari				= addslashes($this->input->post('q'));
+		//upload config 
+	$config['upload_path'] 		= './upload/pemohon';
+	$config['allowed_types'] 	= 'gif|jpg|png|pdf|doc|docx';
+	$config['max_size']			  = '2000';
+	$config['max_width']  		= '3000';
+	$config['max_height'] 		= '3000';
+  
+  
+   if($BeasiswaID=='xx'){
+      $where ="";
+    }
+    else
+    {
+     $where ="t1.BeasiswaID='$BeasiswaID' and ";
+    }
+  
+  
+  
+  
+
+	$this->load->library('upload', $config);
+		
+		if ($mau_ke == "del") {
+    		$this->db->query("update bsw_pemohon set IsDeleted='Y' WHERE id = '$idu'");
+			  $this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been deleted </div>");
+			  redirect('admin/pengajuan_beasiswa');
+		} else if ($mau_ke == "cari") {
+       SimpanSesi('BeasiswaID','pengajuan_beasiswa',$BeasiswaID);
+
+     	  $a['data']		= $this->db->query("SELECT t1.InputBy,t1.PemohonID,t1.MhswID,t1.Nama,t2.Nama as NamaProdi,t1.BeasiswaID,t1.Periode,t1.File,t1.Status FROM bsw_pemohon t1 inner join t_prodi t2 on t1.ProdiID=t2.ProdiID  WHERE $where  t1.Periode='$PeriodeAktif' and t1.NA='N' and t1.IsDeleted='N' and t1.Nama LIKE '%$cari%' ORDER BY t1.ProdiID,t1.Periode,t1.ProdiID  DESC LIMIT $awal, $akhir ")->result();
+        $a['page']		= "l_pengajuan_beasiswa";
+	 	} else if ($mau_ke == "add") {
+    		$q_nomer_terakhir = $this->db->query("SELECT (MAX(no_agenda)) AS last FROM t_surat_masuk WHERE YEAR(tgl_diterima) = '".$this->session->userdata('admin_ta')."'")->row_array();
+			  $last	= str_pad(intval($q_nomer_terakhir['last']+1), 4, '0', STR_PAD_LEFT);
+		    $a['nomer_terakhir'] = $last;
+			  $a['page']		= "f_pengajuan_beasiswa";
+  	} else if ($mau_ke == "edt") {
+			  $a['datpil']	= $this->db->query("SELECT * FROM bsw_pemohon WHERE PemohonID = '$idu'")->row();	
+			  $a['page']		= "f_pengajuan_beasiswa";
+   //Tambah data   
+		} else if ($mau_ke == "act_add") {
+     		if ($this->upload->do_upload('file_surat')) {
+				$up_data	 	= $this->upload->data();
+			  $this->db->query(" INSERT INTO `bsw_pemohon` (`JenisKelamin`,`BeasiswaID`,`TanggalLahir`, `Nama`, `MhswID`, `IPK`, `SKSLulus`, `Semester`, `Periode`, `Alamat`, `NoHP`, `Keterangan`, `PekerjaanOrtu`, `TanggunganOrtu`, `PenghasilanOrtu`, `ProdiID`, `KodePT`, `File`, `JenjangStudi`, `TempatLahir`,`Status`) 
+        VALUES ('$JenisKelamin','$BeasiswaID', '$TanggalLahir','$NamaMhsw', '$MhswID', '$IPK', '$SKSLulus', '$Semester', '$Periode', '$Alamat', '$NoHP', '$Keterangan', '$PekerjaanOrtu', '$TanggunganOrtu', '$PenghasilanOrtu', '$ProdiID', '$KodePT', '".$up_data['file_name']."','$JenjangStudi','$TempatLahir','Pengajuan')     ");
+	      $this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data telah ditambahkan berikut upload file</div>");			
+			  redirect('admin/jenis_beasiswa');			
+		    } else {
+        $this->db->query(" INSERT INTO `bsw_pemohon` (`JenisKelamin`,`BeasiswaID`,`TanggalLahir`, `Nama`, `MhswID`, `IPK`, `SKSLulus`, `Semester`, `Periode`, `Alamat`, `NoHP`, `Keterangan`, `PekerjaanOrtu`, `TanggunganOrtu`, `PenghasilanOrtu`, `ProdiID`, `KodePT`, `File`, `JenjangStudi`, `TempatLahir`, `Status`) 
+        VALUES ('$JenisKelamin','$BeasiswaID', '$TanggalLahir', '$NamaMhsw', '$MhswID', '$IPK', '$SKSLulus', '$Semester', '$Periode', '$Alamat', '$NoHP', '$Keterangan', '$PekerjaanOrtu', '$TanggunganOrtu', '$PenghasilanOrtu', '$ProdiID', '$KodePT', '','$JenjangStudi','$TempatLahir','Pengajuan')     ");
+	      $this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Hanya menambah data tanpa upload</div>");			
+			  redirect('admin/pengajuan_beasiswa');
+        }
+   	} else if ($mau_ke == "act_edt") {
+		  	if ($this->upload->do_upload('file_surat')) {
+				$up_data	 	= $this->upload->data();	
+				$this->db->query("UPDATE bsw_pemohon SET Periode = '$Periode',BeasiswaID = '$BeasiswaID',IPK = '$IPK', SKSLulus = '$SKSLulus', Semester = '$Semester', Alamat = '$Alamat', NoHP = '$NoHP', Keterangan = '$Keterangan', PekerjaanOrtu = '$PekerjaanOrtu', TanggunganOrtu = '$TanggunganOrtu', PenghasilanOrtu = '$PenghasilanOrtu', file = '".$up_data['file_name']."' WHERE PemohonID = '$idp'");
+		  	} else {
+				$this->db->query("UPDATE bsw_pemohon SET Periode = '$Periode',BeasiswaID = '$BeasiswaID',IPK = '$IPK', SKSLulus = '$SKSLulus', Semester = '$Semester', Alamat = '$Alamat', NoHP = '$NoHP', Keterangan = '$Keterangan', PekerjaanOrtu = '$PekerjaanOrtu', TanggunganOrtu = '$TanggunganOrtu', PenghasilanOrtu = '$PenghasilanOrtu' WHERE PemohonID = '$idp'");
+			  }	
+   			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been updated. ".$this->upload->display_errors()."</div>");			
+		   	redirect('admin/pengajuan_beasiswa');     
+		} else if ($mau_ke == "rubahstatus") {
+		  	$a['datpil']	= $this->db->query("SELECT * FROM bsw_pemohon WHERE PemohonID = '$idu'")->row();	
+			  $a['page']		= "f_rubah_pengajuan_beasiswa";
+	 	} else if ($mau_ke == "act_rubahstatus") {
+			  $this->db->query("Update bsw_pemohon set Status='$StatusBeasiswa' WHERE PemohonID = '$idp'");
+			  $this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Status Beasiswa $Kode Telah dirubah</div>");			
+			  redirect('admin/pengajuan_beasiswa');
+		} else {
+			 $a['data']		= $this->db->query("SELECT t1.InputBy,t1.PemohonID,t1.MhswID,t1.Nama,t2.Nama as NamaProdi,t1.BeasiswaID,t1.Periode,t1.File,t1.Status FROM bsw_pemohon t1 inner join t_prodi t2 on t1.ProdiID=t2.ProdiID  WHERE t1.Periode='$PeriodeAktif' and t1.NA='N' and t1.IsDeleted='N' ORDER BY t1.ProdiID,t1.PemohonID  DESC LIMIT $awal, $akhir ")->result();
+			 $a['page']		= "l_pengajuan_beasiswa";
+		}
+		
+		$this->load->view('admin/aaa', $a);
+	}
+  //===============================================================================================================
+  	
+	public function detil_pengajuan() {
+		if ($this->session->userdata('admin_valid') == FALSE && $this->session->userdata('admin_id') == "") {
+			redirect("admin/login");
+		}
+		
+	$ta = $this->session->userdata('admin_ta');
+		
+		/* pagination */	
+	$total_row	= $this->db->query("SELECT * FROM bsw_pemohon where IsDeleted='N' ")->num_rows();
+	$per_page		= 48;
+	$awal	      = $this->uri->segment(4); 
+	$awal	      = (empty($awal) || $awal == 1) ? 0 : $awal;
+		
+		//if (empty($awal) || $awal == 1) { $awal = 0; } { $awal = $awal; }
+	$akhir	    = $per_page;
+		
+	$a['pagi']	= _page($total_row, $per_page, 4, base_url()."admin/pengajuan_beasiswa/p");
+		
+		//ambil variabel URL
+	$idu				= $this->uri->segment(4);
+  $mau_ke			= $this->uri->segment(3);
+  $ID_BS			= $this->uri->segment(3);
+	$cari				= addslashes($this->input->post('q'));
+	//ambil variabel post
+  $BeasiswaID			= addslashes($this->input->post('BeasiswaID'));
 	$idp				= addslashes($this->input->post('idp'));
 	$MhswID			= addslashes($this->input->post('MhswID'));
   $NamaMhsw		= addslashes($this->input->post('NamaMhsw'));
@@ -885,7 +1135,8 @@ public function grademahasiswa() {
 			  $this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Status Beasiswa $Kode Telah dirubah</div>");			
 			  redirect('admin/pengajuan_beasiswa');
 		} else {
-			 $a['data']		= $this->db->query("SELECT t1.InputBy,t1.PemohonID,t1.MhswID,t1.Nama,t2.Nama as NamaProdi,t1.BeasiswaID,t1.Periode,t1.File,t1.Status FROM bsw_pemohon t1 inner join t_prodi t2 on t1.ProdiID=t2.ProdiID  WHERE t1.Periode='$PeriodeAktif' and t1.NA='N' and t1.IsDeleted='N' ORDER BY t1.PemohonID  DESC LIMIT $awal, $akhir ")->result();
+     SimpanSesi('BeasiswaID','pengajuan_beasiswa',$ID_BS);
+			 $a['data']		= $this->db->query("SELECT t1.InputBy,t1.PemohonID,t1.MhswID,t1.Nama,t2.Nama as NamaProdi,t1.BeasiswaID,t1.Periode,t1.File,t1.Status FROM bsw_pemohon t1 inner join t_prodi t2 on t1.ProdiID=t2.ProdiID  WHERE t1.Periode='$PeriodeAktif' and t1.BeasiswaID='$ID_BS' and t1.NA='N' and t1.IsDeleted='N' ORDER BY t1.ProdiID,t1.PemohonID  DESC LIMIT $awal, $akhir ")->result();
 			 $a['page']		= "l_pengajuan_beasiswa";
 		}
 		
@@ -1660,7 +1911,7 @@ $header = array(
 	'TAHUN'=>'string',//16
 	'KETERANGAN'=>'string',//17
 	'ALAMAT'=>'string',//18
-	'TELEPON'=>'string',//19
+	'TELEPON'=>'string'//19
   );
  
 $no=1;
@@ -1684,7 +1935,7 @@ $styles8 = array( ['halign'=>'center','border'=>'left,right,top,bottom','border-
                   ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
                   ['halign'=>'center','border'=>'left,right,top,bottom','border-style'=>'thin'],
                   ['halign'=>'left','border'=>'left,right,top,bottom','border-style'=>'thin'],
-                  ['halign'=>'left','border'=>'left,right,top,bottom','border-style'=>'thin']);
+                  ['halign'=>'left','border'=>'left,right,top,bottom','border-style'=>'thin'],);
 
 
 
@@ -1696,14 +1947,16 @@ $writer->setAuthor('Beasiswa IKIP PGRI Bojonegoro');
 //TulisHeader
 $writer->writeSheetHeader('Sheet1', $header);
 //Tulis Isi
-$rows = $this->db->query(" select * from bsw_pemohon where BeasiswaID='$BeasiswaID' and IsDeleted='N' order by ProdiID asc; ")->result();
+$PeriodeAktif = gval("t_periode","Status","Nama","1");
+$rows = $this->db->query(" select * from bsw_pemohon where BeasiswaID='$BeasiswaID' and Periode='$PeriodeAktif' and IsDeleted='N' order by ProdiID asc; ")->result();
+//$rows = $this->db->query(" select * from bsw_pemohon where BeasiswaID='12' and Periode='2018' and IsDeleted='N' order by ProdiID asc ")->result();
 foreach($rows as $row)
 {	
 	$data=array();
-	//Data data manas saja yg mau dimasukkan ke excel, diurutkan sesuai kolom di excel
+	//Data data mana saja yg mau dimasukkan ke excel, diurutkan sesuai kolom di excel
 	$data[0]=$row->MhswID;
 	$data[1]=$row->KodePT;
-	$data[2]=$row->JenisBeasiswa;
+	$data[2]=$row->BeasiswaID;
 	$data[3]=$no;
 	$data[4]=$row->Nama;
 	$data[5]=$row->JenisKelamin;
@@ -1713,8 +1966,7 @@ foreach($rows as $row)
 	$data[9]=$row->IPK;
 	$data[10]=$row->PekerjaanOrtu;
 	$data[11]=$row->TanggunganOrtu;
-
-	$data[12]=$row->PenghasilanOrtu; //Integer
+ 	$data[12]=$row->PenghasilanOrtu; //Integer
 	$data[13]=$row->Prestasi;
 	$data[14]='2018-11-01';  //Tanggal
 	$data[15]='2018-12-12';  //Tanggal
@@ -1728,20 +1980,16 @@ foreach($rows as $row)
 	//$writer->writeSheetRow('Sheet1', $row);
 	$writer->writeSheetRow('Sheet1', $data,$styles8);
 }
+
+ 
 $writer->writeToStdOut();
-//$writer->writeToFile('example.xlsx');
-//echo $writer->writeToString();
-// exit(0);
-			
- 		$a['data']		= '';
-	 		$a['page']		= "l_export_excel";		
-		
+exit(0);
+ 		
 		} else {
 	 		$a['data']		= '';
 	 		$a['page']		= "l_export_excel";
 		}
-		
-		$this->load->view('admin/aaa', $a);	
+ 		$this->load->view('admin/aaa', $a);	
 	}	  
 
 //--------------------------------------	
@@ -1891,14 +2139,14 @@ $writer->writeToStdOut();
 		$nama					= addslashes($this->input->post('nama'));
 		$nip					= addslashes($this->input->post('nip'));
 		$level					= addslashes($this->input->post('level'));
-		
+		$Status ='1';
 		$cari					= addslashes($this->input->post('q'));
 
 		
 		if ($mau_ke == "del") {
 			$this->db->query("DELETE FROM t_admin WHERE id = '$idu'");
 			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been deleted </div>");
-			redirect('index.php/admin/manage_admin');
+			redirect('admin/manage_admin');
 		} else if ($mau_ke == "cari") {
 			$a['data']		= $this->db->query("SELECT * FROM t_admin WHERE nama LIKE '%$cari%' ORDER BY id DESC")->result();
 			$a['page']		= "l_manage_admin";
@@ -1910,7 +2158,7 @@ $writer->writeToStdOut();
 		} else if ($mau_ke == "del") {
 			$a['datpil']	= $this->db->query("DELETE FROM t_admin WHERE id = '$idu'")->row();	
 			
-			redirect('index.php/admin/manage_admin');
+			redirect('admin/manage_admin');
 		} else if ($mau_ke == "act_add") {	
 			$cek_user_exist = $this->db->query("SELECT username FROM t_admin WHERE username = '$username'")->num_rows();
 
@@ -1923,7 +2171,7 @@ $writer->writeToStdOut();
 			} else if ($cek_user_exist > 0) {
 				$this->session->set_flashdata("k", "<div class=\"alert alert-danger\" id=\"alert\">Username telah dipakai. Ganti yang lain..!</div>");
 			} else {
-				$this->db->query("INSERT INTO t_admin VALUES (NULL, '$username', '$password', '$nama', '$nip', '$level')");
+				$this->db->query("INSERT INTO t_admin VALUES (NULL, '$username', '$password', '$nama', '$nip', '$level','$Status')");
 				$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been added</div>");
 			}
 			
