@@ -1,8 +1,16 @@
+ <style>
+.label {
+  min-width: 70px !important;
+  display: inline-block !important
+}
+</style>
+
+
 <div class="clearfix">
 
 <div class="panel panel-info">
 	<div class="panel-heading" style="overflow: auto">
-		<div class="col-md-3"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span> Grade Mahasiswa</h3></div>
+		<div class="col-md-4"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span> Grade Mahasiswa</h3></div>
 		<?php 
 		if ($this->session->userdata('admin_level') == "Super Admin") {
 		?>
@@ -10,8 +18,8 @@
 			<a href="<?php echo base_URL(); ?>admin/grademahasiswa/add" class="btn btn-info"><i class="glyphicon glyphicon-plus-sign"> </i> Tambah Grade</a>
 		</div>
 		<?php } ?>
-		<div class="col-md-3"></div>
-		<div class="col-md-4">
+		
+		<div class="col-md-6">
 			<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>admin/grademahasiswa/cari" style="margin-top: 0px">
 				<input type="text" class="form-control" name="q" style="width: 180px" placeholder="Kata kunci  ..." >
 				<button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-search"> </i> Cari</button>
@@ -23,7 +31,7 @@
 
 <?php echo $this->session->flashdata("k");?>
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover table-striped">
 	<thead>
 	  <tr  bgcolor=#cce6ff>
 			<th class="text-center" width="10%">No</th>

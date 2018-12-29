@@ -1,8 +1,19 @@
+
+ <style>
+.label {
+  min-width: 70px !important;
+  display: inline-block !important
+}
+</style>
+
+
+
+
 <div class="clearfix">
 
 <div class="panel panel-primary">
 	<div class="panel-heading" style="overflow: auto">
-		<div class="col-md-8"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span>Pendaftar Beasiswa</h3></div>
+		<div class="col-md-8"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span>Pendaftar/Pengajuan Beasiswa</h3></div>
  
 		<div class="col-md-3"></div>
  
@@ -32,7 +43,7 @@
 	<tbody>
 		<?php 
 		if (empty($data)) {
-			echo "<tr><td colspan='9'  style='text-align: center; font-weight: bold'>--Data tidak ditemukan--</td></tr>";
+			echo "<tr><td colspan='10'  style='text-align: center; font-weight: bold'>--Data tidak ditemukan--</td></tr>";
 		} else {
 			$no 	= ($this->uri->segment(4) + 1);
 		  $nourut = 1;
@@ -49,8 +60,11 @@
 		?>
 		<tr>
 			<td class="text-center"><?php echo $nourut;$nourut++; ?></td>
-			<td><?php echo $b->Nama; ?></td>
-     
+      <td>		<?php
+							echo "<a href='".base_URL()."admin/detil_pengajuan/".$b->BeasiswaID."'>".$b->Nama."</a>"
+						?>
+      </td>      
+			 
 			<td class="text-center"><?php echo $b->Periode;; ?></td>
       <td class="text-center"><?php echo LabelStatus($b->Status); ?></td>
       <td class="text-center"><?php echo $Pendaftar_Matematika; ?></td>
@@ -59,7 +73,8 @@
       <td class="text-center"><?php echo $Pendaftar_Indo; ?></td>
       <td class="text-center"><?php echo $Pendaftar_Inggris; ?></td>
       
-      <td class="text-center"><?php echo $TotalPendaftar; ?></td>
+      <td class="text-center"><span class="label label-primary"><?php echo $TotalPendaftar; ?></span></td>
+     
 		</tr>
 		<?php 
 			$no++;
@@ -68,7 +83,7 @@
 		?>
 	</tbody>
 </table>
-<center><ul class="pagination"><?php echo $pagi; ?></ul></center>
+
 </div>
 
 
@@ -76,7 +91,7 @@
 
 <div class="panel panel-primary">
 	<div class="panel-heading" style="overflow: auto">
-		<div class="col-md-8"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span> Pendaftar disetujui</h3></div>
+		<div class="col-md-8"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span> Pendaftar disetujui (Sudah masuk SK)</h3></div>
  
 		<div class="col-md-3"></div>
  
@@ -105,7 +120,7 @@
 	<tbody>
 		<?php 
 		if (empty($data)) {
-			echo "<tr><td colspan='9'  style='text-align: center; font-weight: bold'>--Data tidak ditemukan--</td></tr>";
+			echo "<tr><td colspan='10'  style='text-align: center; font-weight: bold'>--Data tidak ditemukan--</td></tr>";
 		} else {
 			$no 	= ($this->uri->segment(4) + 1);
 		  $nourut = 1;
@@ -121,8 +136,10 @@
 		?>
 		<tr>
 			<td class="text-center"><?php echo $nourut;$nourut++; ?></td>
-			<td><?php echo $b->Nama; ?></td>
-     
+		  <td>		<?php
+							echo "<a href='".base_URL()."admin/detil_beasiswa/".$b->BeasiswaID."'>".$b->Nama."</a>"
+						?>
+      </td>   
 			<td class="text-center"><?php echo $b->Periode;; ?></td>
       <td class="text-center"><?php echo LabelStatus($b->Status); ?></td>
       <td class="text-center"><?php echo $Disetujui_Matematika; ?></td>
@@ -130,7 +147,7 @@
       <td class="text-center"><?php echo $Disetujui_PPKn; ?></td>
       <td class="text-center"><?php echo $Disetujui_Indo; ?></td>
       <td class="text-center"><?php echo $Disetujui_Inggris; ?></td>
-      <td class="text-center"><?php echo $TotalDisetujui; ?></td>
+      <td class="text-center"><span class="label label-primary"><?php echo $TotalDisetujui; ?></span></td>
 		</tr>
 		<?php 
 			$no++;
@@ -139,5 +156,5 @@
 		?>
 	</tbody>
 </table>
-<center><ul class="pagination"><?php echo $pagi; ?></ul></center>
+
 </div>

@@ -24,14 +24,19 @@
 	  src: local('Lobster'), url(<?php echo base_url(); ?>assets/font/tiga.woff) format('woff');
 	}	
 	
+ 
+	
+	
+	
 	</style>
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.css" media="screen">
-     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/adminlte/css/AdminLTE.min.css" media="screen">
+     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/color.css" media="screen">
+   
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/adminlte/css/AdminLTE.min.css" media="screen">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" media="screen">
-      <link rel="stylesheet" href="<?php echo base_url(); ?>assets/ionicons/css/ionicons.min.css" media="screen">
-    
-    
-    
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/ionicons/css/ionicons.min.css" media="screen">
+     
+   
     
     
     
@@ -41,13 +46,19 @@
       <script src="../bower_components/bootstrap/assets/js/respond.min.js"></script>
     <![endif]-->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/jquery/jquery-ui.css" />
-     <script src="<?php echo base_url(); ?>assets/js/bootbox.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/bootswatch.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/bootbox.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/bootswatch.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/jquery/jquery-ui.js"></script>
+
+ 
+    
+ 
 	<script type="text/javascript">
 	// <![CDATA[
+	
+
   
    function addCommas(nStr) {
       nStr += '';
@@ -220,7 +231,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-         <span class="navbar-brand"><strong style="font-family: verdana;"><span class="fa fa-graduation-cap"></span> Beasiswa</strong></span>
+         <span class="navbar-brand"><strong style="font-family: verdana;"><span class="fa fa-graduation-cap"></span> Kampus</strong></span>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -231,42 +242,30 @@
           <ul class="nav navbar-nav">	
 			<li><a href="<?php echo base_url(); ?>admin"><span class="glyphicon glyphicon-home"></span>  Beranda</a></li>
             <li class="dropdown">            
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-tasks"></span>  Referensi <span class="caret"></span></a>
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-tasks"></span>  Beasiswa<span class="caret"></span></a>
 				<ul class="dropdown-menu" aria-labelledby="themes">
-				<li><a tabindex="-1" href="<?php echo base_url(); ?>admin/jenis_beasiswa">Jenis Beasiswa</a></li>
+					<?php
+		if ($this->session->userdata('admin_level') == "Super Admin") {
+		?>	
+      	<li><a tabindex="-1" href="<?php echo base_url(); ?>admin/jenis_beasiswa">Jenis Beasiswa</a></li>
         <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/periode">Periode</a></li>
         <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/grademahasiswa">Grade Mahasiswa</a></li>
         <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/prodi">Program Studi</a></li>
-		
+      <li role="presentation" class="divider"></li>
+      
+      	<?php } ?>
+         <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/pengajuan_beasiswa">Permohonan Beasiswa</a></li>
+         <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/beasiswa_disetujui">Beasiswa Disetujui</a></li>
+           <li role="presentation" class="divider"></li>
+     <!--    <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/rangkuman_beasiswa">Rangkuman Pendaftar Beasiswa</a></li>  -->
+         <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/kumpulan_sk">Kumpulan SK</a></li>
+      <li role="presentation" class="divider"></li>  
+		      <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/export_excel">Export Data Excel (Belum Jadi)</a></li>
+    
 				</ul>
             </li>
-		<?php
-		if ($this->session->userdata('admin_level') != "Super Adminxxxxxx") {
-		?>	
-		<li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-tint"></span> Proses <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/pengajuan_beasiswa">Permohonan Beasiswa</a></li>
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/beasiswa_disetujui">Beasiswa Disetujui</a></li>
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/rangkuman_beasiswa">Rangkuman Pendaftar Beasiswa</a></li>
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/kumpulan_sk">Kumpulan SK</a></li>
-              </ul>
-            </li>
-            	<?php } ?>
-              
-    <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-cloud-download"></span> Download Data <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="themes">
-                  <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/export_excel">Export Data Excel</a></li>
-    
-              </ul>
-            </li>          
-              
-              
-              
-              
-              
-
+            
+  
 		
 			<?php
 			if ($this->session->userdata('admin_level') == "Super Admin") {
@@ -325,7 +324,7 @@
 	  
 	  <div class="span12 well well-sm">
 		<h4 style="font-weight: bold">Sistem Informasi Beasiswa</a></a></h4>
-		<h6>&copy;  2013. Waktu Eksekusi : {elapsed_time}, Penggunaan Memori : {memory_usage}</h6>
+		<h6>&copy;  2018. Waktu Eksekusi : {elapsed_time}, Penggunaan Memori : {memory_usage}</h6>
 	  </div>
  
     </div>

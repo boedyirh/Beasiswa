@@ -1,3 +1,11 @@
+ <style>
+.label {
+  min-width: 70px !important;
+  display: inline-block !important
+}
+</style>
+
+
 <div class="clearfix">
 
 <div class="panel panel-info">
@@ -6,12 +14,12 @@
 		<?php 
 		if ($this->session->userdata('admin_level') == "Super Admin") {
 		?>
-		<div class="col-md-2">
+		<div class="col-md-3">
 			<a href="<?php echo base_URL(); ?>admin/periode/add" class="btn btn-info"><i class="glyphicon glyphicon-plus-sign"> </i> Tambah Periode</a>
 		</div>
 		<?php } ?>
-		<div class="col-md-3"></div>
-		<div class="col-md-4">
+ 
+		<div class="col-md-6">
 			<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>admin/periode/cari" style="margin-top: 0px">
 				<input type="text" class="form-control" name="q" style="width: 180px" placeholder="Kata kunci  ..." >
 				<button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-search"> </i> Cari</button>
@@ -23,13 +31,14 @@
 
 <?php echo $this->session->flashdata("k");?>
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover table-striped">
 	<thead>
 	  <tr  bgcolor="#cce6ff">
 			<th class="text-center" width="4%">No</th>
 			<th class="text-center" width="11%">Tahun Periode</th>
-      <th class="text-center" width="5">Status</th>
-			<th class="text-center" width="25%">Aksi</th>
+      <th class="text-center" width="15">Status</th>
+        
+			<th class="text-center" width="15%">Aksi</th>
 		</tr>
 	</thead>
 	
@@ -43,10 +52,10 @@
 			foreach ($data as $b) {
 		?>
 		<tr>
-			<td class="text-center"> <?php echo $nourut; $nourut++; ?> </td>
+			<td class="text-center"><?php echo $nourut; $nourut++; ?> </td>
 			<td class="text-center"><?php echo $b->Nama; ?></td>
     	<td class="text-center"><?php echo LabelStatus($b->Status); ?></td>
- 
+      
      
 			<?php 
 			if ($this->session->userdata('admin_level') == "Super Admin") {

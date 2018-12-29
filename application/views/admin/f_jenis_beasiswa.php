@@ -11,6 +11,7 @@ if ($mode == "edt" || $mode == "act_edt") {
 	$Tgl_mulai  = date('d-m-Y' , strtotime($Tgl_mulai));
 	$Kuota		= $datpil->Kuota;
 	$Jenis		= $datpil->Jenis;
+ 	$Warna		= $datpil->Warna;
 	$Periode	= $datpil->Periode;
 	$IPKMinimal	= $datpil->IPKMinimal;
 	$SKSMinimal	= $datpil->SKSMinimal; 
@@ -41,6 +42,7 @@ if ($mode == "edt" || $mode == "act_edt") {
 	$IPKMinimal	= "";
 	$SKSMinimal	= "";
 	$TidakMampu	= "";
+  $Warna	= "1";
 	$SyaratLain	= "";
 	$Deskripsi	= "";
 	$ro 		= "";
@@ -134,6 +136,20 @@ if ($mode == "edt" || $mode == "act_edt") {
 	<tr><td width="20%">Persyaratan Lain</td><td><b><textarea tabindex="15" name="SyaratLain"  style="width: 700px; height: 100px" class="form-control"><?php echo $SyaratLain; ?></textarea></b></td></tr>		
 	<tr><td width="20%">Deskripsi Singkat Beasiswa</td><td><b><textarea name="Deskripsi" tabindex="16"  style="width: 700px; height: 100px" class="form-control"><?php echo $Deskripsi; ?></textarea></b></td></tr>   
     <tr>
+  
+  
+  	<tr><td width="20%">Warna</td> 
+		<td>
+			<select class="form-control required" tabindex="7" style="width: 240px"; id="Warna" name="Warna">
+                
+                <option value="1" <?php if($Warna=="1") echo 'selected="selected"'; ?>>1</option>
+                <option value="2" <?php if($Warna=="2") echo 'selected="selected"'; ?>>2</option>
+                <option value="3" <?php if($Warna=="3") echo 'selected="selected"'; ?>>3</option>
+                <option value="4" <?php if($Warna=="3") echo 'selected="selected"'; ?>>4</option>
+                <option value="5" <?php if($Warna=="3") echo 'selected="selected"'; ?>>5</option>
+            </select>
+		</td>
+		</tr>
     
   <tr><td width="20%">Status</td>  
 		<td>

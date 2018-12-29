@@ -9,20 +9,20 @@
 <div class="panel panel-info">
 	<div class="panel-heading" style="overflow: auto">
 		<div class="col-md-6"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-user"></span> Daftar Permohonan Beasiswa</h3></div>
-		<div class="col-md-2">
-	
-  	</div>
+	 
 		<div class="col-md-3"></div>
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>admin/beasiswa_disetujui/cari" style="margin-top: 0px">
-				<?php
+			<div>
+      	<?php
       
            $JenisBeasiswa = AmbilSesi('BeasiswaID','beasiswa_disetujui');
         	ComboBoxPenjaringan("JenisBeasiswa", "bsw_jenis", "BeasiswaID", "Nama", $JenisBeasiswa, "JenisID", "form-control","240px","--Jenis Beasiswa--");	
   
      ?>
 				<button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-search"> </i> Cari</button>
-			</form>
+		</div>
+    	</form>
 		</div>
 	</div>
 </div>

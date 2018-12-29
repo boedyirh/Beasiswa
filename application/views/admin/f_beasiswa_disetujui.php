@@ -52,7 +52,7 @@ if ($mode == "rubahstatus" || $mode == "act_rubahstatus") {
       <option value="xxx">--- Status Beasiswa ---</option>
       <option value="10" <?php if($StatusBeasiswa=="10") echo 'selected="selected"'; ?>>Pendaftaran</option>
       <option value="11" <?php if($StatusBeasiswa=="11") echo 'selected="selected"'; ?>>Disetujui</option>
-      <option value="12" <?php if($StatusBeasiswa=="12") echo 'selected="selected"'; ?>>Belum Masuk</option>
+      <option value="12" <?php if($StatusBeasiswa=="12") echo 'selected="selected"'; ?>>Tidak Masuk Kuota</option>
    </select>
   </td></tr>   
    
@@ -64,7 +64,7 @@ if ($mode == "rubahstatus" || $mode == "act_rubahstatus") {
   
   <tr><td colspan="2">
 	<br><button tabindex="26" type="submit" class="btn btn-primary"><i class="icon icon-ok icon-white"></i> Simpan</button>
-	<a tabindex="26"href="<?php echo base_URL(); ?>admin/beasiswa_disetujui" class="btn btn-success"><i class="icon icon-arrow-left icon-white"></i> Kembali</a>
+	<a tabindex="26"href="<?php echo base_URL(); ?>admin/beasiswa_disetujui/kembali" class="btn btn-success"><i class="icon icon-arrow-left icon-white"></i> Kembali</a>
 	</td></tr>
 	</table>
 </form>
