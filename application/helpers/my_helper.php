@@ -36,7 +36,7 @@ else if  ($id=='10')  //Pendaftaran
 else if  ($id=='11')  //Disetujui
    { $StatusLabel = "<span class='label label-success'>Disetujui</span>"; } 
 else if  ($id=='12')  //Belum Masuk
-   { $StatusLabel = "<span class='label label-danger'>Belum Masuk</span>"; } 
+   { $StatusLabel = "<span class='label label-danger'>Tidak Masuk Kuota</span>"; } 
 else       //Non-Aktif
    { $StatusLabel = "<span class='label label-default'>Tidak Terlihat</span>"; } 
     
@@ -72,10 +72,26 @@ function SimpanSesi($id,$namaform,$nilai)
 function LabelBeasiswa($id)
 {
 $Beasiswa	= gval("bsw_jenis", "BeasiswaID", "Nama", $id); 
-$StatusLabel = "<span class='label label-success'>".$Beasiswa."</span>";
+$Warna	  = gval("bsw_jenis", "BeasiswaID", "Warna", $id); 
+
+if($Warna==1)
+{ $lbl='label-warna1';}
+else if($Warna==2)
+{ $lbl='label-warna3';} 
+else if($Warna==3)
+{ $lbl='label-danger';} 
+else if($Warna==4)
+{ $lbl='label-warna4';} 
+else
+{ $lbl='label-default';} 
+
+$Beasiswa	= gval("bsw_jenis", "BeasiswaID", "Nama", $id); 
+$StatusLabel = "<span class='label ".$lbl." '>".$Beasiswa."</span>";
 return $StatusLabel;
 
 }
+
+
 
 
 function konversi_level($id) {
@@ -123,9 +139,10 @@ function ComboBox($name, $tabel, $f_value, $f_view, $selected, $id, $class,$leba
 
 
 function ComboBoxPenjaringan($name, $tabel, $f_value, $f_view, $selected, $id, $class,$lebar,$keterangan) {
+  $PeriodeAktif = gval("t_periode","Status","Nama","1");
 	echo "<select name='$name' id='$id' class='$class' style='width:$lebar' ><option value='xx'>$keterangan</option>";   
  	$CI =& get_instance();	
- 	$query	= $CI->db->query("SELECT $f_value, $f_view FROM $tabel where NA='N' and IsDeleted='N' ORDER BY $f_view ASC ")->result_array();
+ 	$query	= $CI->db->query("SELECT $f_value, $f_view FROM $tabel where NA='N' and IsDeleted='N' and Status='1' and Periode='$PeriodeAktif' ORDER BY BeasiswaID desc, $f_view ASC ")->result_array();
   foreach($query as $a)
    {
  			if ($a[$f_value] == $selected) {
