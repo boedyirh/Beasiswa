@@ -17,7 +17,7 @@
       	<?php
       
            $JenisBeasiswa = AmbilSesi('BeasiswaID','beasiswa_disetujui');
-        	ComboBoxPenjaringan("JenisBeasiswa", "bsw_jenis", "BeasiswaID", "Nama", $JenisBeasiswa, "JenisID", "form-control","240px","--Jenis Beasiswa--");	
+        	ComboBoxPenjaringan("JenisBeasiswa", "bsw_jenis", "BeasiswaID", "Nama", $JenisBeasiswa, "JenisID", "form-control","240px","--Jenis Beasiswa--",'0');	
   
      ?>
 				<button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-search"> </i> Cari</button>

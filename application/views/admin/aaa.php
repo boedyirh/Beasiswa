@@ -260,7 +260,7 @@
      <!--    <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/rangkuman_beasiswa">Rangkuman Pendaftar Beasiswa</a></li>  -->
          <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/kumpulan_sk">Kumpulan SK</a></li>
       <li role="presentation" class="divider"></li>  
-		      <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/export_excel">Export Data Excel (Belum Jadi)</a></li>
+		      <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/export_excel">Export Data Excel </a></li>
     
 				</ul>
             </li>

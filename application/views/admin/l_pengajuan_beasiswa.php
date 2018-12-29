@@ -13,7 +13,7 @@
         	<?php
       
            $JenisBeasiswa = AmbilSesi('BeasiswaID','pengajuan_beasiswa');
-        	ComboBoxPenjaringan("BeasiswaID", "bsw_jenis", "BeasiswaID", "Nama", $JenisBeasiswa, "JenisID", "form-control","190px","--Jenis Beasiswa--");	
+        	ComboBoxPenjaringan("BeasiswaID", "bsw_jenis", "BeasiswaID", "Nama", $JenisBeasiswa, "JenisID", "form-control","200px","--Jenis Beasiswa--",'0');	
           ?> 
             
         <input type="text" class="form-control" name="q" style="width: 110px" placeholder="Nama.." >

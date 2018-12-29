@@ -7,6 +7,7 @@ if ($mode == "edt" || $mode == "act_edt") {
 	  $act		= "act_edt";
   	  $idp		= $datpil->PemohonID;
 	  $ro       = "readonly";
+     $ros     ='1';
   	  $NamaMhsw = $datpil->Nama;
 	  $MhswID	= $datpil->MhswID;
 	  $IPK		= $datpil->IPK;
@@ -34,6 +35,7 @@ if ($mode == "edt" || $mode == "act_edt") {
 		$act		= "act_add";
 		$idp		= "";
 		$ro			= "";  
+    $ros     ='0';
 		$NamaMhsw	= "";
 		$MhswID		= "";
 		$IPK		= "";
@@ -71,10 +73,10 @@ if ($mode == "edt" || $mode == "act_edt") {
 		<table  class="table-form">
 		 <?php
   	echo "<tr><td>Jenis Beasiswa</td><td>";
-		ComboBoxPenjaringan("BeasiswaID", "bsw_jenis", "BeasiswaID", "Nama", $BeasiswaID, "BeasiswaID", "form-control","290px","----Jenis Beasiswa-----");
+		ComboBoxPenjaringan("BeasiswaID", "bsw_jenis", "BeasiswaID", "Nama", $BeasiswaID, "BeasiswaID", "form-control","290px","----Jenis Beasiswa-----",$ros);
 		echo "</tr>";
    ?>
-  
+   
   	<tr><td width="25%">Nama Mahasiswa</td><td><b><input type="text" name="NamaMhsw" id="NamaMhsw" <?php echo $ro;   ?> tabindex="2"  required value="<?php echo $NamaMhsw;   ?>" id="dari" style="width: 400px" class="form-control"></b></td></tr>		
 	<tr><td width="25%">NIM/NPM</td><td><b><input type="text" name="MhswID" <?php echo $ro;   ?>  id="MhswID" onkeypress="return isNumber(event)" maxlength="8" tabindex="3" required value="<?php echo $MhswID; ?>" id="dari" style="width: 100px" class="form-control"></b></td></tr>		
 			<tr><td><hr></td></tr>

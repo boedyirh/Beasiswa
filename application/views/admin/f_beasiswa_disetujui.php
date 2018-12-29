@@ -45,7 +45,10 @@ if ($mode == "rubahstatus" || $mode == "act_rubahstatus") {
 <form action="<?php echo base_URL(); ?>admin/beasiswa_disetujui/<?php echo $act; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 	<input type="hidden" name="idp" value="<?php echo $idp; ?>">
 	<table width="100%" class="table-form">
-	  <tr><td width="20%">Kode Program Beasiswa</td><td><b><input type="text" readonly tabindex="1" name="BeasiswaID" required value="<?php echo $BeasiswaID; ?>" style="width: 130px" class="form-control"></b></td></tr>		
+  <?php
+      $NamaBS         = gval("bsw_jenis","BeasiswaID","Nama",$BeasiswaID);
+  ?>
+	  <tr><td width="20%">Program Beasiswa</td><td><b><input type="text" readonly tabindex="1" name="BeasiswaID" required value="<?php echo $NamaBS; ?>" style="width: 250px" class="form-control"></b></td></tr>		
   	<tr><td width="20%">Nama Beasiswa</td><td><b><input type="text" name="Nama" readonly tabindex="2" required value="<?php echo $Nama; ?>" style="width: 250px" class="form-control"></b></td></tr>		
     <tr><td width="20%">Status Beasiswa</td>  <td>
    <select class="form-control required" tabindex="7" style="width: 190px"; id="StatusBeasiswa" name="StatusBeasiswa">
