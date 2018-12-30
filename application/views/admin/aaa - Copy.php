@@ -231,7 +231,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-         <span class="navbar-brand"><strong style="font-family: verdana;"><span class="glyphicon glyphicon-education"></span> Kampus</strong></span>
+         <span class="navbar-brand"><strong style="font-family: verdana;"><span class="fa fa-graduation-cap"></span> Kampus</strong></span>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -241,72 +241,40 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">	
 			<li><a href="<?php echo base_url(); ?>admin"><span class="glyphicon glyphicon-home"></span>  Beranda</a></li>
+            <li class="dropdown">            
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-tasks"></span>  Beasiswa<span class="caret"></span></a>
+				<ul class="dropdown-menu" aria-labelledby="themes">
+					<?php
+		if ($this->session->userdata('admin_level') == "Super Admin") {
+		?>	
+      	<li><a tabindex="-1" href="<?php echo base_url(); ?>admin/jenis_beasiswa">Jenis Beasiswa</a></li>
+        <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/periode">Periode</a></li>
+        <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/grademahasiswa">Grade Mahasiswa</a></li>
+        <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/prodi">Program Studi</a></li>
+      <li role="presentation" class="divider"></li>
       
-      
-      <?php
-      // data main menu  ====================================================================================================
-      //Cek Hak Akses User
-         $UserSession = $this->session->userdata('admin_id');
-         $LevelUser= gval('t_admin','id','LevelId',$UserSession);
-         
-         //Ambil menu utama berdasarkan Level User
-          $main_menu = $this->db->order_by('id', 'ASC')
-                                           ->like('LevelID', $LevelUser)
-                                          ->get_where('t_menu', array('is_main_menu' => 0,'NA'=>'N')); 
-          
-          //              
-          foreach ($main_menu->result() as $main) { 
-           ?>             
-          <!-- Tampilkan Judul untuk Main Menu -->
-           <li class="dropdown">            
-				   <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="<?php echo $main->icon;?>"></span> <?php echo $main->judul_menu;?><span class="caret"></span></a>
-				            <!-- Tampikan Judul untuk sub menu berdasarkan main menu  -->
-                    <?php               
-                    $sub_menu = $this->db->order_by('id', 'ASC')
-                                         ->like('LevelID', $LevelUser)
-                                         ->get_where('t_menu', array('is_main_menu' => $main->id,'NA'=>'N'));
-                    if ($sub_menu->num_rows() > 0) {    //Jika ada submenu
-                    ?>
-                                   
-                   <!-- Mulai Group SubMenu   -->
-                   <ul class="dropdown-menu" aria-labelledby="themes">
-                   <!-- Ambil Data SubMenu -->
-                   <?php foreach ($sub_menu->result() as $sub) {                         
-                  if($sub->modul =='Separator')     
-                   { ?>
-                    <li role="presentation" class="divider"></li>
-                  <?php }
-                    else {
-                   ?>   
-                   
-                                      
-           	       <li><a tabindex="-1" href="<?php echo base_url(); ?><?php echo $sub->link;?>"><?php echo $sub->judul_menu;?></a></li>                        
-                 
-                 
-                 
-                  <?php    }
-                                                                } ?>
-                   </ul>                              <?php
-                 }}?>
+      	<?php } ?>
+         <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/pengajuan_beasiswa">Permohonan Beasiswa</a></li>
+         <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/beasiswa_disetujui">Beasiswa Disetujui</a></li>
+           <li role="presentation" class="divider"></li>
+     <!--    <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/rangkuman_beasiswa">Rangkuman Pendaftar Beasiswa</a></li>  -->
+         <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/kumpulan_sk">Kumpulan SK</a></li>
+      <li role="presentation" class="divider"></li>  
+		      <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/export_excel">Export Data Excel </a></li>
+    
+				</ul>
+            </li>
             
-            
-  
-      
-      
-      
-
   
 		
 			<?php
 			if ($this->session->userdata('admin_level') == "Super Admin") {
 			?>
 		<li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-cog"></span> </i> Setting <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-cog"></span> </i> Pengaturan <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/pengguna">Nama Instansi</a></li>
-                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/manage_admin">Manajemen User</a></li>
-                 <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/manage_menu">Manajemen Menu</a></li>
-                   <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/manage_akses">Manajemen Akses</a></li>
+                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/pengguna">Instansi Pengguna</a></li>
+                <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/manage_admin">Manajemen Admin</a></li>
               </ul>
             </li>
 			<?php 
@@ -321,7 +289,7 @@
              </ul>
           <ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-user"></span></i><?php echo $this->session->userdata('admin_nama'); ?> <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-user"></span></i> Administrator <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/passwod">Rubah Password</a></li>
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/logout">Logout</a></li>

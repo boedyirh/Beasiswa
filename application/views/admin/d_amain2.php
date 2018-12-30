@@ -101,7 +101,7 @@
 
 <?php echo $this->session->flashdata("k");?>
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover table-striped">
 	<thead>
 	  <tr  bgcolor=#cce6ff>
 			<th class="text-center" width="5%">No</th>

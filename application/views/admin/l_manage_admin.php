@@ -18,14 +18,15 @@
 
 <?php echo $this->session->flashdata("k");?>
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover table-striped">
 	<thead>
 			<tr  bgcolor=#cce6ff>
+      <th class="text-center" width="5%">No</th>
 			<th class="text-center" width="5%">ID</th>
 			<th class="text-center" width="30%">Username</th>
 			<th class="text-center" width="30%">Nama, NIP</th>
-			<th class="text-center" width="20%">Level</th>
-			<th class="text-center" width="15%">Aksi</th>
+			<th class="text-center" width="10%">Level</th>
+			<th class="text-center" width="25%">Aksi</th>
 		</tr>
 	</thead>
 	
@@ -35,16 +36,19 @@
 			echo "<tr><td colspan='5'  style='text-align: center; font-weight: bold'>--Data tidak ditemukan--</td></tr>";
 		} else {
 			$no 	= ($this->uri->segment(4) + 1);
+      $nourut = 1;
 			foreach ($data as $b) {
 		?>
 		<tr>
+    	<td class="text-center" class="ctr"><?php echo $nourut; $nourut++;?></td>
 			<td class="text-center" class="ctr"><?php echo $b->id;?></td>
 			<td><?php echo $b->username?></td>
 			<td><?php echo $b->nama."<br>".$b->nip?></td>
 			<td><?php echo $b->level?></td>
 			<td class="text-center" class="ctr">
 				<div class="btn-group">
-					<a href="<?php echo base_URL(); ?>index.php/admin/manage_admin/edt/<?php echo $b->id; ?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edt</a><a href="<?php echo base_URL(); ?>index.php/admin/manage_admin/del/<?php echo $b->id?>" class="btn btn-warning btn-sm" title="Hapus Data" onclick="return confirm('Anda Yakin..?')"><i class="icon-trash icon-remove">  </i> Del</a>		
+					<a href="<?php echo base_URL(); ?>index.php/admin/manage_admin/edt/<?php echo $b->id; ?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edit</a>
+          <a href="<?php echo base_URL(); ?>index.php/admin/manage_admin/reset/<?php echo $b->id?>" class="btn btn-warning btn-sm" title="Hapus Data" onclick="return confirm('Anda Yakin..?')"><i class="icon-trash icon-remove">  </i> Reset Password</a>		
 				</div>					
 			</td>
 		</tr>

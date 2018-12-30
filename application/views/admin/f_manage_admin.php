@@ -46,7 +46,7 @@ if ($mode == "edt" || $mode == "act_edt") {
 		<tr><td width="20%">Level</td><td><b>
 			<select name="level" class="form-control" style="width: 200px" required tabindex="6" ><option value=""> - Level - </option>
 			<?php
-				$l_sifat	= array('Super Admin','Admin');
+				$l_sifat	= array('Super Admin','Admin Beasiswa','Admin Prodi');
 				
 				for ($i = 0; $i < sizeof($l_sifat); $i++) {
 					if ($l_sifat[$i] == $level) {
