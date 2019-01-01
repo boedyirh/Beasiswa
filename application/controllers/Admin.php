@@ -254,7 +254,7 @@ public function jenis_beasiswa() {
 		
 		/* pagination */	
 		$total_row		= $this->db->query("SELECT * FROM bsw_jenis where IsDeleted='N' ")->num_rows();
-		$per_page		  = 10;
+		$per_page		  = 50;
 		
 		$awal	        = $this->uri->segment(4); 
 		$awal	= (empty($awal) || $awal == 1) ? 0 : $awal;
