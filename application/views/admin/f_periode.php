@@ -6,7 +6,7 @@ $mode		= $this->uri->segment(3);
 if ($mode == "edt" || $mode == "act_edt") {
 	$act		= "act_edt";
   
-  	$idp		   = $datpil->PeriodeID;
+  	$RandomChar	= $datpil->RandomChar;
   	$Nama	     = $datpil->Nama;
   	$Status	   = $datpil->Status;
   
@@ -19,9 +19,9 @@ if ($mode == "edt" || $mode == "act_edt") {
 } else {
   	$act		   = "act_add";
   	$idp		   = "";
+    $RandomChar ="";
    	$Nama	     = "";
   	$Status	   = "1";
-  
     $ro        = "";      
 }
 ?>
@@ -32,7 +32,7 @@ if ($mode == "edt" || $mode == "act_edt") {
 
 	<form action="<?php echo base_URL(); ?>admin/periode/<?php echo $act; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 	
-	<input type="hidden" name="idp" value="<?php echo $idp; ?>">
+	<input type="hidden" name="RandomChar" value="<?php echo $RandomChar; ?>">
 	
 	
 	<div class="row-fluid well" style="overflow: hidden">

@@ -55,7 +55,7 @@
 			   <td><?php echo $b->Nama; ?></td>
     	   <td class="text-center"><?php echo LabelStatus($b->Status); ?></td>
 			<?php 
-			if ($this->session->userdata('admin_level') == "Super Admin") {
+			if ($this->session->userdata('admin_level') == "a") {
 			?>
 			<td class="text-center" class="ctr">
 				<div class="btn-group">

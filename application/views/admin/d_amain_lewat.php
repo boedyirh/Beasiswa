@@ -7,7 +7,7 @@
 </style>
 
 <?php
-  $Periode = AmbilSesi('PeriodeID','beasiswa_dashboard'); 
+ $PeriodeAktif = gval("t_periode","Status","Nama","1");
 ?>
 
 
@@ -15,18 +15,19 @@
 
 <div class="panel panel-primary">
 	<div class="panel-heading" style="overflow: auto">
-		<div class="col-md-8"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span>Pendaftar/Pengajuan Beasiswa Periode <?php echo $Periode ; ?></h3></div>
-      
-			<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>admin/beasiswa_dashboard/tampilkan" style="margin-top: 0px">
+		<div class="col-md-8"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span>Pendaftar/Pengajuan Beasiswa Periode <?php echo $PeriodeAktif ; ?></h3></div>
+     
+			<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>admin/beasiswa_lewat/cari" style="margin-top: 0px">
 			<div>	
       	<?php
-         $Periode = AmbilSesi('PeriodeID','beasiswa_dashboard'); 
-       	ComboBox("NamaPeriode", "t_periode", "Nama", "Nama", $Periode, "PeriodeID", "form-control","130px","--Periode--");	
+         
+       	ComboBox("NamaPeriode", "t_periode", "Nama", "Nama", $PeriodeAktif, "PeriodeID", "form-control","130px","--Periode--");	
           ?>   
          
 				<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-search"> </i> Tampilkan</button>
 		</div>
     	</form>
+	 
 		<div class="col-md-3"></div>
  
 	</div>
@@ -130,7 +131,7 @@
 
 <div class="panel panel-primary">
 	<div class="panel-heading" style="overflow: auto">
-		<div class="col-md-8"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span> Pendaftar Beasiswa disetujui (Sudah masuk SK) Periode <?php echo $Periode ; ?></h3></div>
+		<div class="col-md-8"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span> Pendaftar Beasiswa disetujui (Sudah masuk SK) Periode <?php echo $PeriodeAktif ; ?></h3></div>
  
 		<div class="col-md-3"></div>
  

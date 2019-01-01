@@ -12,7 +12,7 @@
 	<div class="panel-heading" style="overflow: auto">
 		<div class="col-md-3"><h3 style="margin-top: 5px"><span class="glyphicon glyphicon-cog"></span> Jenis Beasiswa</h3></div>
 		<?php 
-		if ($this->session->userdata('admin_level') == "Super Admin") {
+		if ($this->session->userdata('admin_level') == "a") {
 		?>
 		<div class="col-md-3">
 			<a href="<?php echo base_URL(); ?>admin/jenis_beasiswa/add" class="btn btn-info"><i class="glyphicon glyphicon-plus-sign"> </i> Tambah Beasiswa</a>
@@ -66,12 +66,12 @@
     
             <td class="text-center"><?php echo LabelStatus($b->Status); ?></td>
 			<?php 
-			if ($this->session->userdata('admin_level') == "Super Admin") {
+			if ($this->session->userdata('admin_level') == "a") {
 			?>
 			<td class="text-center" class="ctr">
 				<div class="btn-group">
-					<a href="<?php echo base_URL(); ?>admin/jenis_beasiswa/edt/<?php echo $b->BeasiswaID; ?>" class="btn btn-success btn-sm"><i class="icon-edit icon-white"> </i> Edit</a>
-					<a href="<?php echo base_URL()?>admin/jenis_beasiswa/del/<?php echo $b->BeasiswaID?>" class="btn btn-warning btn-sm" onclick="return confirm('Jenis Beasiswa ini akan dihapus..?')">	<i class="icon-trash icon-white"> </i> Hapus</a>
+					<a href="<?php echo base_URL(); ?>admin/jenis_beasiswa/edt/<?php echo $b->RandomChar; ?>" class="btn btn-success btn-sm"><i class="icon-edit icon-white"> </i> Edit</a>
+					<a href="<?php echo base_URL()?>admin/jenis_beasiswa/del/<?php echo $b->RandomChar?>" class="btn btn-warning btn-sm" onclick="return confirm('Jenis Beasiswa ini akan dihapus..?')">	<i class="icon-trash icon-white"> </i> Hapus</a>
 		  
       			</div>					
 			</td>

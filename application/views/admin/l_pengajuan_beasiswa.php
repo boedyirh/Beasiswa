@@ -59,21 +59,40 @@
       <td class="text-center"><?php echo LabelStatus($b->Status);?></td>  	
 			<td class="text-center" class="ctr" >
 				<?php  
-					if ($this->session->userdata('admin_level') == "Super Admin") {
+					if ($this->session->userdata('admin_level') == "a") {
 				?>
 				<div class="btn-group">
-					<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/edt/<?php echo $b->PemohonID?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edit</a>
-		 	
-				</div>	
-				<?php 
-				} else {
-				?>
-				<div class="btn-group">
-				<a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/edt/<?php echo $b->PemohonID?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edi</a>
-		 			</div>	
-				<?php 
-				}
-				?>
+					
+              <?php 
+         if ($b->Terkunci=='N') { ?>
+         
+         
+		         <a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/edt/<?php echo $b->RandomChar?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edit</a>
+		 		    	</div>	
+         <?php  } else {?>
+                         
+           <a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/bukakunci/<?php echo $b->RandomChar?>" class="btn btn-default btn-sm" title="Buka Kunci" onclick="return confirm('Kunci akan akan dikunci, data akan bisa diubah. Yakin?')"><i class="glyphicon glyphicon-lock">  </i> Buka Kunci</a>
+			    	</div>	
+         
+         <?php
+          } } else {  
+          
+            if ($b->Terkunci=='N') { ?>
+         
+         
+			         <a href="<?php echo base_URL()?>admin/pengajuan_beasiswa/edt/<?php echo $b->RandomChar?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edit</a>
+			     	</div>	
+         <?php  } else {?>
+                         
+           <a href="#" class="btn btn-default btn-sm" title="Data Telah Terkunci" ><i class="glyphicon glyphicon-lock">  </i> Terkunci</a>
+			    	</div>	
+         
+         <?php
+          }}   
+			   ?>
+       
+          
+
 				
 			</td>
 		</tr>

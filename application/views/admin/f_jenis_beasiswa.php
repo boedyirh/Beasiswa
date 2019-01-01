@@ -3,7 +3,7 @@ $mode		= $this->uri->segment(3);
 
 if ($mode == "edt" || $mode == "act_edt") {
 	$act		= "act_edt";
-	$idp		= $datpil->BeasiswaID;
+	$RandomChar		= $datpil->RandomChar;
 	$Kode		= $datpil->Kode;
 	$Besaran	= $datpil->Besaran;
  	$Nama		= $datpil->Nama;	
@@ -30,7 +30,7 @@ if ($mode == "edt" || $mode == "act_edt") {
   		
 } else {
 	$act		= "act_add";
-	$idp		= "";
+	$RandomChar		= "";
 	$Kode		= "";
 	$Nama		= "";
 	$Jenis		= "";
@@ -63,7 +63,7 @@ if ($mode == "edt" || $mode == "act_edt") {
 <div class="well">
 
 <form action="<?php echo base_URL(); ?>admin/jenis_beasiswa/<?php echo $act; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-	<input type="hidden" name="idp" value="<?php echo $idp; ?>">
+	<input type="hidden" name="RandomChar" value="<?php echo $RandomChar; ?>">
 	<table width="100%" class="table-form">
 		<tr><td width="20%">Nama Beasiswa</td><td><b><input type="text" name="Nama" tabindex="2" <?php echo $ro; ?>  autocomplete="off" data-toggle="tooltip" data-placement="left" title="Misal : Beasiswa Bidik Misi Periode 2018" required value="<?php echo $Nama; ?>" style="width: 350px" class="form-control"></b></td></tr>		
 		<tr><td width="20%">Kode Program Beasiswa</td><td><b><input type="text" maxlength="5" data-toggle="tooltip" data-placement="left" title="Kode 5 digit diisi misal 18BMS = Tahun 2018 Bidik Misi" <?php echo $ro; ?> autocomplete="off" tabindex="1" name="Kode" required value="<?php echo $Kode; ?>" style="width: 80px" class="form-control"></b></td></tr>		                                                                                              
@@ -77,7 +77,7 @@ if ($mode == "edt" || $mode == "act_edt") {
                 <option value="BMK" <?php if($Jenis=="BMK") echo 'selected="selected"'; ?>>Bidik Misi Khusus</option>
                 <option value="KOT" <?php if($Jenis=="KOT") echo 'selected="selected"'; ?>>Pemkab</option>
                 <option value="YYS" <?php if($Jenis=="YYS") echo 'selected="selected"'; ?>>Yayasan</option>
-                <option value="LLN" <?php if($Jenis=="LLN") echo 'selected="selected"'; ?>>Lain-lain</option>
+                <option value="LLN" <?php if($Jenis=="PNP") echo 'selected="selected"'; ?>>Penampung</option>
             </select>
 		</td>
 		</tr>	

@@ -71,7 +71,7 @@
 		</div>
 		
 		<div class="well" style="width: 400px; margin: 20px auto; border: solid 1px #d9d9d9; padding: 30px 20px; border-radius: 8px">
-		<form action="<?php echo base_URL(); ?>index.php/admin/do_login" method="post">
+		<form action="<?php echo base_URL(); ?>admin/do_login" method="post">
 		<legend>Login Admin</legend>	
 		<?php echo $this->session->flashdata("k"); ?>
 		<table align="center" style="margin-bottom: 0" class="table-form" width="90%">
@@ -79,11 +79,7 @@
 			<tr><td>Password</td><td><input type="password" name="p" required style="width: 200px" class="form-control"></td></tr>
 			<tr><td>Tahun</td><td> 
       
-      	 <?php
-           $PeriodeAktif='2018';
- 		ComboBox("ta", "bsw_periode", "PeriodeID", "Tahun", 'xxx', "PeriodeID", "form-control","200px","----Periode-----");
-	 
-   ?>
+ 
 			</td></tr>
 			<tr><td></td><td><input type="submit" class="btn btn-success" value="Login"></td></tr>
 		</table>

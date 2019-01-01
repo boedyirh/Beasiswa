@@ -62,13 +62,12 @@
     	<td class="text-center"><?php echo LabelStatus($b->Status); ?></td>
       
 			<?php 
-			if ($this->session->userdata('admin_level') == "Super Admin") {
+			if ($this->session->userdata('admin_level') == "a") {
 			?>
 			<td class="text-center" class="ctr">
 				<div class="btn-group">
 					<a href="<?php echo base_URL(); ?>admin/prodi/edt/<?php echo $b->id; ?>" class="btn btn-success btn-sm"><i class="icon-edit icon-white"> </i> Edit</a>
-					<a href="<?php echo base_URL()?>admin/prodi/del/<?php echo $b->id?>" class="btn btn-warning btn-sm" onclick="return confirm('Jenis Beasiswa ini akan dihapus..?')">	<i class="icon-trash icon-white"> </i> Hapus</a>
-		
+			 
       	</div>					
 			</td>
 			<?php 

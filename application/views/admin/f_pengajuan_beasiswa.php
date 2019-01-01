@@ -5,10 +5,10 @@ $mode		= $this->uri->segment(3);
 
 if ($mode == "edt" || $mode == "act_edt") {
 	  $act		= "act_edt";
-  	  $idp		= $datpil->PemohonID;
+    $idp		= $datpil->PemohonID;
 	  $ro       = "readonly";
-     $ros     ='1';
-  	  $NamaMhsw = $datpil->Nama;
+    $ros     ='1';
+  	$NamaMhsw = $datpil->Nama;
 	  $MhswID	= $datpil->MhswID;
 	  $IPK		= $datpil->IPK;
 	  $SKSLulus	= $datpil->SKSLulus;
@@ -65,20 +65,20 @@ if ($mode == "edt" || $mode == "act_edt") {
 	<form action="<?php echo base_URL(); ?>admin/pengajuan_beasiswa/<?php echo $act; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 	
 	<input type="hidden" name="idp" value="<?php echo $idp; ?>">
-	
+		<input type="hidden" name="JenisBeasiswa" value="<?php echo $BeasiswaID; ?>">
 	
 	<div class="row-fluid well" style="overflow: hidden">
 		
 	<div class="col-lg-6">
 		<table  class="table-form">
-		 <?php
+		 <?php   
   	echo "<tr><td>Jenis Beasiswa</td><td>";
-		ComboBoxPenjaringan("BeasiswaID", "bsw_jenis", "BeasiswaID", "Nama", $BeasiswaID, "BeasiswaID", "form-control","290px","----Jenis Beasiswa-----",$ros);
+		ComboBoxPenjaringan("BeasiswaID", "bsw_jenis", "BeasiswaID", "Nama", $BeasiswaID, "BeasiswaID", "form-control","290px","----Jenis Beasiswa-----","0");
 		echo "</tr>";
    ?>
    
   	<tr><td width="25%">Nama Mahasiswa</td><td><b><input type="text" name="NamaMhsw" id="NamaMhsw" <?php echo $ro;   ?> tabindex="2"  required value="<?php echo $NamaMhsw;   ?>" id="dari" style="width: 400px" class="form-control"></b></td></tr>		
-	<tr><td width="25%">NIM/NPM</td><td><b><input type="text" name="MhswID" <?php echo $ro;   ?>  id="MhswID" onkeypress="return isNumber(event)" maxlength="8" tabindex="3" required value="<?php echo $MhswID; ?>" id="dari" style="width: 100px" class="form-control"></b></td></tr>		
+	<tr><td width="25%">NIM/NPM</td><td><b><input type="text" name="MhswID" readonly  id="MhswID" onkeypress="return isNumber(event)" maxlength="8" tabindex="3" required value="<?php echo $MhswID; ?>" id="dari" style="width: 100px" class="form-control"></b></td></tr>		
 			<tr><td><hr></td></tr>
     <tr><td width="25%">IPK</td><td><b><input type="text" name="IPK" autocomplete="off" onkeypress="return isNumberKey(this, event);" id="NextStop" tabindex="4"   value="<?php echo $IPK; ?>" id="dari"  maxlength="4" style="width: 60px" class="form-control"></b></td></tr>		
 	<tr><td width="25%">SKS Lulus</td><td><b><input type="text" name="SKSLulus" autocomplete="off" onkeypress="return isNumber(event)" maxlength="3" id="SKSLulus" tabindex="5"   value="<?php echo $SKSLulus; ?>" id="dari" style="width: 50px"  class="form-control"></b></td></tr>		
@@ -124,7 +124,7 @@ if ($mode == "edt" || $mode == "act_edt") {
  	<tr>
 	<td colspan="2">
 		<br><button type="submit" class="btn btn-primary"tabindex="30" ><i class="icon icon-ok icon-white"></i> Simpan</button>
-		<a href="<?php echo base_URL(); ?>admin/pengajuan_beasiswa" class="btn btn-success" tabindex="31" ><i class="icon icon-arrow-left icon-white"></i> Kembali</a>
+		<a href="<?php echo base_URL(); ?>admin/pengajuan_beasiswa/kembali" class="btn btn-success" tabindex="31" ><i class="icon icon-arrow-left icon-white"></i> Kembali</a>
 	</td>
 	</tr>   
     

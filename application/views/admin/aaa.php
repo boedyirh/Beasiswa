@@ -298,7 +298,7 @@
   
 		
 			<?php
-			if ($this->session->userdata('admin_level') == "Super Admin") {
+			if ($this->session->userdata('admin_level') == "a") {    // a= Super admin
 			?>
 		<li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-cog"></span> </i> Setting <span class="caret"></span></a>
@@ -316,12 +316,36 @@
             <ul class="nav navbar-nav ">
             <?php 
              $PeriodeAktif= gval("t_periode", "Status", "Nama", "1");
+            if ($this->session->userdata('admin_level') == "a") { 
+             
             ?>
           	<li><a href="<?php echo base_url(); ?>admin/periode"><span class="glyphicon glyphicon-eye-open"></span> Periode Aktif : <?php echo $PeriodeAktif; ?></a></li>
+            
+            <?php 
+            }
+            
+            else
+            {
+              ?>
+            	<li><a href="#"><span class="glyphicon glyphicon-eye-open"></span> Periode Aktif : <?php echo $PeriodeAktif; ?></a></li>
+            <?php 
+            
+            }
+            
+            ?>
+            
+            
+            
+            
+            
+            
              </ul>
+       
+       
+       
           <ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-user"></span></i><?php echo $this->session->userdata('admin_nama'); ?> <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-user"></span></i> <?php echo $this->session->userdata('admin_nama'); ?> <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/passwod">Rubah Password</a></li>
                 <li><a tabindex="-1" href="<?php echo base_url(); ?>admin/logout">Logout</a></li>

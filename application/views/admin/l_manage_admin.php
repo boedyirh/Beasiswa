@@ -9,7 +9,7 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-5">
 			<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>index.php/admin/manage_admin/cari" style="margin-top: 0px">
-				<input type="text" class="form-control" name="q" style="width: 200px" placeholder="Kata kunci ..." required>
+				<input type="text" class="form-control" name="q" style="width: 200px" placeholder="Kata kunci ..." >
 				<button type="submit" class="btn btn-danger"><i class="icon-search icon-white"> </i> Cari</button>
 			</form>
 		</div>
@@ -22,10 +22,11 @@
 	<thead>
 			<tr  bgcolor=#cce6ff>
       <th class="text-center" width="5%">No</th>
-			<th class="text-center" width="5%">ID</th>
-			<th class="text-center" width="30%">Username</th>
+			 
+			<th class="text-center" width="10%">Username</th>
 			<th class="text-center" width="30%">Nama, NIP</th>
-			<th class="text-center" width="10%">Level</th>
+			<th class="text-center" width="5%">Level</th>
+      <th class="text-center" width="30%">Program Studi</th>
 			<th class="text-center" width="25%">Aksi</th>
 		</tr>
 	</thead>
@@ -41,14 +42,30 @@
 		?>
 		<tr>
     	<td class="text-center" class="ctr"><?php echo $nourut; $nourut++;?></td>
-			<td class="text-center" class="ctr"><?php echo $b->id;?></td>
+		 
 			<td><?php echo $b->username?></td>
 			<td><?php echo $b->nama."<br>".$b->nip?></td>
-			<td><?php echo $b->level?></td>
+			<td class="text-center"><?php echo LabelStatus($b->LevelID);?></td>
+      <?php 
+      $NamaProdi = gval("t_prodi","ProdiID","Nama",$b->ProdiID);
+      if($b->ProdiID=='xx')
+      {
+      $NamaProdi='Semua Program Studi';
+      
+      }
+      else{
+      
+       $NamaProdi=$b->ProdiID."-".$NamaProdi;
+      
+      
+      }
+      
+      ?>
+      	<td><?php echo $NamaProdi; ?></td>
 			<td class="text-center" class="ctr">
 				<div class="btn-group">
-					<a href="<?php echo base_URL(); ?>index.php/admin/manage_admin/edt/<?php echo $b->id; ?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edit</a>
-          <a href="<?php echo base_URL(); ?>index.php/admin/manage_admin/reset/<?php echo $b->id?>" class="btn btn-warning btn-sm" title="Hapus Data" onclick="return confirm('Anda Yakin..?')"><i class="icon-trash icon-remove">  </i> Reset Password</a>		
+					<a href="<?php echo base_URL(); ?>admin/manage_admin/edt/<?php echo $b->RandomChar; ?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edit</a>
+          <a href="<?php echo base_URL(); ?>admin/resetpassword/<?php echo $b->RandomChar?>" class="btn btn-warning btn-sm" title="Hapus Data" ><i class="icon-trash icon-remove">  </i> Reset Password</a>		
 				</div>					
 			</td>
 		</tr>
