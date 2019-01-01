@@ -1,5 +1,5 @@
 .label-warna1 {
-  background-color:  #611BBD;
+  background-color:  #000080; 
   color: #F2EAEA;
 }
 .label-warna1 [href]:hover,
@@ -32,4 +32,16 @@
   background-color: #e0e12;
 }
 
+
+.lb-sm {
+  font-size: 13px;
+}
+
+.lb-md {
+  font-size: 16px;
+}
+
+.lb-lg {
+  font-size: 20px;
+}
  
