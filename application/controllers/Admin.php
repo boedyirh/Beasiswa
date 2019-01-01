@@ -117,7 +117,7 @@ public function periode() {
 				
 		redirect('admin/periode/'.$id_surat);
 	} else {
-		$a['data']		= $this->db->query("SELECT * FROM t_periode where IsDeleted='N' ")->result();
+		$a['data']		= $this->db->query("SELECT * FROM t_periode where IsDeleted='N' order by Nama ")->result();
 		$a['page']		= "l_periode";
 	}
 	
