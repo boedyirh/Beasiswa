@@ -14,31 +14,69 @@ function gval($tabel, $field_kunci, $diambil, $where) {
 	return $data;
 }
 
+function CekHakAkses() {
+	$CI 	=& get_instance();
+  $UserID = $CI->session->userdata('admin_id');
+  $LevelUserID = $CI->session->userdata('admin_level');
+  $NamaModul =$CI->uri->segment(2);
+ 	$CekBolehAkses		= $CI->db->query("SELECT id FROM t_menu where LevelID like '%$LevelUserID%' and NamaModul='$NamaModul'      ")->num_rows();
+  if ($CekBolehAkses>0) {
+  $Boleh ='1';
+  }else 
+  {
+  $Boleh ='0';
+  }
+  
+  return $Boleh;
+}	
+
+function CekAdmin() {
+	$CI 	=& get_instance();
+  $LevelUserID = $CI->session->userdata('admin_level');
+  if ($LevelUserID=='a') {
+  $Boleh ='1';
+  }else 
+  {
+$Boleh ='0';
+  }
+  
+  return $Boleh;
+}	
 
 
 function LabelStatus($id)
 {
 
 if ($id=='0')  //Non-Aktif
-   { $StatusLabel = "<span class='label label-default'>Non-Aktif</span>"; } 
+   { $StatusLabel = "<span class='label label-default lb-sm'>Non-Aktif</span>"; } 
 else if  ($id=='1')  //Aktif 
-   { $StatusLabel = "<span class='label label-success'>Aktif</span>"; }
+   { $StatusLabel = "<span class='label label-success lb-sm'>Aktif</span>"; }
 else if  ($id=='2')  //Penjaringan
-   { $StatusLabel = "<span class='label label-warning'>Penjaringan</span>"; }
+   { $StatusLabel = "<span class='label label-warning lb-sm'>Penjaringan</span>"; }
 else if  ($id=='3')  //Seleksi
-   { $StatusLabel = "<span class='label label-primary'>Telah Seleksi</span>"; }
+   { $StatusLabel = "<span class='label label-primary lb-sm'>Telah Seleksi</span>"; }
 else if  ($id=='4')  //Selesai
-   { $StatusLabel = "<span class='label label-info'>Selesai</span>"; }
+   { $StatusLabel = "<span class='label label-info lb-sm'>Selesai</span>"; }
 else if  ($id=='5')  //Terlihat
-   { $StatusLabel = "<span class='label label-info'>Terlihat</span>"; } 
+   { $StatusLabel = "<span class='label label-info lb-sm'>Terlihat</span>"; } 
 else if  ($id=='10')  //Pendaftaran
-   { $StatusLabel = "<span class='label label-primary'>Pendaftaran</span>"; } 
+   { $StatusLabel = "<span class='label label-primary lb-sm'>Pendaftaran</span>"; } 
 else if  ($id=='11')  //Disetujui
-   { $StatusLabel = "<span class='label label-success'>Disetujui</span>"; } 
+   { $StatusLabel = "<span class='label label-success lb-sm'>Disetujui</span>"; } 
 else if  ($id=='12')  //Belum Masuk
-   { $StatusLabel = "<span class='label label-danger'>Tidak Masuk Kuota</span>"; } 
+   { $StatusLabel = "<span class='label label-danger lb-sm'>Tidak Masuk Kuota</span>"; } 
+   
+else if  ($id=='a')  //Belum Masuk
+   { $StatusLabel = "<span class='label label-danger lb-sm'>Admin System</span>"; }    
+else if  ($id=='b')  //Belum Masuk
+   { $StatusLabel = "<span class='label label-primary lb-sm'>Admin Beasiswa</span>"; }    
+else if  ($id=='c')  //Belum Masuk
+   { $StatusLabel = "<span class='label label-success lb-sm'>Admin Prodi</span>"; }    
+   
+   
+   
 else       //Non-Aktif
-   { $StatusLabel = "<span class='label label-default'>Tidak Terlihat</span>"; } 
+   { $StatusLabel = "<span class='label label-default lb-sm'>Tidak Terlihat</span>"; } 
     
   return $StatusLabel;
 
@@ -52,6 +90,17 @@ function CheckDaftarBeasiswa($MhswID,$BeasiswaID,$Periode)
       $AdaPendaftar=$SdhDaftar[0]->Hasil;
       Return $AdaPendaftar;
 }
+       
+function CheckPenampung($MhswID,$Periode)    //Belum selesai
+{
+     //Pengecekan apakah Mahasiswa sudah Ada di Penampung Beasiswa di Gelombang yg Sama dan di Periode yang sama
+     $CI =& get_instance();	
+      $BeasiswaIDPenampung= gval("bsw_jenis", "Periode='$Periode' and Jenis", "BeasiswaID", "PNP");	
+     
+      $SdhDaftar = $CI->db->query(" select exists(select PemohonID from bsw_pemohon where BeasiswaID='$BeasiswaIDPenampung' and MhswID='$MhswID' and Periode='$Periode' limit 1) as Hasil; ")->result();
+      $AdaPendaftar=$SdhDaftar[0]->Hasil;
+      Return $AdaPendaftar;
+}       
        
 function CheckPernahDapatBeasiswa($MhswID)
 {
@@ -108,7 +157,7 @@ else
 { $lbl='label-default';} 
 
 $Beasiswa	= gval("bsw_jenis", "BeasiswaID", "Nama", $id); 
-$StatusLabel = "<span class='label ".$lbl." '>".$Beasiswa."</span>";
+$StatusLabel = "<span class='label ".$lbl." lb-sm '>".$Beasiswa."</span>";
 return $StatusLabel;
 
 }
@@ -145,18 +194,18 @@ function HitungAsset($Kategori) {
 
 
 function ComboBox($name, $tabel, $f_value, $f_view, $selected, $id, $class,$lebar,$keterangan) {
-	echo "<select name='$name' id='$id' class='$class' style='width:$lebar' ><option value='xx'>$keterangan</option>";   
+	echo "\n<select name='$name' id='$id' class='$class' style='width:$lebar' >\n<option value='xx'>$keterangan</option>\n";   
  	$CI =& get_instance();	
  	$query	= $CI->db->query("SELECT $f_value, $f_view FROM $tabel where NA='N' and IsDeleted='N' ORDER BY $f_view ASC ")->result_array();
   foreach($query as $a)
    {
  			if ($a[$f_value] == $selected) {
-			echo "<option value='$a[$f_value]' selected>$a[$f_view]</option>";
+			echo "<option value='$a[$f_value]' selected>$a[$f_view]</option>\n ";
 		} else {
-			echo "<option value='$a[$f_value]'>$a[$f_view]</option>";
+			echo "<option value='$a[$f_value]'>$a[$f_view]</option> \n";
 		}
   }
-	echo "</select>";
+	echo "</select>\n";
 }
 
 
@@ -166,18 +215,18 @@ function ComboBoxPenjaringan($name, $tabel, $f_value, $f_view, $selected, $id, $
   { $ro='disabled';
     } else {$ro='';}
   
-	echo "<select name='$name' id='$id' $ro class='$class' style='width:$lebar' ><option value='xx'>$keterangan</option>";   
+	echo "\n<select name='$name' id='$id' $ro class='$class' style='width:$lebar' >\n<option value='xx'>$keterangan</option>\n";   
  	$CI =& get_instance();	
  	$query	= $CI->db->query("SELECT $f_value, $f_view FROM $tabel where NA='N' and IsDeleted='N' and Status='1' and Periode='$PeriodeAktif' ORDER BY BeasiswaID desc, $f_view ASC ")->result_array();
   foreach($query as $a)
    {
  			if ($a[$f_value] == $selected) {
-			echo "<option value='$a[$f_value]' selected>$a[$f_view]</option>";
+			echo "<option value='$a[$f_value]' selected>$a[$f_view]</option>\n";
 		} else {
-			echo "<option value='$a[$f_value]'>$a[$f_view]</option>";
+			echo "<option value='$a[$f_value]'>$a[$f_view]</option>\n";
 		}
   }
-	echo "</select>";
+	echo "</select>\n";
 } 
 
 function getjenisnilai($id) {
