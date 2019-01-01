@@ -77,7 +77,7 @@ if ($mode == "edt" || $mode == "act_edt") {
                 <option value="BMK" <?php if($Jenis=="BMK") echo 'selected="selected"'; ?>>Bidik Misi Khusus</option>
                 <option value="KOT" <?php if($Jenis=="KOT") echo 'selected="selected"'; ?>>Pemkab</option>
                 <option value="YYS" <?php if($Jenis=="YYS") echo 'selected="selected"'; ?>>Yayasan</option>
-                <option value="LLN" <?php if($Jenis=="PNP") echo 'selected="selected"'; ?>>Penampung</option>
+                <option value="PNP" <?php if($Jenis=="PNP") echo 'selected="selected"'; ?>>Penampung</option>
             </select>
 		</td>
 		</tr>	
