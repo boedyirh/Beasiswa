@@ -163,6 +163,29 @@ return $StatusLabel;
 }
 
 
+function LabelPeriode($id)
+{
+$Warna	= gval("t_periode", "Nama", "Warna", $id); 
+ 
+
+if($Warna==1)
+{ $lbl='label-warna1';}
+else if($Warna==2)
+{ $lbl='label-warna3';} 
+else if($Warna==3)
+{ $lbl='label-warning';} 
+else if($Warna==4)
+{ $lbl='label-warna4';} 
+else
+{ $lbl='label-warna2';} 
+ 
+$StatusLabel = "<span class='label ".$lbl." lb-sm '>".$id."</span>";
+return $StatusLabel;
+
+}
+
+
+
 
 
 function konversi_level($id) {
