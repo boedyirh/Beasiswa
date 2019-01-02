@@ -54,13 +54,15 @@
 			$no 	= ($this->uri->segment(4) + 1);
       	$nourut =1;
 			foreach ($data as $b) {
+        $total_mhsw		= $this->db->query("SELECT * FROM bsw_pemohon WHERE BeasiswaID='$b->BeasiswaID' and Status='11'")->num_rows();
+    
 		?>
 		<tr>
     <td class="text-center"> <?php echo $nourut; $nourut++; ?> </td>
 			<td class="text-center"><?php echo $b->Kode; ?></td>
 			<td><?php echo LabelBeasiswa($b->BeasiswaID); ?></td>
-			<td class="text-center"><?php echo $b->Periode; ?></td>
-      	<td class="text-center"><?php echo '-'; ?></td>
+			<td class="text-center"><?php echo LabelPeriode($b->Periode); ?></td>
+     <td  class="text-center"><?php echo $total_mhsw ; ?></td>
      	<td class="text-center"><?php echo $b->Warna; ?></td>
        
     

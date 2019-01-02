@@ -54,7 +54,7 @@
       
       <td><?php echo $b->NoSK.'<br>'.$b->Keterangan; ?></td> 
        <td class="text-center"><?php echo $b->Jumlah; ?></td>
-<td  class="text-center"><?php echo $total_mhsw ; ?></td>
+      <td  class="text-center"><?php echo $total_mhsw ; ?></td>
 
     	<td><?php echo "<i><a href='".base_URL()."upload/SK/".$b->File."' target='_blank'>".$b->File."</a>"?></td>
       
