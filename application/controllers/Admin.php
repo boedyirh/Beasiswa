@@ -769,7 +769,7 @@ public function pengajuan_beasiswa() {
   
   	/* pagination */	
 	$total_row	= $this->db->query("SELECT * FROM bsw_pemohon where IsDeleted='N' ")->num_rows();
-	$per_page		= 48;
+	$per_page		= 90;
 	$awal	      = $this->uri->segment(4); 
 	$awal	      = (empty($awal) || $awal == 1) ? 0 : $awal;
 		$rand       = substr(md5(microtime()),rand(0,26),20);	
@@ -1003,7 +1003,7 @@ public function detil_pengajuan() {
 	    	
 		/* pagination */	
 	$total_row	= $this->db->query("SELECT * FROM bsw_pemohon where IsDeleted='N' ")->num_rows();
-	$per_page		= 48;
+	$per_page		= 90;
 	$awal	      = $this->uri->segment(4); 
 	$awal	      = (empty($awal) || $awal == 1) ? 0 : $awal;
  	$rand       = substr(md5(microtime()),rand(0,26),20);		
@@ -1545,6 +1545,7 @@ public function sk_lewat() {
 		//ambil variabel Postingan
 		$idp					= addslashes($this->input->post('idp'));
 		$NoSK		      = addslashes($this->input->post('NoSK'));
+    $Jumlah		      = addslashes($this->input->post('Jumlah'));
     $Keterangan		      = addslashes($this->input->post('Keterangan'));
 		$BeasiswaID		= addslashes($this->input->post('BeasiswaID'));
     $Nama         = gval("bsw_jenis","BeasiswaID","Nama",$BeasiswaID);
@@ -1596,9 +1597,9 @@ public function sk_lewat() {
 			if ($this->upload->do_upload('file_surat')) {
 				$up_data	 	= $this->upload->data();
 				
-				$this->db->query("INSERT INTO t_kumpulan_sk VALUES (NULL, '$BeasiswaID', '$PeriodeID', '$Nama','$NoSK',  '".$up_data['file_name']."', '$Tgl_SK','$Status','$Keterangan','N')");
+				$this->db->query("INSERT INTO t_kumpulan_sk VALUES (NULL, '$BeasiswaID', '$PeriodeID', '$Nama','$NoSK',  '".$up_data['file_name']."', '$Tgl_SK','$Status','$Keterangan','$Jumlah','N')");
 			} else {
-				$this->db->query("INSERT INTO t_kumpulan_sk VALUES (NULL, '$BeasiswaID', '$PeriodeID','$Nama','$NoSK',  '', '$Tgl_SK','$Status','$Keterangan','N')");
+				$this->db->query("INSERT INTO t_kumpulan_sk VALUES (NULL, '$BeasiswaID', '$PeriodeID','$Nama','$NoSK',  '', '$Tgl_SK','$Status','$Keterangan','$Jumlah','N')");
 			}		
 			
 			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been added</div>");
@@ -1637,7 +1638,7 @@ public function kumpulan_sk() {
   
 		/* pagination */	
 		$total_row		= $this->db->query("SELECT * FROM t_kumpulan_sk  ")->num_rows();
-		$per_page		= 10;
+		$per_page		= 100;
 			$rand       = substr(md5(microtime()),rand(0,26),20);
 		$awal	= $this->uri->segment(4); 
 		$awal	= (empty($awal) || $awal == 1) ? 0 : $awal;
@@ -1655,6 +1656,7 @@ public function kumpulan_sk() {
 		//ambil variabel Postingan
 		$idp					= addslashes($this->input->post('idp'));
 		$NoSK		      = addslashes($this->input->post('NoSK'));
+    $Jumlah		      = addslashes($this->input->post('Jumlah'));
     $Keterangan		      = addslashes($this->input->post('Keterangan'));
 		$BeasiswaID		= addslashes($this->input->post('BeasiswaID'));
     $Nama         = gval("bsw_jenis","BeasiswaID","Nama",$BeasiswaID);
@@ -1690,25 +1692,21 @@ public function kumpulan_sk() {
 			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Kunci Telah Dibuka </div>");
 			redirect('admin/kumpulan_sk');  
 		} else if ($mau_ke == "cari") {
-			$a['data']		= $this->db->query("SELECT * FROM t_kumpulan_sk WHERE isi_ringkas LIKE '%$cari%' OR tujuan LIKE '%$cari%' OR no_surat LIKE '%$cari%' ORDER BY id DESC")->result();
+			$a['data']		= $this->db->query("SELECT * FROM t_kumpulan_sk WHERE isi_ringkas LIKE '%$cari%' OR tujuan LIKE '%$cari%' OR no_surat LIKE '%$cari%' ORDER BY Periode,Nama DESC")->result();
 			$a['page']		= "l_kumpulan_sk";
 		} else if ($mau_ke == "add") {
-			$q_nomer_terakhir = $this->db->query("SELECT (MAX(SKID)) AS last FROM t_kumpulan_sk WHERE YEAR(Tgl_SK) = '".$this->session->userdata('admin_ta')."'")->row_array();
-			$last	= str_pad(intval($q_nomer_terakhir['last']+1), 4, '0', STR_PAD_LEFT);
-
-			$a['nomer_terakhir'] = $last;
-
+		  $a['datpil']	= $this->db->query("SELECT * FROM t_kumpulan_sk WHERE SKID = '$idu'")->row();	
 			$a['page']		= "f_kumpulan_sk";
 		} else if ($mau_ke == "edt") {
 			$a['datpil']	= $this->db->query("SELECT * FROM t_kumpulan_sk WHERE SKID = '$idu'")->row();	
-			$a['page']		= "f_kumpulan_sk";
+			$a['page']		= "f_kumpulan_ske";
 		} else if ($mau_ke == "act_add") {	
 			if ($this->upload->do_upload('file_surat')) {
 				$up_data	 	= $this->upload->data();
 				
-				$this->db->query("INSERT INTO t_kumpulan_sk VALUES (NULL, '$BeasiswaID', '$PeriodeID', '$Nama','$NoSK',  '".$up_data['file_name']."', '$Tgl_SK','$Status','$Keterangan','N')");
+				$this->db->query("INSERT INTO t_kumpulan_sk VALUES (NULL, '$BeasiswaID', '$PeriodeID', '$Nama','$NoSK',  '".$up_data['file_name']."', '$Tgl_SK','$Status','$Keterangan','$Jumlah','N')");
 			} else {
-				$this->db->query("INSERT INTO t_kumpulan_sk VALUES (NULL, '$BeasiswaID', '$PeriodeID','$Nama','$NoSK',  '', '$Tgl_SK','$Status','$Keterangan','N')");
+				$this->db->query("INSERT INTO t_kumpulan_sk VALUES (NULL, '$BeasiswaID', '$PeriodeID','$Nama','$NoSK',  '', '$Tgl_SK','$Status','$Keterangan','$Jumlah','N')");
 			}		
 			
 			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been added</div>");
@@ -1717,15 +1715,15 @@ public function kumpulan_sk() {
 			if ($this->upload->do_upload('file_surat')) {
 				$up_data	 	= $this->upload->data();
 				
-				$this->db->query("UPDATE t_kumpulan_sk SET Keterangan = '$Keterangan',NoSK = '$NoSK', BeasiswaID = '$BeasiswaID', File = '".$up_data['file_name']."',Tgl_SK = '$Tgl_SK'  WHERE SKID = '$idp'");
+				$this->db->query("UPDATE t_kumpulan_sk SET Keterangan = '$Keterangan',NoSK = '$NoSK',  File = '".$up_data['file_name']."',Tgl_SK = '$Tgl_SK',Jumlah = '$Jumlah'  WHERE SKID = '$idp'");
 			} else {
-				$this->db->query("UPDATE t_kumpulan_sk SET Keterangan = '$Keterangan',NoSK = '$NoSK', BeasiswaID = '$BeasiswaID', Tgl_SK = '$Tgl_SK' WHERE SKID = '$idp'");
+				$this->db->query("UPDATE t_kumpulan_sk SET Keterangan = '$Keterangan',NoSK = '$NoSK',  Tgl_SK = '$Tgl_SK' ,Jumlah = '$Jumlah' WHERE SKID = '$idp'");
 			}	
 			
 			$this->session->set_flashdata("k", "<div class=\"alert alert-success\" id=\"alert\">Data has been updated ".$this->upload->display_errors()."</div>");			
 			redirect('admin/kumpulan_sk');
 		} else {
-			$a['data']		= $this->db->query("SELECT * FROM t_kumpulan_sk LIMIT $awal, $akhir ")->result();
+			$a['data']		= $this->db->query("SELECT * FROM t_kumpulan_sk order by Periode,Nama ")->result();
 			$a['page']		= "l_kumpulan_sk";
 		}
 		
@@ -1741,7 +1739,7 @@ public function rangkuman_beasiswa() {
 		
 		/* pagination */	
 		$total_row		= $this->db->query("SELECT * FROM bsw_jenis ")->num_rows();
-		$per_page		= 10;
+		$per_page		= 80;
 		
 		$awal	= $this->uri->segment(4); 
 		$awal	= (empty($awal) || $awal == 1) ? 0 : $awal;
@@ -1880,7 +1878,7 @@ public function tim_seleksi() {
 		
 		/* pagination */	
 		$total_row		= $this->db->query("SELECT * FROM t_paket_datang WHERE YEAR(tgl_diterima) = '$ta'")->num_rows();
-		$per_page		= 10;
+		$per_page		= 80;
 		
 		$awal	= $this->uri->segment(4); 
 		$awal	= (empty($awal) || $awal == 1) ? 0 : $awal;
