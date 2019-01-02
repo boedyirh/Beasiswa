@@ -53,7 +53,7 @@
 		?>
 		<tr>
 			<td class="text-center"><?php echo $nourut; $nourut++; ?> </td>
-			<td class="text-center"><?php echo $b->Nama; ?></td>
+			<td class="text-center"><?php echo LabelPeriode($b->Nama); ?></td>
     	<td class="text-center"><?php echo LabelStatus($b->Status); ?></td>
       
      

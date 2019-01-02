@@ -86,7 +86,9 @@ if ($mode == "edt" || $mode == "act_edt") {
 		<tr><td width="20%">Periode</td> 
 		<td>
 			<select class="form-control required" tabindex="7" style="width: 240px"; id="Periode" name="Periode">
-                
+              <option value="2015" <?php if($Periode=="2015") echo 'selected="selected"'; ?>>2015</option>
+                 <option value="2016" <?php if($Periode=="2016") echo 'selected="selected"'; ?>>2016</option> 
+                 <option value="2017" <?php if($Periode=="2017") echo 'selected="selected"'; ?>>2017</option>
                 <option value="2018" <?php if($Periode=="2018") echo 'selected="selected"'; ?>>2018</option>
                 <option value="2019" <?php if($Periode=="2019") echo 'selected="selected"'; ?>>2019</option>
                 <option value="2020" <?php if($Periode=="2020") echo 'selected="selected"'; ?>>2020</option>
@@ -145,8 +147,8 @@ if ($mode == "edt" || $mode == "act_edt") {
                 <option value="1" <?php if($Warna=="1") echo 'selected="selected"'; ?>>1</option>
                 <option value="2" <?php if($Warna=="2") echo 'selected="selected"'; ?>>2</option>
                 <option value="3" <?php if($Warna=="3") echo 'selected="selected"'; ?>>3</option>
-                <option value="4" <?php if($Warna=="3") echo 'selected="selected"'; ?>>4</option>
-                <option value="5" <?php if($Warna=="3") echo 'selected="selected"'; ?>>5</option>
+                <option value="4" <?php if($Warna=="4") echo 'selected="selected"'; ?>>4</option>
+                <option value="5" <?php if($Warna=="5") echo 'selected="selected"'; ?>>5</option>
             </select>
 		</td>
 		</tr>

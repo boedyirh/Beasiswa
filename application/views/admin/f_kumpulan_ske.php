@@ -11,7 +11,8 @@ if ($mode == "edt" || $mode == "act_edt") {
     $Jumlah	= $datpil->Jumlah;  
     $Keterangan	= $datpil->Keterangan; 
 	  $NoSK	= $datpil->NoSK; 
-	  $BeasiswaID   = $datpil->BeasiswaID;     
+	  $BeasiswaID   = $datpil->BeasiswaID;
+    $NamaBeasiswa = gval("bsw_jenis","BeasiswaID","Nama",$BeasiswaID);     
 	  $Tgl_SK  = $datpil->Tgl_SK;     
     $Tgl_SK     = date('d-m-Y' , strtotime($Tgl_SK));
 	 
@@ -43,11 +44,7 @@ if ($mode == "edt" || $mode == "act_edt") {
 		
 	<div class="col-lg-6">
 		<table  class="table-form">
-		 <?php
-  	echo "<tr><td>Jenis Beasiswa</td><td>";
-		ComboBoxPenjaringan("BeasiswaID", "bsw_jenis", "BeasiswaID", "Nama", $BeasiswaID, "BeasiswaID", "form-control","290px","----Jenis Beasiswa-----","0");
-		echo "</tr>";
-   ?>
+   	<tr><td width="35%">Nama Beasiswa</td><td><b><input type="text" name="BeasiswaID" id="BeasiswaID" readonly tabindex="2"  required value="<?php echo $NamaBeasiswa;   ?>"  style="width: 400px" class="form-control"></b></td></tr>		
   
   	<tr><td width="35%">Nomer SK</td><td><b><input type="text" name="NoSK" id="NoSK" tabindex="2"  required value="<?php echo $NoSK;   ?>"  style="width: 400px" class="form-control"></b></td></tr>		
     	<tr><td width="35%">Tanggal SK</td><td><b><input type="text" name="Tgl_SK" tabindex="4" autocomplete="off"  value="<?php echo $Tgl_SK; ?>" id="tgl_mulai" style="width: 130px" class="form-control"></b></td></tr>

@@ -10,7 +10,7 @@
 		
  
 		<div class="col-md-6 ">
-			<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>admin/v/cari" style="margin-top: 0px">
+			<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>admin/kumpulan_sk/cari" style="margin-top: 0px">
 				<input type="text" class="form-control " name="q" style="width: 180px" placeholder="Kata kunci  ..." >
 				<button type="submit" class="btn btn-danger pull right"><i class="glyphicon glyphicon-search"> </i> Cari</button>
 			</form>
@@ -25,10 +25,13 @@
 	<thead>
 	  <tr  bgcolor=#cce6ff>
 			<th class="text-center" width="4%">No</th>
-			<th class="text-center" width="23%">Nama Beasiswa</th>
+			<th class="text-center" width="18%">Nama Beasiswa</th>
      	<th class="text-center" width="8%">Periode</th>
-      <th class="text-center" width="18">Nomer SK</th> 
-      <th class="text-center" width="26%">Link</th>
+      <th class="text-center" width="25%">Nomer SK</th>
+      <th class="text-center" width="6%">Jumlah di SK</th>
+      <th class="text-center" width="6%">Jumlah Mhsw</th>
+ 
+      <th class="text-center" width="20%">Link</th>
 			<th class="text-center" width="12%">Aksi</th>
 		</tr>
 	</thead>
@@ -41,12 +44,18 @@
 			$no 	= ($this->uri->segment(4) + 1);
       $nourut =1;
 			foreach ($data as $b) {
+      $total_mhsw		= $this->db->query("SELECT * FROM bsw_pemohon WHERE BeasiswaID='$b->BeasiswaID' and Status='11'")->num_rows();
+      
 		?>
 		<tr>
 	 <td class="text-center"> <?php echo $nourut; $nourut++; ?> </td>
 			<td><?php echo $b->Nama; ?></td>
-      <td class="text-center"><?php echo $b->Periode; ?></td>
-      <td><?php echo $b->NoSK.'<br>'.$b->Keterangan; ?></td>
+      <td class="text-center"><?php echo LabelPeriode($b->Periode); ?></td>
+      
+      <td><?php echo $b->NoSK.'<br>'.$b->Keterangan; ?></td> 
+       <td class="text-center"><?php echo $b->Jumlah; ?></td>
+<td  class="text-center"><?php echo $total_mhsw ; ?></td>
+
     	<td><?php echo "<i><a href='".base_URL()."upload/SK/".$b->File."' target='_blank'>".$b->File."</a>"?></td>
       
 			<?php 
